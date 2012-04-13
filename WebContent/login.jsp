@@ -41,7 +41,7 @@
 			Ext.Msg.alert('Status', 'Changes saved successfully.');
 			*/
 		</script>
-	</head>
+	</head>    
 	<body>
 		<form name="_login" action="" method="post">
 			<table>
