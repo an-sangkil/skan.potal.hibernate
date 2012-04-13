@@ -1,0 +1,6 @@
+#Mon Apr 09 11:07:00 KST 2012
+eclipse.preferences.version=1
+encoding//WebContent/common/calendar/calendar_view.jsp=UTF-8
+encoding//src/java/com/dongbu/farm/common/filter/NoCacheFilter.java=UTF-8
+encoding//src/java/com/dongbu/farm/common/mail/AbstractMailSender.java=UTF-8
+encoding//src/java/com/dongbu/farm/common/model/PageInfo.java=MS949

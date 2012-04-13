@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+	<!-- Application context Default Action definition  -->
+<beans>
+	<!-- ========================= DEFINITIONS OF PROTECTED CONTROLLERS ========================= -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".jsp" />
+	</bean> 
+
+	<!-- ========================= MESSAGE RESOURCES ========================= -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename">
+			<value>commonListMessages</value>
+		</property>
+	</bean>
+
+	<!-- ========================= DEFINITIONS OF PROTECTED CONTROLLERS ========================= -->
+	<bean id="commonHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="urlMap">
+			<map>
+				<entry key="/common/mail/*" value-ref="mailController" />
+	 			<!-- 
+				<entry key="/common/sanction/*" value-ref="sanctionController" />
+				 -->
+			</map>
+		</property>
+	</bean>
+	 
+	 <bean id="mailController" class="com.dongbu.farm.common.mail.controller.MailController">
+		<property name="methodNameResolver">
+			<bean class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
+				<property name="mappings">
+					<props>
+						<prop key=""></prop>
+					</props>
+				</property>
+			</bean>
+		</property>
+		<property name="mimeMailSender" ref="mimeMailSender" />
+		<property name="mailContents" ref="mailContents" />
+	</bean>
+</beans>
+
+

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	<!-- ========================= DEFINITIONS OF PROTECTED CONTROLLERS ========================= -->
+	
+	<!-- package 하위  bean 자동 등록  -->
+	<context:component-scan base-package="com.dongbu.farm.common"> 
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+
+	<!-- 
+		1. 서비스 속성 정의 XML 내에 <context:component-scan /> 을 정의함으로써 Spring 컨테이너가 Stereotype Annotation을 정의한 클래스를 자동 검색할 수 있도록 한다. 
+		2. <context:component-scan />을 정의한 경우 Annotation 인식을 위한 설정 <context:annotation-config/> 을 별도로 추가하지 않아도 된다. 
+		<context:annotation-config></context:annotation-config>
+	 -->
+
+
+
+
+
+
+
+
+
+
+	
+	<bean id="placeholderConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:jdbc.properties</value>
+				<value>classpath:system.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="${attach.file.max.size}" />
+	</bean>
+	
+	<bean id="repositoryController" class="com.dongbu.farm.common.repository.controller.RepositoryController" abstract="true">
+		<property name="filePath" 		   value="${attach.file.save.path}" />
+		<property name="wastebasketPath" 		   value="${attach.file.wastebasket.path}" />
+	</bean>
+
+	<bean id="repositoryManager" parent="abstractTxDefinition">
+		<property name="target">
+			<bean class="com.dongbu.farm.common.repository.manager.impl.RepositoryManagerImpl">
+				<property name="repositoryDao" ref="repositoryDao" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="repositoryDao" class="com.dongbu.farm.common.repository.dao.impl.RepositoryDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	
+</beans>

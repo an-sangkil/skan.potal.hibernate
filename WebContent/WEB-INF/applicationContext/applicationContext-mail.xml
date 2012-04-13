@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="placeholderConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:mail.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<bean id="javaMailAuthenticator" class="com.dongbu.farm.common.mail.JavaMailAuthenticator">
+		<!-- 
+		<property name="host" value="${dongbu.mail.host}" />
+		<property name="port" value="${dongbu.port}" />
+		<property name="protocol" value="${dongbu.protocol}" />
+		<property name="username" value="${dongbu.username}" />
+		<property name="password" value="${dongbu.password}" />
+		 -->
+	</bean>
+	
+	<bean id="mimeMailSender" class="com.dongbu.farm.common.mail.MimeMailSender">
+		<property name="sender" ref="javaMailAuthenticator"> </property>
+	</bean>
+	
+	
+	<bean id="mailContents" class="com.dongbu.farm.common.mail.model.MailContents">
+		<property name="promotionMailContents">
+			<props>
+				<prop key="smsCase1">
+					<![CDATA[ 
+					<html>
+					
+					</html>
+					]]>
+				</prop>
+				<prop key="smsCase2">
+					<![CDATA[ 
+					<html>
+					
+					</html>
+					]]>
+				</prop>
+			</props>
+		</property>
+		
+		<property name="commonMailContents">
+			<props>
+				<prop key="commonCase1">
+					<![CDATA[ 
+						<html>
+							<body>
+								HELLO
+								@@~ABC~@@
+							</body>
+						</html>
+						]]>
+					</prop>
+				<prop key="commonCase2">
+					<![CDATA[ 
+						<html>
+						
+						</html>
+					]]>
+				</prop>
+			</props>
+		</property>
+	</bean>
+	
+</beans>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig> 
+    <!-- there are plenty of other optional settings, see the ibatis-sql-maps doc -->
+    <settings enhancementEnabled="true" useStatementNamespaces="true" />
+    <sqlMap resource="/com/dongbu/farm/common/repository/dao/xml/Repository.xml"/>							<!-- 첨부파일 -->
+    <sqlMap resource="/com/dongbu/farm/common/board/dao/xml/board.xml"/>									<!-- 게시판 -->
+    <sqlMap resource="/com/dongbu/farm/common/board/dao/xml/comment.xml"/>									<!-- 댓글 -->
+    <sqlMap resource="/com/dongbu/farm/login/dao/xml/login.xml"/>											<!-- 로그인 -->
+    <sqlMap resource="/com/dongbu/farm/common/schedule/dao/xml/schdule.xml"/>								<!-- 일정관리 -->
+    <sqlMap resource="/com/dongbu/farm/system/category/dao/xml/category.xml"/>								<!-- 카테고리뷰-->
+    <sqlMap resource="/com/dongbu/farm/system/code/dao/xml/code.xml"/>										<!-- 코드관리-->
+    <sqlMap resource="/com/dongbu/farm/content/address/dao/xml/address.xml"/>								<!-- 주소록관리-->
+    <sqlMap resource="/com/dongbu/farm/content/address/dao/xml/addressGroup.xml"/>								<!-- 주소록 그룹 관리-->
+    
+    
+	
+</sqlMapConfig>

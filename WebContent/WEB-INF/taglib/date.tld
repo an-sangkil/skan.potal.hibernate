@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE taglib
+        PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+        "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>1.2</jsp-version>
+	<short-name>date</short-name>
+	<uri>http://ehsh.hynix.com/date</uri>
+	<description>날짜 선택 셀렉트 박스를 표기하기 위한 커스텀 테그</description>
+	
+	<tag>
+		<name>year</name>
+		<tag-class>com.hynix.eshs.common.tag.date.DateYearTag</tag-class>
+		<description></description>
+		<attribute>
+			<name>attribute</name>
+			<required>yes</required>
+			<rtexprvalue>yes</rtexprvalue>
+			<description>select 테그 안에 어트리뷰트로 들어갈 정보들 </description>
+		</attribute>
+		<attribute>
+			<name>selectedInfo</name>
+			<required>no</required>
+			<rtexprvalue>yes</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>beforeYears</name>
+			<required>yes</required>
+			<rtexprvalue>yes</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>afterYears</name>
+			<required>yes</required>
+			<rtexprvalue>yes</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>hasBlank</name>
+			<required>no</required>
+			<rtexprvalue>yes</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>month</name>
+		<tag-class>com.hynix.eshs.common.tag.date.DateMonthTag</tag-class>
+		<description></description>
+		<attribute>
+			<name>attribute</name>
+			<required>yes</required>
+			<rtexprvalue>yes</rtexprvalue>
+			<description>select 테그 안에 어트리뷰트로 들어갈 정보들 </description>
+		</attribute>
+		<attribute>
+			<name>selectedInfo</name>
+			<required>no</required>
+			<rtexprvalue>yes</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>hasBlank</name>
+			<required>no</required>
+			<rtexprvalue>yes</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>day</name>
+		<tag-class>com.hynix.eshs.common.tag.date.DateDayTag</tag-class>
+		<attribute>
+			<name>attribute</name>
+			<required>yes</required>
+			<rtexprvalue>yes</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>selectedInfo</name> 
+			<required>no</required>
+			<rtexprvalue>yes</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>hasBlank</name>
+			<required>no</required>
+			<rtexprvalue>yes</rtexprvalue>
+		</attribute>
+	</tag>
+
+</taglib>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

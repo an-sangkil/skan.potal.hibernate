@@ -1,0 +1,8 @@
+@author		저자명
+@version	버전
+@param		인자명과 의미(메소드만)
+@since		jdk 버전
+@return		반환값
+@throws		예외
+@deprecated 디프리케이션 경고
+@see		교차참조

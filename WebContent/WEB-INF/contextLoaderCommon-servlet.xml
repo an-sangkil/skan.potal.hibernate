@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Application context Default Action definition  -->
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	<!-- ========================= DEFINITIONS OF PROTECTED CONTROLLERS ========================= -->
+
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<!-- bean id="viewResolver"	class="org.springframework.web.servlet.view.UrlBasedViewResolver"-->
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<!-- ========================= MESSAGE RESOURCES ========================= -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename">
+			<value>commonListMessages</value>
+		</property>
+	</bean>
+	
+	<bean id="authenticationInferceptor" class="com.dongbu.farm.common.auth.AuthenticationInferceptor"></bean>
+	
+	
+	<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" >
+		<property name="interceptors">
+			<list>
+				<ref bean="authenticationInferceptor"/>
+			</list>
+		</property>
+		<property name="alwaysUseFullPath" value="true"></property>
+	</bean>
+	
+	<context:annotation-config></context:annotation-config>
+	
+	<bean id="boardController" class="com.dongbu.farm.common.board.controller.BoardController" parent="repositoryController" ></bean>
+	<bean id="commentController" class="com.dongbu.farm.common.board.controller.CommentController" parent="repositoryController" ></bean>
+	<bean id="scheduleController" class="com.dongbu.farm.common.schedule.controller.ScheduleController" parent="repositoryController" ></bean>
+	
+	<!-- testSpring Controller -->
+	<bean id="testSpring3" class="com.dongbu.farm.common.test3.TestSpring3" ></bean>
+	
+	
+	<!-- ======================== 하위 Package Bean Controller 자동 등록  ======================== -->
+	<!-- 
+	<context:component-scan base-package="com.dongbu.farm.common">
+        <context:include-filter type="annotation"    expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+     -->
+     
+    
+</beans>
+
+

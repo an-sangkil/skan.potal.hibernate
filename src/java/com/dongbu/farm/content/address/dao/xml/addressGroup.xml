@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!-- 스케쥴관리  -->
+<sqlMap namespace="content.addressGroup">
+	<typeAlias alias="addressGroup" type="com.dongbu.farm.content.address.model.AddressGroup"/>
+	
+	
+	<select id="getCodeDetail" parameterClass="java.util.HashMap" resultClass="addressGroup">
+		SELECT 
+			CODE_MGT_NO
+	      ,UPPER_CODE
+	      ,dbo.CMFN_CODENAME(UPPER_CODE) AS UPPER_CODE_NAME
+	      ,CODE_SEQ
+	      ,CODE
+	      ,CODE_NAME
+	      ,CODE_COMMENT
+	      ,CREATOR
+	      ,CREATEDTIME
+	      ,MODIFIER
+	      ,MODIFIEDTIME
+	  FROM TB_ADDRESS_GRP
+	  WHERE 1=1
+	  AND CODE = #code#
+	</select>
+	
+	<insert id="writeCode" parameterClass="addressGroup">
+		<selectKey keyProperty="code_mgt_no" type="pre" resultClass="String">
+			SELECT ISNULL(MAX(CAST(CODE_MGT_NO AS INTEGER))+1, 1) AS code_mgt_no FROM  TB_ADDRESS_GRP	
+		</selectKey>
+		
+		INSERT TB_ADDRESS_GRP(
+		   CODE_MGT_NO
+	      ,UPPER_CODE
+	      ,CODE_SEQ
+	      ,CODE
+	      ,CODE_NAME
+	      ,CODE_COMMENT
+	      ,CREATOR
+	      ,CREATEDTIME
+	      ,MODIFIER
+	      ,MODIFIEDTIME)
+	   VALUES(
+	   	   #code_mgt_no#
+	      ,#upper_code#
+	      ,#code_seq#
+	      ,(SELECT dbo.F_RPAD(MAX(ISNULL(CODE,0))+1,5,'0') as code FROM TB_ADDRESS_GRP)
+	      ,#code_name#
+	      ,#code_comment#
+	      ,#creator#
+	      ,#createdtime#
+	      ,#modifier#
+	      ,#modifiedtime#
+	   )
+	</insert>
+	
+	<update id="modifyCode" parameterClass="addressGroup">
+		UPDATE TB_ADDRESS_GRP
+			SET
+			     UPPER_CODE      = #upper_code#,         
+			     CODE_SEQ        = #code_seq#,             
+			     CODE_NAME       = #code_name#,            
+			     CODE_COMMENT    = #code_comment#,         
+			     MODIFIER        = #modifier#,             
+			     MODIFIEDTIME    = #modifiedtime#
+		WHERE CODE = #code#         
+	</update>
+	
+	
+</sqlMap>

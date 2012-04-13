@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!-- 스케쥴관리  -->
+<sqlMap namespace="system.category">
+	<typeAlias alias="code" type="com.dongbu.farm.system.code.model.Code"/>
+	<typeAlias alias="addressGroup" type="com.dongbu.farm.content.address.model.AddressGroup"/>
+	<typeAlias alias="address" type="com.dongbu.farm.content.address.model.Address"/>
+	<!-- 
+		SELECT SUBSTRING(CONVERT(varchar , SYSDATETIME(),126), 1 , 10) +'-' + dbo.F_RPAD(MAX(ISNULL(SCH_MGT_NO,0))+1,5,'0') FROM CMTB_SCHEDULE
+	 -->
+	<!-- 1. 공통 코드관리  -->	
+	<select id="getCodeList" parameterClass="java.util.HashMap" resultClass="code">
+		SELECT CODE_MGT_NO
+	      ,UPPER_CODE
+	      ,dbo.CMFN_CODENAME(UPPER_CODE) AS UPPER_CODE_NAME 
+	      ,CODE_SEQ
+	      ,CODE
+	      ,CODE_NAME
+	      ,CODE_COMMENT
+	      ,CREATOR
+	      ,CREATEDTIME
+	      ,MODIFIER
+	      ,MODIFIEDTIME
+	  FROM CMTB_CODE
+		WHERE 1=1
+		<!-- 1. 처음 검색에서 Tree Node 에 뿌려줄 경우 GROUP_CODE로 리스트에 뿌려준다. -->	  
+	  <isEqual property="codeType" compareValue="upper" prepend="AND">
+		CODE = #code#
+	  </isEqual>
+	  	<!-- 2. 두번째 Child Node 를 찾기위해 화면에 ID값을  현재 자신의 CODE 값으로 넘겼기때문에  UPPER_CODE로 GROUP을 찾으면 된다.-->
+	  <isEqual property="codeType" compareValue="child" prepend="AND">
+		UPPER_CODE= #code#
+	  </isEqual>	
+	</select>
+	
+	<!-- 2. 주소록 그굽 관리 -->
+	<select id="getAddressGroupCodeList" parameterClass="java.util.HashMap" resultClass="addressGroup">
+		SELECT code_mgt_no
+		      ,upper_code
+		      ,dbo.CMFN_CODENAME(UPPER_CODE) AS UPPER_CODE_NAME 
+		      ,code_seq
+		      ,code
+		      ,code_name
+		      ,code_comment
+		      ,cls_type
+		      ,use_check
+		      ,creator
+		      ,createdtime
+		      ,modifier
+		      ,modifiedtime
+		  FROM TB_ADDRESS_GRP
+		WHERE 1=1
+		<!-- 1. 처음 검색에서 Tree Node 에 뿌려줄 경우 GROUP_CODE로 리스트에 뿌려준다. -->	  
+	  <isEqual property="codeType" compareValue="upper" prepend="AND">
+		CODE = #code#
+	  </isEqual>
+	  	<!-- 2. 두번째 Child Node 를 찾기위해 화면에 ID값을  현재 자신의 CODE 값으로 넘겼기때문에  UPPER_CODE로 GROUP을 찾으면 된다.-->
+	  <isEqual property="codeType" compareValue="child" prepend="AND">
+		UPPER_CODE= #code#
+	  </isEqual>	
+	</select>
+	
+	<!-- 3. 그룹에 속한 연락처 정보 리스트 -->
+	<select id="getAddressList" parameterClass="HashMap" resultClass="address">
+		SELECT ads_mgt_no
+		      ,group_code
+		      ,user_name
+		      ,company_name
+		      ,position_code
+		      ,phone
+		      ,cell_phone
+		      ,postcode
+		      ,district_address
+		      ,detail_address
+		      ,email
+		      ,individual_URL
+		      ,memo
+		      ,picture_uuid
+		      ,creator
+		      ,createdtime
+		      ,modifier
+		      ,modifiedtime
+		  FROM TB_ADDRESS
+		  WHERE 1=1
+		  AND group_code = #code#
+	
+	</select>
+</sqlMap>

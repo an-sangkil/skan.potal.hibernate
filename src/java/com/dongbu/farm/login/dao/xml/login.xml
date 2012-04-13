@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="login">
+	<typeAlias alias="member" type="com.dongbu.farm.login.model.Member"/>
+	
+	<select id="getLogin"  parameterClass="java.util.HashMap" resultClass="member">
+		SELECT * FROM orguser
+		WHERE 1=1
+		<isNotEmpty prepend="AND" property="user_id"> user_id  = #user_id#</isNotEmpty>
+	</select>
+</sqlMap>

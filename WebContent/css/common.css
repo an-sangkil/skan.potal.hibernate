@@ -1,0 +1,96 @@
+@CHARSET "UTF-8";
+
+/**
+	css3
+	-moz-border-radius-topleft / -webkit-border-top-left-radius    (좌측 상단 모서리)
+	-moz-border-radius-topright / -webkit-border-top-right-radius    (우측 상단 모서리)
+	-moz-border-radius-bottomleft / -webkit-border-bottom-left-radius    (좌측 하단 모서리)
+	-moz-border-radius-bottomright / -webkit-border-bottom-right-radius    (우측 하단 모서리)
+*/
+.div_outsider {display : table}
+.div_outsider_round {
+	display : table-cell;
+	-moz-border-radius: 10px;  
+	-webkit-border-radius: 10px;  
+	border: 2px solid silver;  
+	text-align: center;
+	vertical-align: middle;
+	/**width: 400px;
+	height: 70px;*/
+}
+
+.div_outsider_round span{vertical-align: middle;}
+.default_div_round{	overflow:auto;	height:300px; width:250px;	border:1px solid #c3daf9;}
+
+/*이미지 아웃라인 없애기*/
+a, input, img {outline:none;selector-dummy:expression(this.hideFocus=true);}
+
+/*
+font-style: normal, italic, oblique (이탤릭체 등 지정)
+font-variant: normal, small-caps (작은 대문자 표현)
+font-weight: normal, bold, bolder, lighter (굵기 지정)
+font-size: 10pt 등등 (크기 지정)
+font-family: 폰트명 지정
+*/
+body, td, div, input, select, p, span, textarea ,table {font-family: Dotum, Gulim, 'Malgun Gothic' !important;font-size: 12px;}
+
+
+/*Reset*/
+*{margin:0;padding:0}
+html,body{width:100%;height:100%}
+html{overflow-y:scroll}
+body{background-color:#fff;*word-break:break-all;-ms-word-break:break-all}
+h1,h2,h3,h4,h5,h6{font-size:12px;text-align:left}
+img,fieldset,iframe{border:0 none}
+li{list-style:none}
+a{color:#645844;text-decoration:none; cursor:pointer;}
+a:hover{color:#905b00;text-decoration:underline; cursor:pointer;}
+textarea{overflow:auto}
+
+
+/*header*/
+.header {height:56px;margin-bottom:10px; background-color:#fff; }
+.main_logo {float:left; margin:10px 30px; background:url(../image/common/main_logo.jpg); width:158px; height:32px;}
+.main_menu {float:right; margin-top:18px; margin-right:22px; }
+.main_menu li {float:left; margin-left:14px; position:relative; }
+.main_menu a {color:#877e75;}
+.main_menu a:hover {color:#94a02e;cursor:pointer; font-weight:bold;}
+
+.Main_SubMenu_left {height:29px; width:10px; background:url(../image/common/main_menu_sub_bg_left.png);}
+.Main_SubMenu_center {height:23px; background:url(../image/common/main_menu_sub_bg_center.png); padding:4px 5px; }
+.Main_SubMenu_right {height:29px; width:10px; background:url(../image/common/main_menu_sub_bg_right.png);}
+
+.Main_SubMenu_01 {position:absolute; top:25px; right:-80px; width:220px; _width:250px; height:29px; letter-spacing:-1px; font-size:12px; }
+.Main_SubMenu_02 {position:absolute; top:25px; right:-170px; width:448px; _width:478px; height:15px; letter-spacing:-1px; font-size:12px; }
+.Main_SubMenu_03 {position:absolute; top:25px; right:-110px; width:240px; _width:270px; height:15px; letter-spacing:-1px; font-size:12px; }
+.Main_SubMenu_04 {position:absolute; top:25px; right:-160px; width:340px; _width:370px; height:15px; letter-spacing:-1px; font-size:12px; }
+.Main_SubMenu_06 {position:absolute; top:25px; right:-120px; width:250px; _width:280px; height:15px; letter-spacing:-1px; font-size:12px; }
+
+/*Main contents*/
+
+.mainContents { float: left;padding: 10px }
+
+
+/* LIST table */
+.list_table table{ /*width:716px;*/ border-bottom:2px solid #87903d; word-break:keep-all; table-layout:fixed; }
+.list_table table th{ color:#4F4F4F; font-size:12px;}
+.list_table table td{ color:#767676; font-size:12px;}
+.list_table table a{ text-decoration:none; color:#767676;}
+.list_table table a:hover{ text-decoration:underline; color:#927D3E;cursor:pointer;}
+.list_table table thead th{ height:26px; text-align:center; vertical-align:middle; color:#4f4a44; background-color:#eeede9; border-bottom:1px solid #c7c7c7;}
+.list_table table tbody td{ color:#767676; padding:5px 0; border-top:1px solid #eee;}
+
+/*INSERT TABLe*/
+.insert_table table{/*width: 800px*/;border-collapse: collapse;	border: 1px solid #eee;
+}
+.insert_table table th{ /*width:15%;*/height :20px; color:#4F4F4F; font-size:12px;background-color:#eeede9;font-weight: bold;padding: 1px ; border: 1px solid #fff;}
+.insert_table table td{ /*width:35%;*/height :20px; color:#767676; font-size:12px; padding: 1px ; border: 1px solid #eee;}
+
+/*inputType*/
+.input_longType{width: 100%}
+.input_halfType{width: 50%}
+.input_shortType{width: 25%}
+.input_imgType{width: 90%}
+
+
+ 

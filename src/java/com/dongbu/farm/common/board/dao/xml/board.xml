@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="common.board">
+	<typeAlias alias="boardInfo" type="com.dongbu.farm.common.board.model.BoardInfo"/>
+	
+	<!-- 게시판 리스트 검색 -->   
+		<select id="getBoardTotalEntries" parameterClass="java.util.HashMap" resultClass="Integer">
+			SELECT  ISNULL(COUNT(SEQ),0) FROM CMTB_COMMON_BBS
+			WHERE 1=1
+			AND BBSID  = #bbsid#
+		</select>
+		<select id="getBoardList"  parameterClass="java.util.HashMap" resultClass="boardInfo">
+				SELECT 
+					A.*
+				FROM(
+					SELECT 
+						TOP(
+						SELECT COUNT(SEQ) 
+						FROM CMTB_COMMON_BBS) BBSID
+						,ROW_NUMBER()OVER (ORDER BY CAST(REF AS INTEGER) DESC, CAST(STEP AS INTEGER)) ROWNUM 
+							,SEQ
+							,REF
+							,STEP
+							,LEV
+							,WRITER
+							,WRITERID
+							,SUBJECT
+							,CONTENT
+							,MASKNAME
+							,CREATEDTIME
+							,READCNT
+							,IP
+							,HASSECRET
+					FROM CMTB_COMMON_BBS
+					WHERE BBSID = 'testBoard'
+					ORDER BY CAST(REF AS INTEGER) DESC  , CAST(STEP AS INTEGER)
+				)A
+<![CDATA[		WHERE A.ROWNUM >= #startpoint# AND A.ROWNUM <=#endpoint#]]>
+		</select>
+	
+	<!-- 게시판 글쓰기 -->
+		<select id="writeBoardKey" resultClass="org.apache.commons.collections.map.CaseInsensitiveMap">
+			SELECT ISNULL(max(seq),0)+1 AS SEQ FROM DONGBU.dbo.CMTB_COMMON_BBS 		
+		</select>   
+		
+		<insert id="writeBoard" parameterClass="boardInfo">
+			INSERT INTO DONGBU.dbo.CMTB_COMMON_BBS
+	           (BBSID
+	           ,SEQ
+	           ,REF
+	           ,STEP
+	           ,LEV
+	           ,WRITER
+	           ,WRITERID
+	           ,SUBJECT
+	           ,CONTENT
+	           ,FILEGROUPID
+	           ,MASKNAME
+	           ,CREATEDTIME
+	           ,READCNT
+	           ,IP
+	           ,HASSECRET)
+			VALUES
+	           (#bbsid#
+	           ,#seq#
+	           ,#ref#
+	           ,0
+	           ,0
+	           ,#writer#
+	           ,#writerid#
+	           ,#subject#
+	           ,#content#
+	           ,#filegroupid#
+	           ,#maskname#
+	           ,#createdtime#
+	           ,#readcnt#
+	           ,#ip#
+	           ,#hassecret#)	
+		</insert>
+		
+	<!-- 게시판 상세 보기 -->
+	<select id="getBoard" parameterClass="java.util.HashMap" resultClass="boardInfo">
+		SELECT * FROM DONGBU.dbo.CMTB_COMMON_BBS
+		WHERE bbsid = #bbsid#
+		AND seq   = #seq#
+	</select>
+	
+	<!-- 조회수 증가++ -->
+	<update id="readCountIncrease" parameterClass="java.util.HashMap">
+		UPDATE DONGBU.dbo.CMTB_COMMON_BBS
+			SET READCNT = READCNT+1
+		WHERE bbsid = #bbsid#
+		AND seq   = #seq# 
+	</update>
+	
+	
+	
+	<!-- 게시판 내용 수정 -->
+	<update id="modifyBoard" parameterClass="boardInfo">
+		UPDATE DONGBU.dbo.CMTB_COMMON_BBS
+		   SET BBSID =			#bbsid# 
+		      ,SEQ =            #seq#    
+		      ,REF =            #ref#       
+		      ,STEP =           #step#      
+		      ,LEV =            #lev#       
+		      ,SUBJECT =        #subject#  
+		      ,CONTENT =        #content#  
+		      ,FILEGROUPID =	#filegroupid#
+		      ,MASKNAME =       #maskname# 
+		      ,READCNT =        #readcnt#  
+		      ,IP =             #ip#       
+		      ,HASSECRET =      #hassecret#
+		      <!--  
+		      ,MODIFIER =
+		      ,MODIFIEDTIME = --> 
+		 WHERE 1=1
+		 AND BBSID = #bbsid#
+		 AND SEQ = 	#seq#
+		 <!-- 
+		 AND REF = #ref#
+		 AND STEP = #step#
+		 AND LEV = #lev# -->
+	</update>
+	
+	<!-- 게시판 답글  -->
+		<!-- 1.1  -->
+		<update id="replyBoardCntUpdate" parameterClass="boardInfo">
+			UPDATE DONGBU.dbo.CMTB_COMMON_BBS
+				SET 
+					STEP  = STEP+1
+			WHERE bbsid = #bbsid#
+			AND   ref   = #ref#	
+			AND   STEP  > #step#
+		</update>
+		<!-- 1.2 -->
+		<insert id="replyBoard" parameterClass="boardInfo">
+			INSERT INTO DONGBU.dbo.CMTB_COMMON_BBS
+	           (BBSID
+	           ,SEQ
+	           ,REF
+	           ,STEP
+	           ,LEV
+	           ,WRITER
+	           ,WRITERID
+	           ,SUBJECT
+	           ,CONTENT
+	           ,FILEGROUPID
+	           ,MASKNAME
+	           ,CREATEDTIME
+	           ,READCNT
+	           ,IP
+	           ,HASSECRET)
+			VALUES
+	           (#bbsid#
+	           ,#seq#
+	           ,#ref#
+	           ,#step#
+	           ,#lev#
+	           ,#writer#
+	           ,#writerid#
+	           ,#subject#
+	           ,#content#
+	           ,#filegroupid#
+	           ,#maskname#
+	           ,#createdtime#
+	           ,#readcnt#
+	           ,#ip#
+	           ,#hassecret#)	
+		</insert>
+</sqlMap>

@@ -1,0 +1,70 @@
+@CHARSET "UTF-8";
+
+
+/* Calendar */
+.calendar_view {width:100%;/*height:170px;*/background-color:#fff;/*padding:10px;*/	/*text-align:center;*/}
+
+.calendar_view .weekDay table {
+	table-layout:fixed;
+	
+	border-collapse: collapse;
+	border-top-width : 1px;
+	border-right: 1px; 
+	border-top-color: #white;
+	border-right-color: #white;
+	border-top-style:solid;
+	border-right-style: solid;
+}
+	
+	
+.calendar_view .weekDay table th {
+	background-color:#e4e3dd; 
+	font-weight:bold;
+	color:#61574d;
+	height: 20px;
+	border-collapse: collapse;
+	border-top-width : 1px;
+	border-right: 1px; 
+	border-top-color: #white;
+	border-right-color: #white;
+	border-top-style:solid;
+	border-right-style: solid;
+}
+	
+	
+.calendar_view .weekDay table td {
+	overflow: hidden; 		 /*"table-layout:fixed" 와같이 사용 */	
+	text-overflow:ellipsis;  /*말줄임  "overflow:hidden" 와 같이 사용*/
+	white-space: nowrap;     /*줄바꿈방지*/
+	background-color:#f7f5f1; 
+	border-top-width : 1px;
+	border-right: 1px; 
+	border-top-color: #ff000;
+	border-right-color: #ff000;
+	border-top-style:solid;
+	border-right-style: solid;
+}
+	
+
+/*DIV 말줄임 전용 class */
+.ellipsis{
+	white-space:nowrap;
+	text-overflow:ellipsis;     /* IE, Safari */
+	-o-text-overflow:ellipsis;  /* Opera under 10.7 */
+	overflow:hidden;            /* "overflow" value must be different from "visible" */
+	-moz-binding: url('ellipsis.xml#ellipsis');
+}
+	
+	
+	
+
+/*사용안함*/
+.calendar .header {width:182px; height:23px; margin-top:8px;}
+.calendar .header .year {float:left;}
+.calendar .header .month {float:right;}
+.calendar li {width:24px; height:20px; margin:1px; float:left;}
+
+
+/*text*/
+.calendarText_11B_brown {font-size:11pt; font-weight:bold; color:#817971;}
+.calendarText_12B_brown {font-size:12pt; font-weight:bold; color:#61574d;}

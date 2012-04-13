@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>TabbedPane.js Demo</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="prototype.js" type="text/javascript"></script>
+	<script src=".../TabbedPane.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+	
+	<div class="tabbed-pane">
+		<ol class="tabs">
+			<li><a href="#" class="active" id="pane11">Pane 11</a></li>
+			<li><a href="#" id="pane2">Pane 22</a></li>
+		</ol>
+		<div id="MyPane_container" class="tabbed-container">
+			<div id="MyPane_overlay" class="overlay" style="display: none">
+				<h3>Loading&#8230;</h3>
+			</div>
+			<div id="MyPane" class="pane">
+			</div>
+		</div>
+
+		<p>
+	
+	<script type="text/javascript">
+		new TabbedPane('MyPane', 
+			{
+				'pane11': 'http://www.daum.net',
+				'pane2': 'pages/pane2.html'
+			},
+			{
+				onClick: function(e) {
+					$('MyPane_overlay').show();
+				},
+				
+				onSuccess: function(e) {
+					$('MyPane_overlay').hide();
+				}
+			});
+	</script>
+	</div>
+</body>
+</html>

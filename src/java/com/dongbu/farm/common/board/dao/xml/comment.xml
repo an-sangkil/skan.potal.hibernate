@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="common.comment">
+	<typeAlias alias="comment" type="com.dongbu.farm.common.board.model.Comment"/>
+	
+	<!-- 1. 댓글 리스트 -->
+	<select id="getCommentList" parameterClass="java.util.HashMap" resultClass="comment">
+		SELECT * 
+		FROM CMTB_COMMENT
+		WHERE BBSID = #bbsid#
+		AND PARENT_SEQ = #parent_seq#	
+		ORDER BY CAST(SEQ AS INTEGER) DESC	
+	</select>
+	
+	<select id="writeCommentKey" parameterClass="comment" resultClass="org.apache.commons.collections.map.CaseInsensitiveMap">
+		 SELECT ISNULL(max(seq),0)+1 seq  FROM  CMTB_COMMENT 
+		 WHERE BBSID = #bbsid#
+	</select>
+
+	<!-- 2. 댓글 등록 -->	
+	<insert id="writeComment" parameterClass="comment">
+		<!-- 2.1 댓글 SEQ 번호 생성 -->
+		<selectKey type="pre" keyProperty="seq" resultClass="int"> SELECT ISNULL(max(seq),0)+1 seq  FROM  CMTB_COMMENT </selectKey>
+
+		INSERT INTO CMTB_COMMENT
+           (BBSID
+           ,PARENT_SEQ
+           ,SEQ
+           ,REF
+           ,STEP
+           ,CONTENT
+           ,CREATOR
+           ,CREATEDTIME)
+		VALUES(
+     		#bbsid#
+           ,#parent_seq#
+           ,#seq#
+           ,#ref#
+           ,#step#
+           ,#content#
+           ,#creator#
+           ,#createdtime#
+    	 )
+	</insert>
+	
+	<!-- 3. 댓글 삭제 -->
+	<delete id="deleteComment" parameterClass="comment">
+		DELETE CMTB_COMMENT
+		WHERE BBSID = #bbsid#
+		AND PARENT_SEQ = #parent_seq#
+		AND SEQ = #seq#
+	</delete>
+	
+	<!-- 4. 댓글 수정? -->
+	<update id="modifyComment"></update>
+</sqlMap>

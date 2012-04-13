@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	<!-- ========================= DEFINITIONS OF PROTECTED CONTROLLERS ========================= -->
+	
+	<!-- @Controller 제외한 base-package 하위  bean 자동 등록
+	<context:component-scan base-package="com.dongbu.farm.content"> 
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>   -->
+	
+	
+	<!-- 1. <context:component-scan /> 을 사용 하지 않는 경우 다음과 같이 스켄할 Annotation 을 빈등록 -->	
+	<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
+	<bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" >
+		<property name="alwaysUseFullPath" value="true"></property>
+	</bean>
+	
+	<!-- 2. 만들은 Bean 등록 -->
+	
+	<!-- 주소록관리 -->
+	<bean id="addressBookServiceImpl" class="com.dongbu.farm.content.address.service.AddressBookServiceImpl">
+		<property name="addressBookDaoImpl" ref="addressBookDaoImpl"></property>
+	</bean>	
+	
+	<bean id="addressBookDaoImpl" class="com.dongbu.farm.content.address.dao.AddressBookDaoImpl"></bean>
+	
+	
+	<!-- 주소록 그룹관리 -->
+	<bean id="addressGroupServiceImpl" class="com.dongbu.farm.content.address.service.AddressGroupServiceImpl">
+		<!-- <property name="addressGroupDaoImpl" ref="addressGroupDaoImpl"></property> -->
+	</bean>	
+	
+	<bean id="addressGroupDaoImpl" class="com.dongbu.farm.content.address.dao.AddressGroupDaoImpl"></bean>
+	
+</beans>

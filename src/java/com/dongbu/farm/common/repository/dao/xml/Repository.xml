@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.dongbu.farm.common.repository.dao.xml.Repository">
+ 	<typeAlias alias="uploadFile" type="com.dongbu.farm.common.repository.model.UploadFile"/>
+ 	
+ 	<!-- 
+ 	<resultMap class="" id=""></resultMap>
+ 	 -->
+ 	<!-- 
+ 	************************참          고***************************
+ 	Map Class 혹은 기타 Class 를 사용하여 Null 값을 처리하는 경우 다음과 같이 
+ 	COLUMN:VARCHAR:NO_ENTRY 
+ 	COLUMN:NUMBER:NO_ENTRY 
+ 	-->
+ 	
+ 	<!-- 1. 파일 정보 저장 -->
+ 	<insert id="saveFile" parameterClass="uploadFile">
+ 		INSERT INTO FILE_REPOSITORY
+           (GROUP_ID
+           ,FILE_ID
+           ,FILE_INPUT_NAME
+           ,ORIGINAL_FILE_NAME
+           ,FILE_SIZE
+           ,CONTENT_TYPE
+           ,FILE_PATH
+           ,DOWN_URL
+           ,CREATER
+           ,CREATER_NAME
+           ,CREATEDTIME)
+     	VALUES
+           (#group_id#
+           ,#file_id#
+           ,#file_input_name#
+           ,#original_file_name#
+           ,#file_size#
+           ,#content_type#
+           ,#file_path#
+           ,#down_url#
+           ,#creater#
+           ,#creater_name#
+           ,#createdtime#)
+
+ 	</insert>
+ 	
+ 	<!-- 2. 파일아이디로 파일정보 불러오기 -->	 	
+ 	<select id="getFileByFileId" parameterClass="java.util.HashMap" resultClass="uploadFile">
+ 		SELECT * FROM
+ 			FILE_REPOSITORY
+ 		WHERE FILE_ID = #fileId#
+ 	</select>
+ 	
+ 	<!-- 3. 그룹 아이디로 파일리스트 가져오기 -->
+ 	<select id="getFileGroupList" parameterClass="java.lang.String" resultClass="uploadFile">
+ 		SELECT * FROM
+ 			FILE_REPOSITORY
+ 		WHERE GROUP_ID = #groupId#
+ 	</select>
+ 	
+ 	<!-- 4. 파일 삭제 -->
+ 	<delete id="deleteFile" parameterClass="java.util.HashMap">
+ 		DELETE FILE_REPOSITORY
+ 		WHERE 1=1
+ 		<!-- 4.1 파일 그룹 삭제 -->
+ 		<isEqual property="deleteType" compareValue="group" prepend="AND"> GROUP_ID = #groupid# </isEqual>
+ 		
+ 		<!-- 4.2 파일 삭제 -->
+ 		<isEqual property="deleteType" compareValue="file" prepend="AND"> FILE_ID = #fileid# </isEqual>
+ 	
+ 	</delete>
+ 	
+</sqlMap>

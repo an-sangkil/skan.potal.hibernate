@@ -1,0 +1,23 @@
+@CHARSET "EUC-KR";
+
+div.button {
+	height: 29px;	
+	width: 133px;
+	background: url(/images/button.png) 0 0;
+	font-size: 14px; 
+	color: #C7D92C; 
+	text-align: center; 
+	padding-top: 15px;
+}
+
+/* 
+We can't use ":hover" preudo-class because we have
+invisible file input above, so we have to simulate
+hover effect with JavaScript. 
+ */
+
+div.button.hover {
+	background: url(/images/button.png) 0 56px;
+	color: #95A226;	
+}
+#button2.hover, #button4.hover { text-decoration:underline; }

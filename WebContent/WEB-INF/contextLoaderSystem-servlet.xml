@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Application context Default Action definition  -->
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	<!-- ========================= DEFINITIONS OF PROTECTED CONTROLLERS ========================= -->
+
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<!-- bean id="viewResolver"	class="org.springframework.web.servlet.view.UrlBasedViewResolver"-->
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<!-- ========================= MESSAGE RESOURCES ========================= -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename">
+			<value>commonListMessages</value>
+		</property>
+	</bean>
+	
+	
+	<!-- 로그인 여부 인터셉터 -->
+	<bean id="authenticationInferceptor" class="com.dongbu.farm.common.auth.AuthenticationInferceptor"></bean>
+	
+	
+	<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" >
+		<property name="interceptors">
+			<list>
+				<ref bean="authenticationInferceptor"/>
+			</list>
+		</property>
+		<property name="alwaysUseFullPath" value="true"></property>
+	</bean>
+	
+	<context:annotation-config></context:annotation-config>
+	          
+	<bean id="categoryController" class="com.dongbu.farm.system.category.controller.CategoryController" parent="repositoryController" ></bean>
+	<bean id="codeController" class="com.dongbu.farm.system.code.controller.CodeController" parent="repositoryController" ></bean>
+	
+	
+	<!-- ======================== 하위 Package Bean Controller 자동 등록  ======================== -->
+	<!-- 
+	<context:component-scan base-package="com.dongbu.farm.common">
+        <context:include-filter type="annotation"    expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+     -->
+     
+     
+     
+	<!-- ========================= DEFINITIONS OF PROTECTED CONTROLLERS ========================= -->
+	<!-- XML 표현 방식........
+	<bean id="commonHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="urlMap">
+			<map>
+				<entry key="/common/board/*" value-ref="boardController" />
+			</map>
+		</property>
+	</bean>
+	 <bean id="boardController" class="com.dongbu.farm.common.board.controller.BoardController" parent="repositoryController">
+		<property name="methodNameResolver">
+			<bean class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
+				<property name="mappings">
+					<props>
+						<prop key="/common/board/getBoardList.common">getBoardList</prop>
+						<prop key="/common/board/writeBoard.common">writeBoard</prop>
+						<prop key="/common/board/reply.common">reply</prop>
+						<prop key="/common/board/getBoard.common">getBoard</prop>
+						<prop key="/common/repository/imgUpload.common">imgUpload</prop>
+						
+					</props>
+				</property>
+			</bean>
+		</property>
+		<property name="boardManagerImpl" ref="boardManagerImpl" />
+	</bean>
+	 -->
+</beans>
+
+

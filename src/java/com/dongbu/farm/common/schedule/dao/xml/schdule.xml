@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!-- 스케쥴관리  -->
+<sqlMap namespace="common.schdule">
+	<typeAlias alias="schdule" type="com.dongbu.farm.common.schedule.model.Schedule"/>
+	<!-- 
+		SELECT SUBSTRING(CONVERT(varchar , SYSDATETIME(),126), 1 , 10) +'-' + dbo.F_RPAD(MAX(ISNULL(SCH_MGT_NO,0))+1,5,'0') FROM CMTB_SCHEDULE
+	 -->
+	<!--  -->	
+	<select id="getSchduleList" parameterClass="java.util.HashMap" resultClass="schdule">
+		SELECT sch_mgt_no
+		      ,sch_seq
+		      ,sch_subject
+		      ,sch_content
+		      ,std_date
+		      ,today_weather_code
+		      ,min_degreespoint_code
+		      ,max_degreespoint_code
+		      ,min_temperature
+		      ,max_temperature
+		      ,creator
+		      ,createdtime
+		      ,modifier
+		      ,modifiedtime
+		FROM cmtb_schedule
+		WHERE 1=1
+		AND substring(std_date , 1 , 7) = '$std_year$-$std_month$'
+	</select>
+	
+	<!-- getSchedule -->
+	<select id="getSchedule" parameterClass="java.util.HashMap" resultClass="schdule">
+		SELECT sch_mgt_no
+		      ,sch_seq
+		      ,sch_subject
+		      ,sch_content
+		      ,std_date
+		      ,today_weather_code
+		      ,min_degreespoint_code
+		      ,max_degreespoint_code
+		      ,min_temperature
+		      ,max_temperature
+		      ,creator
+		      ,createdtime
+		      ,modifier
+		      ,modifiedtime
+		FROM cmtb_schedule
+		WHERE 1=1
+		AND sch_mgt_no = #sch_mgt_no#
+		AND sch_seq = #sch_seq#
+	</select>
+	
+	<select id="writeScheduleKey" parameterClass="java.lang.String" resultClass="String">
+		<!-- SELECT CAST(MAX(ISNULL(SCH_SEQ,0))+1 AS VARCHAR) AS SCH_SEQ FROM CMTB_SCHEDULE -->
+		SELECT ifnull(max(sch_seq)+1,0) as sch_seq FROM cmtb_schedule
+		WHERE std_date = #std_date#
+	</select>
+	
+	<!-- 스케줄 등록 -->
+	<insert id="writeSchedule" parameterClass="schdule">
+		INSERT into cmtb_schedule
+			  (sch_mgt_no
+		      ,sch_seq
+		      ,sch_subject
+		      ,sch_content
+		      ,std_date
+		      ,today_weather_code
+		      ,min_degreespoint_code
+		      ,max_degreespoint_code
+		      ,min_temperature
+		      ,max_temperature
+		      ,creator
+		      ,createdtime
+		      ,modifier
+		      ,modifiedtime	)
+		VALUES (
+			 #sch_mgt_no#
+			,#sch_seq#
+			,#sch_subject#
+			,#sch_content#
+			,#std_date#
+			,#today_weather_code#
+			,#min_degreespoint_code#
+		    ,#max_degreespoint_code#
+			,#min_temperature#  
+			,#max_temperature#  
+			,#creator#          
+			,#createdtime#      
+			,#modifier#         
+			,#modifiedtime#     
+		)	      
+	</insert>
+	
+	<!-- 스케줄 수정 -->
+	<update id="modifySchedule" parameterClass="schdule">
+		UPDATE cmtb_schedule
+			SET
+			  sch_mgt_no       =     #sch_mgt_no#          
+		      ,sch_seq         =     #sch_seq#            
+		      ,sch_subject     =     #sch_subject#        
+		      ,sch_content     =     #sch_content#        
+		      ,std_date        =     #std_date#           
+		      ,today_weather_code   =     #today_weather_code#
+		      ,min_degreespoint_code = #min_degreespoint_code#
+		      ,max_degreespoint_code = #max_degreespoint_code#
+		      ,min_temperature =     #min_temperature#    
+		      ,max_temperature =     #max_temperature#    
+		      ,creator         =     #creator#            
+		      ,createdtime     =     #createdtime#        
+		WHERE 1=1
+		AND sch_mgt_no = #sch_mgt_no#
+		AND sch_seq = #sch_seq#
+	</update>
+	
+	<!-- 스케쥴 삭제 -->
+	<delete id="deleteSchedule" parameterClass="schdule">
+		DELETE cmtb_schedule
+		WHERE 1=1
+		AND sch_mgt_no = #sch_mgt_no#
+		AND sch_seq = #sch_seq#
+	</delete>
+</sqlMap>

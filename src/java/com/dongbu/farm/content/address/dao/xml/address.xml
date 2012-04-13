@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!-- 스케쥴관리  -->
+<sqlMap namespace="content.address">
+	<typeAlias alias="address" type="com.dongbu.farm.content.address.model.Address"/>
+	<typeAlias alias="anniversary" type="com.dongbu.farm.content.address.model.Anniversary"/>
+	
+	<!-- 1. 연락처 전체 검색 -->
+	<select id="getAddressBookList" parameterClass="java.util.HashMap" resultClass="address">
+		SELECT ads_mgt_no
+		      ,group_code
+		      ,user_name
+		      ,company_name
+		      ,position_code
+		      ,phone
+		      ,cell_phone
+		      ,postcode
+		      ,district_address
+		      ,detail_address
+		      ,email
+		      ,individual_URL
+		      ,memo
+		      ,picture_uuid
+		      ,creator
+		      ,createdtime
+		      ,modifier
+		      ,modifiedtime
+		  FROM TB_ADDRESS
+		  WHERE 1=1
+		  <isNotEmpty property="user_name" prepend="AND"> user_name like '%'+#user_name#+'%'</isNotEmpty>
+		  order by user_name ASC
+	</select>
+	
+	<!-- 2. 연락처 정보 검색 -->
+		<!-- 2.1 연락처  기본정보 검색 -->
+	<select id="getAddressBook" parameterClass="HashMap" resultClass="address">
+		SELECT * FROM TB_ADDRESS
+		WHERE 1=1
+		AND ads_mgt_no = #ads_mgt_no#
+		<isNotEmpty property="user_name" prepend="AND"> user_name = #user_name#</isNotEmpty>
+	</select>
+	
+		<!-- 2.2 기념일 정보 검색 -->
+	<select id="getAnniversary" parameterClass="java.util.HashMap" resultClass="anniversary">
+		SELECT ads_mgt_no
+			  ,anver_seq
+		      ,anver_type_code
+		      ,anver_content
+		      ,anver_date
+		      ,creator
+		      ,createdtime
+		      ,modifier
+		      ,modifiedtime
+		  FROM TB_ADDRESS_ANS
+		  WHERE 1=1
+		  AND ads_mgt_no = #ads_mgt_no# 
+		  order by  anver_seq
+	</select>
+	
+	<!-- 3. 연락처 저장 -->
+		<!-- 3.1 연락처 기본정보 저장 -->
+	<insert id="writeAddress" parameterClass="address">
+		insert TB_ADDRESS(
+			 ads_mgt_no
+		      ,group_code
+		      ,user_name
+		      ,company_name
+		      ,position_code
+		      ,phone
+		      ,cell_phone
+		      ,postcode
+		      ,district_address
+		      ,detail_address
+		      ,email
+		      ,individual_URL
+		      ,memo
+		      ,picture_uuid
+		      ,creator
+		      ,createdtime
+		      ,modifier
+		      ,modifiedtime
+		) values (
+			   #ads_mgt_no#
+		      ,#group_code#
+		      ,#user_name#
+		      ,#company_name#
+		      ,#position_code#
+		      ,#phone#
+		      ,#cell_phone#
+		      ,#postcode#
+		      ,#district_address#
+		      ,#detail_address#
+		      ,#email#
+		      ,#individual_URL#
+		      ,#memo#
+		      ,#picture_uuid#
+		      ,#creator#
+		      ,#createdtime#
+		      ,#modifier#
+		      ,#modifiedtime#
+		)
+		
+	</insert>
+		<!-- 3.2 연락처 기념일 정보 저장-->
+	<insert id="writeAnniversary" parameterClass="anniversary">
+		
+		<selectKey keyProperty="anver_seq" resultClass="String" type="pre">
+			SELECT ISNULL(MAX(anver_seq)+1,0) FROM TB_ADDRESS_ANS WHERE ads_mgt_no =#ads_mgt_no#
+		</selectKey>
+	
+		insert TB_ADDRESS_ANS(
+			  ads_mgt_no
+			  ,anver_seq
+		      ,anver_type_code
+		      ,anver_content
+		      ,anver_date
+		      ,creator
+		      ,createdtime
+		      
+		) VALUES (
+			  #ads_mgt_no#
+			  ,#anver_seq#
+		      ,#anver_type_code#
+		      ,#anver_content#
+		      ,#anver_date#
+		      ,#creator#
+		      ,#createdtime#
+		    
+		)
+	</insert>
+	
+	<!-- 4. 연락처 정보 수정 -->
+		<!-- 4.1 연락처 기본정보 수정 -->
+	<update id="modifyAddress" parameterClass="address">
+		UPDATE TB_ADDRESS
+			SET
+		      group_code                    = #group_code#             ,
+		      user_name                     = #user_name#              ,
+		      company_name                  = #company_name#           ,
+		      position_code                 = #position_code#          ,
+		      phone                         = #phone#                  ,
+		      cell_phone                    = #cell_phone#            , 
+		      postcode                      = #postcode#             ,  
+		      district_address              = #district_address#    ,   
+		      detail_address                = #detail_address#     ,    
+		      email                         = #email#             ,     
+		      individual_URL                = #individual_URL#   ,      
+		      memo                          = #memo#            ,       
+		      picture_uuid                  = #picture_uuid#   ,
+		      modifier                      = #modifier#    ,           
+		      modifiedtime                  = #modifiedtime#           
+		WHERE 1=1
+		AND ads_mgt_no = #ads_mgt_no#     	
+	</update>
+	
+	<!-- 4.2 기념일 정보 수정 -->
+	<update id="modifyAnniversary" parameterClass="anniversary">
+		UPDATE TB_ADDRESS_ANS
+			SET
+			  anver_seq              = #anver_seq#        ,         
+		      anver_type_code        = #anver_type_code#  ,     
+		      anver_content          = #anver_content#    ,    
+		      anver_date             = #anver_date#       ,   
+		      modifier				 = #modifier#		  ,
+		      modifiedtime 			 = #modifiedtime#    
+		WHERE 1=1
+		AND ads_mgt_no       =      #ads_mgt_no#
+		<isNotEmpty property="anver_seq" prepend="AND"> anver_seq		 =		#anver_seq#</isNotEmpty>
+	</update>
+	
+	<!-- 5. 삭제 -->
+		<!-- 5.1 연락처 기본정보 삭제 -->
+	
+		<delete id="deleteAddress" parameterClass="HashMap">
+			DELETE 
+				TB_ADDRESS
+			WHERE 1=1
+			AND ads_mgt_no = #ads_mgt_no#
+		</delete>
+		
+		<!-- 5.1 연락처 기본정보 삭제 -->
+		<delete id="deleteAnniversary" parameterClass="HashMap">
+			DELETE 
+				TB_ADDRESS_ANS
+			WHERE 1=1
+			AND ads_mgt_no       =      #ads_mgt_no#
+		    <isNotEmpty property="anver_seq" prepend="AND"> anver_seq		 =		#anver_seq#</isNotEmpty> 
+		</delete>
+</sqlMap>
