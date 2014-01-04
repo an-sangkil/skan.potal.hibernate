@@ -33,18 +33,18 @@
 </script>
 <div class="header">
 	<div class="main_menu" onclick="moveTestBoard('testBoard')" style="cursor: pointer;">
-		Test Board
+		게시판
 	</div>
 	<div class="main_menu" onclick="calendar_TEST()" style="cursor: pointer;">
-		Calendar Test   
+		일정관리  
 	</div>
 	<div class="main_menu" onclick="codeManagementTest()" style="cursor: pointer;">
-		Code Management Test   
+		코드관리   
 	</div>
 	<div class="main_menu" onclick="addressGroupManagementTest()" style="cursor: pointer;">
 		..
 	</div>
 	<div class="main_menu" onclick="addressManagementTest()" style="cursor: pointer;">
-		address Management Test   
+		주소록 관리   
 	</div>
 </div>
