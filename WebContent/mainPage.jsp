@@ -36,6 +36,8 @@
 			icon: Ext.MessageBox.WARNING
 		});
 	}
+	
+	setTimeout("getLogin()",300);
 </script>
 </head>
 	<body>
@@ -58,8 +60,8 @@
 							<tr>
 								<td>
 									<div>
-										<input type="text"     id="user_id"   name="user_id"   value="mycup">
-										<input type="password" id="password"  name="password"  value="1234">
+										<input type="text"     id="user_id"   name="user_id"   value="kku04207">
+										<input type="password" id="password"  name="password"  value="1502">
 									</div>
 								</td>
 								<td>

@@ -36,7 +36,7 @@
 		Test Board
 	</div>
 	<div class="main_menu" onclick="calendar_TEST()" style="cursor: pointer;">
-		Calendar Test   
+		일정관리
 	</div>
 	<div class="main_menu" onclick="codeManagementTest()" style="cursor: pointer;">
 		Code Management Test   
