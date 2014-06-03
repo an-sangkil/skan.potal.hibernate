@@ -1,0 +1,28 @@
+<!--?xml version="1.0" encoding="UTF-8"? -->  
+<!DOCTYPE tiles-definitions PUBLIC  
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition name="user.base.layout" template="/WEB-INF/jsp/layout/user/Layout.jsp">
+        <put-attribute name="title" value="SpringMVC" />
+        <put-attribute name="header" value="/WEB-INF/jsp/layout/user/Header.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/WEB-INF/jsp/layout/user/Footer.jsp" />
+    </definition>
+
+    <definition name="user.en.layout" template="/WEB-INF/jsp/layout/user/en/Layout.jsp">
+        <put-attribute name="title" value="SpringMVC" />
+        <put-attribute name="header" value="/WEB-INF/jsp/layout/user/en/Header.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/WEB-INF/jsp/layout/user/en/Footer.jsp" />
+    </definition>
+    
+    
+    <definition name="admin.base.layout" template="/WEB-INF/jsp/layout/admin/Layout.jsp">
+        <put-attribute name="title" value="SpringMVC" />
+        <put-attribute name="header" value="/WEB-INF/jsp/layout/admin/Header.jsp" />
+        <put-attribute name="left" value="/WEB-INF/jsp/layout/admin/Left.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/WEB-INF/jsp/layout/admin/Footer.jsp" />
+    </definition>
+</tiles-definitions>

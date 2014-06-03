@@ -1,0 +1,545 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.dongbu.potal</groupId>
+	<artifactId>com.dongbu.potal</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>com.dongbu.potal Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	
+	
+	<properties>
+		<jdk.version>1.7</jdk.version>
+		<spring.version>4.0.5.RELEASE</spring.version>
+		<spring.security.version>3.2.3.RELEASE</spring.security.version>
+		<jstl.version>1.2</jstl.version>
+		<javax.servlet.version>3.1.0</javax.servlet.version>
+	</properties>
+
+	<!--
+	//////////////////////////////////////////////////////////////////
+	// DEPENDENCY
+	//////////////////////////////////////////////////////////////////
+	-->
+		<dependencies>
+		
+			<!-- 
+			//////////////////////////////////////////////////////////////////
+			// JSON
+			//////////////////////////////////////////////////////////////////
+			
+			<dependency>
+				<groupId>net.sf.json-lib</groupId>
+				<artifactId>json-lib-ext-spring</artifactId>
+				<version>1.0.2</version>
+			</dependency>
+			-->
+			
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>2.2.0</version>
+			</dependency>
+			
+			<!--
+			///////////////////////////////////////////////////////////////////////////
+			// JSON
+			///////////////////////////////////////////////////////////////////////////
+			-->
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-mapper-asl</artifactId>
+				<version>1.9.12</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-core-asl</artifactId>
+				<version>1.9.12</version>
+			</dependency>
+			
+			
+			<!--
+			//////////////////////////////////////////////////////////////////
+			// APACHE
+			//////////////////////////////////////////////////////////////////
+			-->
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>1.8</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>2.6</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>2.4</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version>1.8.3</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>2.4</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+				<version>1.1.3</version>
+			</dependency>
+
+			
+			<dependency>
+				<groupId>commons-collections</groupId>
+				<artifactId>commons-collections</artifactId>
+				<version>3.2.1</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-compress</artifactId>
+				<version>1.6</version>
+			</dependency>
+
+			<dependency>
+			    <groupId>commons-fileupload</groupId>
+			    <artifactId>commons-fileupload</artifactId>
+			    <version>1.3</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.apache.tiles</groupId>
+				<artifactId>tiles-core</artifactId>
+				<version>3.0.4</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.apache.tiles</groupId>
+				<artifactId>tiles-servlet</artifactId>
+				<version>3.0.4</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.apache.tiles</groupId>
+				<artifactId>tiles-jsp</artifactId>
+				<version>3.0.4</version>
+			</dependency>
+
+			
+			<dependency>
+				<groupId>commons-configuration</groupId>
+				<artifactId>commons-configuration</artifactId>
+				<version>1.8</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-beanutils</groupId>
+						<artifactId>commons-beanutils</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>commons-digester</groupId>
+						<artifactId>commons-digester</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>commons-collections</groupId>
+						<artifactId>commons-collections</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>commons-codec</groupId>
+						<artifactId>commons-codec</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>commons-jxpath</groupId>
+						<artifactId>commons-jxpath</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>xml-resolver</groupId>
+						<artifactId>xml-resolver</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>javax.servlet</groupId>
+						<artifactId>servlet-api</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>commons-jexl</groupId>
+						<artifactId>commons-jexl</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>commons-vfs2</groupId>
+						<artifactId>commons-vfs2</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>xml-apis</groupId>
+						<artifactId>xml-apis</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			
+			<dependency>
+				<groupId>commons-pool</groupId>
+				<artifactId>commons-pool</artifactId>
+				<version>1.6</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>commons-dbcp</groupId>
+				<artifactId>commons-dbcp</artifactId>
+				<version>1.4</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>taglibs</groupId>
+				<artifactId>standard</artifactId>
+				<version>1.1.2</version>
+			</dependency>
+			
+			<!--
+			//////////////////////////////////////////////////////////////////
+			// JAVA
+			//////////////////////////////////////////////////////////////////
+			-->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>3.0.1</version>
+			</dependency>
+            			
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>2.2</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>1.2</version>
+			</dependency>
+            			
+			<dependency>
+				<groupId>javax.mail</groupId>
+				<artifactId>mail</artifactId>
+				<version>1.4.1</version>
+			</dependency>
+			
+			<!--
+			//////////////////////////////////////////////////////////////////
+			// SPRINGFRAMEWORK
+			//////////////////////////////////////////////////////////////////
+			-->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			
+			
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+	            		
+			
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-expression</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			
+			<!--
+			//////////////////////////////////////////////////////////////////
+			// SPRINGFRAMEWORK - SECURITY
+			//////////////////////////////////////////////////////////////////
+			-->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-core</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-web</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-config</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<dependency>
+		        <groupId>org.springframework.security</groupId>
+		        <artifactId>spring-security-taglibs</artifactId>
+		        <version>${spring.security.version}</version>
+		        <exclusions>
+		            <exclusion>
+		                <artifactId>spring-aop</artifactId>
+		                <groupId>org.springframework</groupId>
+		            </exclusion>
+		        </exclusions>
+		    </dependency>
+			
+			
+			<!--
+			//////////////////////////////////////////////////////////////////
+			// SPRINGFRAMEWORK - AOP
+			//////////////////////////////////////////////////////////////////
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${springVersion}</version>
+			</dependency>
+			<dependency>
+				<groupId>aopalliance</groupId>
+				<artifactId>aopalliance</artifactId>
+				<version>1.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>1.7.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjrt</artifactId>
+				<version>1.7.0</version>
+			</dependency>
+			-->
+			
+			
+			<!--
+			///////////////////////////////////////////////////////////////////////////
+			// FREEMAKER 
+			///////////////////////////////////////////////////////////////////////////
+			-->
+			<dependency>
+				<groupId>org.freemarker</groupId>
+				<artifactId>freemarker</artifactId>
+				<version>2.3.14</version>
+			</dependency>
+			
+			<!--
+			///////////////////////////////////////////////////////////////////////////
+			// MyBatis 
+			///////////////////////////////////////////////////////////////////////////
+			-->
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis-spring</artifactId>
+				<version>1.1.1</version>
+			</dependency>
+	            		
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis</artifactId>
+				<version>3.2.1</version>
+			</dependency>
+			
+            			
+			<!--
+			//////////////////////////////////////////////////////////////
+			// OSGI
+			//////////////////////////////////////////////////////////////
+			<dependency>
+				<groupId>org.eclipse.osgi</groupId>
+				<artifactId>org.eclipse.osgi</artifactId>
+				<version>3.8.0.v20120529-1548</version>
+			</dependency>
+			-->
+
+			<!--
+			//////////////////////////////////////////////////////////////
+			// LOGGING
+			//////////////////////////////////////////////////////////////
+			-->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.7.6</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-jcl</artifactId>
+				<version>1.7.6</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>1.7.6</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>1.1.1</version>
+			</dependency>
+	
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-core</artifactId>
+				<version>1.1.1</version>
+			</dependency>
+			
+			<!--
+			//////////////////////////////////////////////////////////////////
+			// validator
+			//////////////////////////////////////////////////////////////////
+			-->
+			<dependency>
+				<groupId>javax.validation</groupId>
+				<artifactId>validation-api</artifactId>
+				<version>1.1.0.Final</version>
+			</dependency>
+			<dependency>
+	            <groupId>org.hibernate</groupId>
+	            <artifactId>hibernate-validator</artifactId>
+	            <version>5.1.0.Final</version>
+	        </dependency>
+	        
+	        <!--
+			//////////////////////////////////////////////////////////////////
+			//  Apache POI lib 
+			//////////////////////////////////////////////////////////////////
+			-->
+			<dependency>
+			    <groupId>org.apache.poi</groupId>
+			    <artifactId>poi</artifactId>
+			    <version>3.10-FINAL</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.apache.poi</groupId>
+			    <artifactId>poi-ooxml</artifactId>
+			    <version>3.10-FINAL</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.apache.poi</groupId>
+			    <artifactId>poi-ooxml-schemas</artifactId>
+			    <version>3.10-FINAL</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.apache.poi</groupId>
+			    <artifactId>poi-scratchpad</artifactId>
+			    <version>3.10-FINAL</version>
+			</dependency>
+			
+			<dependency>
+			    <groupId>org.apache.commons</groupId>
+			    <artifactId>commons-jexl</artifactId>
+			    <version>2.1.1</version>
+			</dependency>
+			
+			<!--
+			//////////////////////////////////////////////////////////////////
+			// jxls
+			//////////////////////////////////////////////////////////////////
+			-->
+			<dependency>
+			    <groupId>net.sf.jxls</groupId>
+			    <artifactId>jxls-core</artifactId>
+			    <version>1.0.5</version>
+			</dependency>
+			
+			<dependency>
+			    <groupId>net.sf.jxls</groupId>
+			    <artifactId>jxls-reader</artifactId>
+			    <version>1.0.5</version>
+			</dependency>
+			
+			<!--
+			//////////////////////////////////////////////////////////////////
+			// JDBC
+			//////////////////////////////////////////////////////////////////
+			-->
+			
+			<dependency>
+				<groupId>org.postgresql</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>9.3-1100-jdbc41</version>
+			</dependency>
+			
+
+			<!--
+			//////////////////////////////////////////////////////////////////
+			// TEST
+			//////////////////////////////////////////////////////////////////
+			-->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.11</version>
+				<scope>test</scope>
+			</dependency>
+			
+			
+		</dependencies>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<build>
+		<finalName>com.dongbu.potal</finalName>
+	</build>
+</project>
