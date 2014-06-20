@@ -3,13 +3,14 @@
         "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-    <definition name="user.base.layout" template="/WEB-INF/jsp/layout/user/Layout.jsp">
-        <put-attribute name="title" value="SpringMVC" />
-        <put-attribute name="header" value="/WEB-INF/jsp/layout/user/Header.jsp" />
+    <definition name="user.base.layout" template="/WEB-INF/jsp/layout/user/layout.jsp">
+        <put-attribute name="title" value="potal" />
+        <put-attribute name="header" value="/WEB-INF/jsp/layout/user/header.jsp" />
+        <put-attribute name="sideMenu" value="/WEB-INF/jsp/layout/user/sideMenu.jsp" />
         <put-attribute name="body" value="" />
-        <put-attribute name="footer" value="/WEB-INF/jsp/layout/user/Footer.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/jsp/layout/user/footer.jsp" />
     </definition>
-
+  
     <definition name="user.en.layout" template="/WEB-INF/jsp/layout/user/en/Layout.jsp">
         <put-attribute name="title" value="SpringMVC" />
         <put-attribute name="header" value="/WEB-INF/jsp/layout/user/en/Header.jsp" />
