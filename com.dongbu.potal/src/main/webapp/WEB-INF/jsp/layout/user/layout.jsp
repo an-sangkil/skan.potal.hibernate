@@ -20,7 +20,7 @@
 	<!-- jQuery UI -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/metro/style/jquery-ui.css"> 
 	<!-- Calendar -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/metro/style/fullcalendar.css">
+<%-- 	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/metro/style/fullcalendar.css"> --%>
 	<!-- prettyPhoto -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/metro/style/prettyPhoto.css">  
 	<!-- Star rating -->
@@ -51,7 +51,6 @@
 	<script src="${pageContext.request.contextPath}/assets/metro/js/jquery.js"></script> <!-- jQuery -->
 	<script src="${pageContext.request.contextPath}/assets/metro/js/bootstrap.js"></script> <!-- Bootstrap -->
 	<script src="${pageContext.request.contextPath}/assets/metro/js/jquery-ui-1.9.2.custom.min.js"></script> <!-- jQuery UI -->
-	<script src="${pageContext.request.contextPath}/assets/metro/js/fullcalendar.min.js"></script> <!-- Full Google Calendar - Calendar -->
 	<script src="${pageContext.request.contextPath}/assets/metro/js/jquery.rateit.min.js"></script> <!-- RateIt - Star rating -->
 	<script src="${pageContext.request.contextPath}/assets/metro/js/jquery.prettyPhoto.js"></script> <!-- prettyPhoto -->
 	

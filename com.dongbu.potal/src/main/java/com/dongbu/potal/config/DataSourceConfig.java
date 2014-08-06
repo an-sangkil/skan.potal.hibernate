@@ -17,7 +17,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 @Configuration
 public class DataSourceConfig {
 	
-	//사용 안함
+
 	private final static String JDBC_CONFIG_PATH = "jdbc.xml";
 	
 	@Bean
@@ -44,7 +44,7 @@ public class DataSourceConfig {
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 		sqlSessionFactoryBean.setDataSource(this.dataSource());
 		
-		sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml"));
+		sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:com/dongbu/potal/web/potal/*.xml"));//("classpath:mapper/*.xml"));
 		sqlSessionFactoryBean.setConfigLocation(new DefaultResourceLoader().getResource("classpath:mybatis.xml"));
 		
 		

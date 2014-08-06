@@ -95,8 +95,33 @@ $('.wclose').click(function(e){
     var d = date.getDate();
     var m = date.getMonth();
     var y = date.getFullYear();
+
+    var options = {
+		//theme : true,
+    	lang : 'en',
+		editable: true,
+		header : {
+			left : 'prev,next today',
+			center : 'title',
+			right : 'month,agendaWeek,agendaDay'
+		},
+		//timeFormat : {agenda : 'h(:mm)t{ - h(:mm)t}','' : 'h(:mm)t{-h(:mm)t }'},
+		//monthNames : [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "8 월", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
+		//monthNamesShort : [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic' ],
+		dayNames : [ '월', '화', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado' ],
+		//dayNamesShort : [ 'Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie',	'Sáb' ],
+		buttonText : {
+			today : 'hoy',
+			month : 'mes',
+			week : 'semana',
+			day : 'día'
+		}
+	};
     
-    $('#calendar').fullCalendar({
+    
+    //$('#calendar').fullCalendar(options);   
+    
+    /*$('#calendar').fullCalendar({
       header: {
         left: 'prev',
         center: 'title',
@@ -149,7 +174,7 @@ $('.wclose').click(function(e){
           url: 'http://google.com/'
         }
       ]
-    });
+    });*/
     
   });
 

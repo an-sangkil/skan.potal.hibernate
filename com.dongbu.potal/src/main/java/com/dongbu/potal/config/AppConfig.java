@@ -63,8 +63,4 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 
     	return tiles;
     }
-	
-	
-	
-
 }
