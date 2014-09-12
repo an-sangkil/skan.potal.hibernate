@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
+import com.dongbu.potal.common.util.pagnation.PagingList;
 import com.dongbu.potal.web.potal.bean.Schdule;
 import com.dongbu.potal.web.potal.common.dao.AbstractCommonDao;
 
@@ -63,5 +64,9 @@ public class SchduleDao extends AbstractCommonDao {
 		
 		return super.getSqlSession().selectList(NAMESPACE + ".SchduleDao.selectList" , searchMap );
 	}
-
+	
+	public PagingList selectPagingList(Map<String,Object> dataMap){
+		
+		return super.pagingList(dataMap, "selectPagingList");
+	}
 }
