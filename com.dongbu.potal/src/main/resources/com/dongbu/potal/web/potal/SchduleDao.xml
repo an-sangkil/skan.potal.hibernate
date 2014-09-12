@@ -5,10 +5,109 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.dongbu.potal.web.potal.dao.SchduleDao">
-	<select id="selectList" resultType="Map">
-		SELECT su_id, su_pwd, su_name, su_email, su_ipno, su_login_lf_dtno, 
-			su_login_lf_cnt, su_login_ls_dtno, su_init_pwd_chg, su_lock_state, 
-			su_desc, su_crt_dtno
- 		 FROM sf_user;
+
+	<resultMap id="schdule" type="com.dongbu.potal.web.potal.bean.Schdule" >
+		<result property="schMgtNo"  column="sch_mgt_no" />
+	</resultMap>
+
+	<insert id="insert" parameterType="Map">
+		INSERT INTO cmtb_schedule(
+            sch_mgt_no, sch_seq, sch_subject, sch_content, std_date, today_weather_code, 
+            min_degreespoint_code, max_degreespoint_code, min_temperature, 
+            max_temperature, create_time, modify_time, public_yn, user_id, 
+            group_no)
+    	VALUES (?, ?, ?, ?, ?, ?, 
+            ?, ?, ?, 
+            ?, ?, ?, ?, ?, 
+            ?)
+	</insert>
+	
+	<update id="update" parameterType="Map">
+		UPDATE cmtb_schedule
+		   SET  
+		   	   sch_seq=?, 
+		   	   sch_subject=?, 
+		   	   sch_content=?, 
+		   	   std_date=?, 
+		       today_weather_code=?, 
+		       min_degreespoint_code=?, 
+		       max_degreespoint_code=?, 
+		       min_temperature=?, 
+		       max_temperature=?, 
+		       create_time=?, 
+		       modify_time=?, 
+		       public_yn=?, 
+		       group_no=?
+		 WHERE sch_mgt_no=#{sch_mgt_no}
+		 AND   user_id=#{user_id} 
+	</update>
+	
+	<delete id="delete" parameterType="Map">
+		DELETE FROM cmtb_schedule
+		WHERE sch_mgt_no=#{sch_mgt_no}
+		AND   user_id=#{user_id} 
+	</delete>
+	
+	<select id="select" parameterType="Map" resultType="Map" >
+		SELECT sch_mgt_no, sch_seq, sch_subject, sch_content, std_date, today_weather_code, 
+		       	min_degreespoint_code, max_degreespoint_code, min_temperature,	 
+		       	max_temperature, create_time, modify_time, public_yn, user_id, 
+		       	group_no
+  		FROM cmtb_schedule
+  		<where>
+  			AND sch_mgt_no = #{sch_mgt_no} 
+  			AND sch_seq = #{sch_seq} 
+  			AND user_id = #{user_id}
+  		</where>
 	</select>
+
+	<select id="selectList" parameterType="Map" resultType="Map" >
+		SELECT sch_mgt_no, sch_seq, sch_subject, sch_content, std_date, today_weather_code, 
+		       	min_degreespoint_code, max_degreespoint_code, min_temperature,	 
+		       	max_temperature, create_time, modify_time, public_yn, user_id, 
+		       	group_no
+  		FROM cmtb_schedule
+  		<where>
+  			AND user_id = #{user_id}
+  		</where>
+	</select>
+	
+	
+	<select id="selectPaging" parameterType="Map" resultType="Map" >
+		SELECT 
+				sch_mgt_no, sch_seq as no, sch_subject, sch_content, std_date, today_weather_code, 
+		       	min_degreespoint_code, max_degreespoint_code, min_temperature,	 
+		       	max_temperature, create_time, modify_time, public_yn, user_id, 
+		       	group_no
+  		FROM cmtb_schedule
+  		<where>
+  			AND user_id = #{user_id}
+  			<!-- AND public_yn = 'Y' -->
+  		
+			<choose>
+				<when test = "pagingType != 'PAGING_BEFOR' and pagingType != null">
+					<if test = "FIRST_DATA_NO != null and FIRST_DATA_NO != 1">
+						AND sch_seq   <![CDATA[<= ]]> #{FIRST_DATA_NO}
+					</if >
+				</when >
+				<when test = "pagingType == 'PAGING_BEFOR' and pagingType != null">
+					AND sch_seq  <![CDATA[ > ]]> #{FIRST_DATA_NO}
+				</when >
+				<otherwise ></otherwise >
+			</choose >
+			<choose>
+				<when test = "pagingType != 'PAGING_BEFOR' and pagingType != null">
+					<if test = "FIRST_DATA_NO != null and FIRST_DATA_NO != 1">
+						sch_seq desc
+					</if >
+				</when >
+				<when test = "pagingType == 'PAGING_BEFOR' and pagingType != null">
+					sch_seq asc     
+				</when >
+				<otherwise ></otherwise >
+			</choose >
+			Limit 101
+  		</where>
+	</select>
+	
 </mapper>

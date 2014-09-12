@@ -96,7 +96,7 @@ $('.wclose').click(function(e){
     var m = date.getMonth();
     var y = date.getFullYear();
 
-    var options = {
+    /*var options = {
 		//theme : true,
     	lang : 'en',
 		editable: true,
@@ -116,7 +116,7 @@ $('.wclose').click(function(e){
 			week : 'semana',
 			day : 'día'
 		}
-	};
+	};*/
     
     
     //$('#calendar').fullCalendar(options);   
