@@ -51,8 +51,7 @@ $(document).ready(function() {
 					};
 					
 					console.log(start);
-					console.log(end);
-					
+					console.log(start._d.getFullYear());					
 					$('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
 				}
 				$('#calendar').fullCalendar('unselect');
