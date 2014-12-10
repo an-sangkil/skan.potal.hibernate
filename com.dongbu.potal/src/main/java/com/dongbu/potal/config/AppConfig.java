@@ -1,5 +1,7 @@
 package com.dongbu.potal.config;
 
+import java.util.Properties;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -21,8 +23,6 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 	
 	public AppConfig() {
 	}
-	
-	
 	@Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/assets/**").addResourceLocations("/assets/").setCachePeriod(31556926);
