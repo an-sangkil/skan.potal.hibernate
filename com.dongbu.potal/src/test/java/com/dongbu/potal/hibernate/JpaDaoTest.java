@@ -1,4 +1,4 @@
-
+package com.dongbu.potal.hibernate;
 
 import java.util.List;
 
