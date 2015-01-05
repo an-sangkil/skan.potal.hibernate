@@ -12,10 +12,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
-import com.dongbu.potal.config.DataSourceConfig;
-import com.dongbu.potal.config.PersistenceJPAConfig;
-import com.dongbu.potal.hibernate.model.User;
-import com.dongbu.potal.hibernate.service.UserService;
+import com.skan.potal.config.DataSourceConfig;
+import com.skan.potal.config.PersistenceJPAConfig;
+import com.skan.potal.hibernate.model.User;
+import com.skan.potal.hibernate.service.UserService;
 
 /**
  * <pre>
