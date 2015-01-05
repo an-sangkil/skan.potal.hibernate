@@ -36,11 +36,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  *
  * Copyright (C) 2014 by SKAN.COMPANY All right reserved.
  */
-@Configuration
+/*@Configuration
 @EnableTransactionManagement
 //@PropertySource({ "classpath:persistence-mysql.properties", "classpath:persistence-postgresql.properties",})
 @ComponentScan({ "com.dongbu.potal.hibernate" })
-@EnableJpaRepositories(basePackages="com.dongbu.potal.hibernate.dao")
+@EnableJpaRepositories(basePackages="com.dongbu.potal.hibernate.dao")*/
 public class PersistenceJPAConfig {
 	
 	@Autowired private Environment env;

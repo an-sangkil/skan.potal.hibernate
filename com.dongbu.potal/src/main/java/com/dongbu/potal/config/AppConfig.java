@@ -18,7 +18,7 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 @EnableWebMvc
 @EnableAsync 
 @Configuration
-@ComponentScan(basePackages={"com.dongbu.potal"})
+@ComponentScan(basePackages={"com.dongbu.potal.web"})
 public class AppConfig extends WebMvcConfigurerAdapter{
 	
 	public AppConfig() {

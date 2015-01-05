@@ -24,6 +24,12 @@
 	-->
 		<dependencies>
 			<dependency>
+				<groupId>mulity.thread.skan</groupId>
+				  <artifactId>mulity.thread.skan</artifactId>
+				  <version>0.0.1-SNAPSHOT</version>
+			</dependency>
+		
+			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-databind</artifactId>
 				<version>2.2.0</version>
@@ -541,7 +547,7 @@
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>4.11</version>
-				<scope>test</scope>
+<!-- 				<scope>test</scope> -->
 			</dependency>
 			
 			
