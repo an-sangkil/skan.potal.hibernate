@@ -29,7 +29,8 @@ import com.skan.potal.common.util.pagnation.PagingList;
  *
  * Copyright (C) 2014 by SKAN.COMPANY All right reserved.
  */
-@Repository
+//@Repository
+@Deprecated
 public abstract class AbstractCommonDao extends SqlSessionDaoSupport {
 	
 	private final String NAMESPACE = this.getClass().getPackage().getName();

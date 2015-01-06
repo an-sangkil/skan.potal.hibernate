@@ -10,7 +10,8 @@ import org.springframework.stereotype.Repository;
  * @author ask
  *
  */
-@Repository
+//@Repository
+@Deprecated
 public class TestDao extends SqlSessionDaoSupport {
 	
 	public List<String> testSelect () {

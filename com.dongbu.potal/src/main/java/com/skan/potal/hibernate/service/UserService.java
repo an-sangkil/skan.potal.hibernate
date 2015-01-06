@@ -2,6 +2,9 @@ package com.skan.potal.hibernate.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+
 import com.skan.potal.hibernate.model.User;
 
 /**
@@ -22,10 +25,11 @@ import com.skan.potal.hibernate.model.User;
  * Copyright (C) 2014 by SKAN.COMPANY All right reserved.
  */
 
-public interface UserService {
+public interface UserService  {
 	
 	void insertUser(User user);
 	List<User> findAllUsers();
-	public User findUser();
+	public User findUser(Long pk);
+	Page<User> findUser(PageRequest pageRequest);
 
 }

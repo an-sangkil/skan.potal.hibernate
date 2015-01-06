@@ -3,6 +3,8 @@ package com.skan.potal.hibernate.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.skan.potal.hibernate.dao.UserDAO;
@@ -38,9 +40,16 @@ public class UserServiceImpl implements UserService {
 	public List<User> findAllUsers() {
 		return userDAO.findAll();
 	}
-	
-	public User findUser() {
-		return userDAO.findOne(1L);
+
+	@Override
+	public Page<User> findUser(PageRequest pageRequest) {
+		return userDAO.findAll(pageRequest);
 	}
+
+	@Override
+	public User findUser(Long pk) {
+		return userDAO.findOne(pk);
+	}
+
 	
 }

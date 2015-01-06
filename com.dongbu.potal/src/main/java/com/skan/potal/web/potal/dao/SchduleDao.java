@@ -15,7 +15,8 @@ import com.skan.potal.web.potal.common.dao.AbstractCommonDao;
  * @author ask
  *
  */
-@Repository
+//@Repository
+@Deprecated
 public class SchduleDao extends AbstractCommonDao {
 	
 	private final String NAMESPACE = this.getClass().getPackage().getName();

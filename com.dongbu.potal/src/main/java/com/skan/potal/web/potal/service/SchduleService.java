@@ -30,7 +30,7 @@ import com.skan.potal.web.potal.dao.SchduleDao;
 @Service
 public class SchduleService implements ServiceInferface{
 	
-	@Autowired private SchduleDao schduleDao;
+	//@Autowired private SchduleDao schduleDao;
 
 	@Override
 	public int insert(Object obj, Map<String, Object> dataMap) throws Exception {

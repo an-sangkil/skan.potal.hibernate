@@ -42,8 +42,8 @@ import com.skan.potal.web.potal.dao.TestDao;
 @Scope("singleton")
 public class TestController {
 	
-	@Autowired
-	private TestDao testDao;
+	//@Autowired
+	//private TestDao testDao;
 	
 	BlockingQueue<User> queue = new ArrayBlockingQueue<User>(2);
 	
@@ -60,10 +60,10 @@ public class TestController {
 	@RequestMapping(value={"/test","/testTo"} , params=("type=test"))
 	public void test (HttpServletRequest request) {
 		System.out.println("aaa");System.out.println("aaa");
-		List<String> testList = testDao.testSelect();
-		for (String string : testList) {
-			System.out.println(string);
-		}
+		//List<String> testList = testDao.testSelect();
+		//for (String string : testList) {
+		//	System.out.println(string);
+		//}
 	}
 	
 	@RequestMapping(value={"/test2"})

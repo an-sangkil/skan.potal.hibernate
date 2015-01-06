@@ -25,11 +25,12 @@ public class SchduleController {
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	
 	
-	@Autowired
-	private SchduleDao schduleDao;
+	//@Autowired
+	//private SchduleDao schduleDao;
 	
 	@RequestMapping("/schdule/schdule_list")
-	public String schduleList (@Valid Schdule schdule, BindingResult bindingResult, HttpServletRequest request , ModelMap modelMap) throws Exception {
+	public String schduleList (@Valid 
+			Schdule schdule, BindingResult bindingResult, HttpServletRequest request , ModelMap modelMap) throws Exception {
 		
 		if(bindingResult.hasErrors()) {
 			
@@ -39,8 +40,8 @@ public class SchduleController {
 		}
 		
 		Map<String, Object> dataMap = new HashMap<String, Object>();
-		List<? extends Map<?, ?>> schduleList = schduleDao.selectList(schdule, Schdule.class, dataMap);
-		logger.debug(schduleList.toString());
+		//List<? extends Map<?, ?>> schduleList = schduleDao.selectList(schdule, Schdule.class, dataMap);
+		//logger.debug(schduleList.toString());
 		
 		return "/schdule/schdule_calendar.tiles";
 	}

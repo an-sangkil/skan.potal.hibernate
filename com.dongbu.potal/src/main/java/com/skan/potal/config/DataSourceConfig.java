@@ -15,7 +15,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-@Configuration
+//@Configuration
 public class DataSourceConfig {
 	
 
