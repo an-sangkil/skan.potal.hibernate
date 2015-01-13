@@ -30,7 +30,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
  */
 
 @Entity
-@Table(name="user1")
+@Table(name="cmtb_user")
 public class User extends AbstractPersistable<Long> implements Serializable{
 	
 	/**
