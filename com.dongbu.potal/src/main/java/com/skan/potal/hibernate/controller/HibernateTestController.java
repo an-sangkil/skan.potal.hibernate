@@ -9,8 +9,10 @@ import javax.validation.Valid;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -59,9 +61,14 @@ public class HibernateTestController {
 	}
 	
 	@RequestMapping(value="htest03")
-	public @ResponseBody Page<User> hTestPagination(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Page<User> userPage = userService.findUser(new PageRequest(1, 10));
-		return userPage;
+	public 
+	//@ResponseBody 
+	String hTestPagination(HttpServletRequest request, HttpServletResponse response , ModelMap modeMap) throws Exception {
+		Page<User> userPaging = userService.findUser(new PageRequest(1, 10, Direction.ASC , "id"));
+		
+		
+		modeMap.put("userPaging", userPaging);
+		return "/test/paging/pagingTest";
 	}
 
 }

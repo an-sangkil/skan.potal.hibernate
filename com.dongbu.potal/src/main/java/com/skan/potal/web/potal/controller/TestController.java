@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.SynchronousQueue;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import mulity.thread.skan.model.User;
 import mulity.thread.skan.thread.SfBlockRuner;
+import mulity.thread.skan.thread.task.SfBlockQueue;
+import mulity.thread.skan.utils.StateUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -17,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.skan.potal.web.potal.dao.TestDao;
@@ -45,7 +50,8 @@ public class TestController {
 	//@Autowired
 	//private TestDao testDao;
 	
-	BlockingQueue<User> queue = new ArrayBlockingQueue<User>(2);
+	//BlockingQueue<User> queue = new ArrayBlockingQueue<User>(2);
+	BlockingQueue<User> queue = new LinkedBlockingQueue<>();
 	
 	@RequestMapping("/rtest")
 	public @ResponseBody List<String> test (HttpServletRequest request, ModelMap modelMap) {
@@ -67,7 +73,7 @@ public class TestController {
 	}
 	
 	@RequestMapping(value={"/test2"})
-	public void test2 (HttpServletRequest request, @Valid @ModelAttribute User user) {
+	public void test2 (HttpServletRequest request, @Valid @ModelAttribute User user, @RequestParam(required=false , defaultValue="" ) Integer key) {
 		
 		/*User user = new User();
 		user.setUserId("1234");
@@ -78,16 +84,18 @@ public class TestController {
 		@SuppressWarnings("unchecked")
 		SfBlockRuner<User> sf = (SfBlockRuner<User>) SfBlockRuner.getInstance();
 		
+		StateUtils stateUtils = StateUtils.getInstance();
+		stateUtils.putItem(key, user);
+		
 		sf.setItem(user,queue );
-		System.out.println("controller Q size = " +  queue.size());
+		//System.out.println("================ CONTROLLER ===================");
+		//System.out.println("stateUtils.getItemSize() = " + stateUtils.getItemSize());
 		
 		try {
-			//if(queue.size() == 0) {
-				sf.runner(queue );
-			//}
-			
+				//System.out.println("RUNNER  - START");
+				sf.runner(queue);
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		} finally {
 			
 		}
@@ -96,14 +104,10 @@ public class TestController {
 	@RequestMapping(value={"/test2Ex"})
 	public void test2Ex(HttpServletRequest request) {
 		
-		/*User user = new User();
-		user.setUserId("1234");
-		user.setUserName("kkkk");
-		System.out.println("hihi~");*/
+		StateUtils stateUtils = StateUtils.getInstance();
 		
+		User user = (User)stateUtils.getItem(5);
+		System.out.println(queue.remove(user)); 
 		
-		@SuppressWarnings("unchecked")
-		SfBlockRuner<User> sf = (SfBlockRuner<User>) SfBlockRuner.getInstance();
-		sf.runner(queue );
 	}
 }
