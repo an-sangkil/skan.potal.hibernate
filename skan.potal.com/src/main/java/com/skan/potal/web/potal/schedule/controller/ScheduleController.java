@@ -1,7 +1,6 @@
-package com.skan.potal.web.potal.controller;
+package com.skan.potal.web.potal.schedule.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,24 +12,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.skan.potal.web.potal.bean.Schdule;
-import com.skan.potal.web.potal.dao.SchduleDao;
+import com.skan.potal.web.potal.common.model.Schedule;
+import com.skan.potal.web.potal.schedule.service.ScheduleService;
 
 @Controller
-public class SchduleController {
+public class ScheduleController {
 	
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	
 	
-	//@Autowired
-	//private SchduleDao schduleDao;
+	@Autowired
+	private ScheduleService scheduleService;
 	
 	@RequestMapping("/schdule/schdule_list")
 	public String schduleList (@Valid 
-			Schdule schdule, BindingResult bindingResult, HttpServletRequest request , ModelMap modelMap) throws Exception {
+			Schedule schdule, BindingResult bindingResult, HttpServletRequest request , ModelMap modelMap) throws Exception {
 		
 		if(bindingResult.hasErrors()) {
 			

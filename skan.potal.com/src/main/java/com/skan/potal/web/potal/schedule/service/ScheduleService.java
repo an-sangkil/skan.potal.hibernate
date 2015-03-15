@@ -1,13 +1,17 @@
-package com.skan.potal.web.potal.service;
+package com.skan.potal.web.potal.schedule.service;
 
+import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import com.skan.potal.web.potal.common.service.ServiceInferface;
-import com.skan.potal.web.potal.dao.SchduleDao;
+import com.skan.potal.web.potal.common.model.Schedule;
+import com.skan.potal.web.potal.common.service.BaseService;
+import com.skan.potal.web.potal.schedule.dao.ScheduleDao;
+
 
 /**
  * <pre>
@@ -28,38 +32,39 @@ import com.skan.potal.web.potal.dao.SchduleDao;
  */
 
 @Service
-public class SchduleService implements ServiceInferface{
-	
-	//@Autowired private SchduleDao schduleDao;
+public class ScheduleService implements BaseService<Schedule, Long>{
+
+	@Autowired ScheduleDao scheduleDao;
 
 	@Override
-	public int insert(Object obj, Map<String, Object> dataMap) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public Schedule insert(Schedule t) {
+		return scheduleDao.save(t);
 	}
 
 	@Override
-	public int update(Object obj, Map<String, Object> dataMap) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public List<Schedule> findAllDatas() {
+		return scheduleDao.findAll();
 	}
 
 	@Override
-	public int delete(Object obj, Map<String, Object> dataMap) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public List<?> select(Object obj, Map<String, Object> dataMap)
-			throws Exception {
+	public Schedule findData(Long pk) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<?> selectList(Object obj, Map<String, Object> dataMap)
-			throws Exception {
+	public Page<Schedule> pageFindDatas(PageRequest pageRequest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteData(Schedule t) {
+		scheduleDao.delete(t);
+	}
+
+	@Override
+	public List<Schedule> findAllDatas(Iterator<Long> ids) {
 		// TODO Auto-generated method stub
 		return null;
 	}
