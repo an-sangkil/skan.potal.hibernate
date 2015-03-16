@@ -13,7 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.skan.potal.web.potal.bean.Schdule;
+import com.skan.potal.web.potal.common.model.Schedule;
 
 @Controller
 public class SchduleController {
@@ -26,7 +26,7 @@ public class SchduleController {
 	
 	@RequestMapping("/schdule/schdule_list")
 	public String schduleList (@Valid 
-			Schdule schdule, BindingResult bindingResult, HttpServletRequest request , ModelMap modelMap) throws Exception {
+			Schedule schedule, BindingResult bindingResult, HttpServletRequest request , ModelMap modelMap) throws Exception {
 		
 		if(bindingResult.hasErrors()) {
 			
