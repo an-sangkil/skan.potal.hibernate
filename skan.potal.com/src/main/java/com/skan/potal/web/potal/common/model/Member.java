@@ -1,4 +1,4 @@
-package com.skan.potal.web.potal.bean;
+package com.skan.potal.web.potal.common.model;
 
 import javax.persistence.Entity;
 
