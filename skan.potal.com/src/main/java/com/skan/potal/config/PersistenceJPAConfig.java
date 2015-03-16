@@ -39,8 +39,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 //@PropertySource({ "classpath:persistence-mysql.properties", "classpath:persistence-postgresql.properties",})
-@ComponentScan({ "com.skan.potal.hibernate" })
-@EnableJpaRepositories(basePackages="com.skan.potal.hibernate.dao")
+@ComponentScan({ "com.skan.potal" })
+@EnableJpaRepositories(basePackages={"com.skan.potal.hibernate.dao","com.skan.potal.web"})
 public class PersistenceJPAConfig {
 	
 	@Autowired private Environment env;
@@ -54,7 +54,7 @@ public class PersistenceJPAConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[]{"com.skan.potal.hibernate.model"});
+        em.setPackagesToScan(new String[]{"com.skan.potal.hibernate.model","com.skan.potal.web.potal"});
 
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
