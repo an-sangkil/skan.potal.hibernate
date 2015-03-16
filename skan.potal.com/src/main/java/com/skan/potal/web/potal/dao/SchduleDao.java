@@ -4,10 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.stereotype.Repository;
-
 import com.skan.potal.common.util.pagnation.PagingList;
-import com.skan.potal.web.potal.bean.Schdule;
 import com.skan.potal.web.potal.common.dao.AbstractCommonDao;
 
 /**

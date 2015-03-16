@@ -5,17 +5,14 @@ import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.SynchronousQueue;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import mulity.thread.skan.model.User;
 import mulity.thread.skan.thread.SfBlockRuner;
-import mulity.thread.skan.thread.task.SfBlockQueue;
 import mulity.thread.skan.utils.StateUtils;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,8 +20,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.skan.potal.web.potal.dao.TestDao;
 
 /**
  * <pre>
@@ -50,8 +45,8 @@ public class TestController {
 	//@Autowired
 	//private TestDao testDao;
 	
-	//BlockingQueue<User> queue = new ArrayBlockingQueue<User>(2);
-	BlockingQueue<User> queue = new LinkedBlockingQueue<>();
+	BlockingQueue<User> queue = new ArrayBlockingQueue<User>(5);
+	//BlockingQueue<User> queue = new LinkedBlockingQueue<>();
 	
 	@RequestMapping("/rtest")
 	public @ResponseBody List<String> test (HttpServletRequest request, ModelMap modelMap) {

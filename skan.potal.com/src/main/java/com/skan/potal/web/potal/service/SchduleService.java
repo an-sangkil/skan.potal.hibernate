@@ -3,11 +3,9 @@ package com.skan.potal.web.potal.service;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skan.potal.web.potal.common.service.ServiceInferface;
-import com.skan.potal.web.potal.dao.SchduleDao;
 
 /**
  * <pre>
