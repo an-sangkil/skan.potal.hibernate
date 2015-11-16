@@ -1,64 +1,63 @@
 package com.skan.potal.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.env.Environment;
+import org.springframework.http.client.ClientHttpRequestFactory;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
-import org.springframework.web.servlet.view.tiles3.TilesView;
-import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.client.RestTemplate;
 
-@EnableWebMvc
+/**
+ * Controller.class 를 제외한 컴포넌터 스캔
+ * @author skan
+ *
+ */
 @EnableAsync 
 @Configuration
-@ComponentScan(basePackages={"com.skan.potal"})
-public class AppConfig extends WebMvcConfigurerAdapter{
+@ComponentScan(basePackages={"com.skan.potal"}
+					,  excludeFilters={@Filter(Configuration.class),@Filter({Controller.class})})
+public class AppConfig {
 	
 	public AppConfig() {
 	}
-	@Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/assets/**").addResourceLocations("/assets/").setCachePeriod(31556926);
-        registry.addResourceHandler("/css/**").addResourceLocations("/css/").setCachePeriod(31556926);
-        registry.addResourceHandler("/img/**").addResourceLocations("/img/").setCachePeriod(31556926);
-        registry.addResourceHandler("/js/**").addResourceLocations("/js/").setCachePeriod(31556926);
-    }
- 
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
-    }
- 
-    @Bean
-    public InternalResourceViewResolver getInternalResourceViewResolver() {
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/jsp/");
-        resolver.setSuffix(".jsp");
-        return resolver;
-    }
-    
+	
+	@Autowired
+	private Environment env;
+	
+	/**
+	 * PlaceHolder 사용  @Value(“${property.name}”)
+	 *  
+	 * @return
+	 */
 	@Bean
-    public TilesViewResolver tilesViewResolver()
-    {
-        TilesViewResolver resolver = new TilesViewResolver();
-        resolver.setViewClass(TilesView.class);
-        resolver.setOrder(1);
-        return resolver;
+	public static PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
+		return new PropertySourcesPlaceholderConfigurer();
+	}
+	
+	@Bean
+	public JavaMailSender javaMailSenderImpl() {
+		JavaMailSenderImpl mailSenderImpl = new JavaMailSenderImpl();
+		
+		return mailSenderImpl;
+	}
+	
+	//@Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate(clientHttpRequestFactory());
     }
-    @Bean
-    public TilesConfigurer tilesConfigurer(){
-    	TilesConfigurer tiles = new TilesConfigurer();
-    	String[] values = {
-    						"/WEB-INF/config/tiles/tiles-templates.xml"
-    						,"/WEB-INF/config/tiles/tiles-user.xml"
-    						};
-    	tiles.setDefinitions(values);
 
-    	return tiles;
+    private ClientHttpRequestFactory clientHttpRequestFactory() {
+        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+        factory.setReadTimeout(2000);
+        factory.setConnectTimeout(2000);
+        return factory;
     }
 }

@@ -14,7 +14,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.skan.potal.web.potal.common.model.Schedule;
+import com.skan.potal.hibernate.application.model.Schedule;
 import com.skan.potal.web.potal.schedule.service.ScheduleService;
 
 @Controller

@@ -20,11 +20,7 @@
 	<!-- ////////////////////////////////////////////////////////////////// 
 		// DEPENDENCY ////////////////////////////////////////////////////////////////// -->
 	<dependencies>
-		<dependency>
-			<groupId>mulity.thread.skan</groupId>
-			<artifactId>mulity.thread.skan</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+		
 
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -398,6 +394,12 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>5.1.0.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>javax.el-api</artifactId>
+			<version>2.2.4</version>
 		</dependency>
 
 		<!-- ////////////////////////////////////////////////////////////////// 

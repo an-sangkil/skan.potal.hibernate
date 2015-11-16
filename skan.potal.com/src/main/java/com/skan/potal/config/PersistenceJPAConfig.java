@@ -7,7 +7,6 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
@@ -39,22 +38,24 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 //@PropertySource({ "classpath:persistence-mysql.properties", "classpath:persistence-postgresql.properties",})
-@ComponentScan({ "com.skan.potal" })
-@EnableJpaRepositories(basePackages={"com.skan.potal.hibernate.dao","com.skan.potal.web"})
+@EnableJpaRepositories(basePackages={"com.skan.potal"})
 public class PersistenceJPAConfig {
 	
 	@Autowired private Environment env;
-	//@Autowired private DataSourceConfig dataSourceConfig;
 
     public PersistenceJPAConfig() {
         super();
     }
-
+    
+    /**
+     * 엔티티로 사용할 Model Package 선언 
+     * @return
+     */
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[]{"com.skan.potal.hibernate.model","com.skan.potal.web.potal"});
+        em.setPackagesToScan(new String[]{"com.skan.potal.hibernate.application.model"});
 
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);

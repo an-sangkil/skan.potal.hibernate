@@ -2,20 +2,19 @@ package com.dongbu.potal.hibernate;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.skan.potal.config.DataSourceConfig;
+import com.skan.potal.config.AppConfig;
 import com.skan.potal.config.PersistenceJPAConfig;
-import com.skan.potal.hibernate.model.User;
-import com.skan.potal.hibernate.service.UserService;
+import com.skan.potal.config.WebMvcConfig;
+import com.skan.potal.hibernate.application.model.User;
+import com.skan.potal.hibernate.user.service.UserService;
 
 /**
  * <pre>
@@ -30,16 +29,17 @@ import com.skan.potal.hibernate.service.UserService;
  *
  * @author ask
  * @since 2014. 12. 4.
- * @version 
+ * @version
+ * 
+ * @WebAppConfiguration : 웹 컨피그 레이션을 적용하여 사용할때.
+ *  						
  *
  * Copyright (C) 2014 by SKAN.COMPANY All right reserved.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-
-@ContextConfiguration(classes = { PersistenceJPAConfig.class 
-								  //, DataSourceConfig.class 
-								 }
-						, loader = AnnotationConfigContextLoader.class)
+@ContextConfiguration(classes = {AppConfig.class, PersistenceJPAConfig.class }
+						, loader = AnnotationConfigContextLoader.class
+					)
 public class JpaDaoTest {
 	
 	@Autowired UserService userServiceImpl;
