@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<%@page import="com.skan.potal.hibernate.model.User"%>
+
+<%@page import="com.skan.potal.hibernate.application.model.User"%>
 <%@page import="org.springframework.data.domain.Page"%>
 <%
 	

@@ -6,13 +6,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
 /**
  * <pre>
@@ -33,13 +30,21 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
  */
 
 @Entity
-@Table(name="cmtb_user")
-public class User extends AbstractPersistable<Long> implements Serializable {
+@Table(name="testuser")
+//public class User extends AbstractPersistable<Long> implements Serializable {
+//@NamedNativeQueries(value={@NamedNativeQuery(name="", query = "")})
+public class User implements Serializable {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue
+	@Column(name = "id", nullable = false)
+	private Long id;
+	
 
 	@Column(name = "username", nullable = false)
 	private String username;
@@ -51,6 +56,14 @@ public class User extends AbstractPersistable<Long> implements Serializable {
 	@JoinColumn(name="team_id")
 	private Team team;
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public Team getTeam() {
 		return team;
 	}
@@ -75,13 +88,10 @@ public class User extends AbstractPersistable<Long> implements Serializable {
 		this.name = name;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", name=" + name + "]";
+		return "User [id=" + id + ", username=" + username + ", name=" + name
+				+ ", team=" + team + "]";
 	}
-	
-	
+
 }

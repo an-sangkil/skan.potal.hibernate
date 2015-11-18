@@ -1,4 +1,4 @@
-package com.skan.potal.web.potal.schedule.controller;
+package com.skan.potal.web.potal.application.controller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.skan.potal.hibernate.application.model.Schedule;
-import com.skan.potal.web.potal.schedule.service.ScheduleService;
+import com.skan.potal.web.potal.application.service.ScheduleService;
 
 @Controller
 public class ScheduleController {

@@ -23,7 +23,8 @@ import org.springframework.web.client.RestTemplate;
 @EnableAsync 
 @Configuration
 @ComponentScan(basePackages={"com.skan.potal"}
-					,  excludeFilters={@Filter(Configuration.class),@Filter({Controller.class})})
+					,  excludeFilters={@Filter(Configuration.class),@Filter({Controller.class})}
+)
 public class AppConfig {
 	
 	public AppConfig() {

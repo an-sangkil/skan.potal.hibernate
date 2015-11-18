@@ -3,8 +3,12 @@ package com.skan.potal.hibernate.test.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.metadata.MethodType;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -37,8 +41,8 @@ public class AllthatTestController {
 	}
 	
 	
-	@RequestMapping("/apis/token.json")
-	public @ResponseBody ExtAllthatTokenDto  getToken(@RequestParam(required=false) String partnerId) {
+	@RequestMapping(value="/apis/token.json" , method=RequestMethod.POST)
+	public @ResponseBody ExtAllthatTokenDto  getToken(@RequestParam(required=false, name="partner_id") String partnerId, HttpServletResponse response) {
 		ExtAllthatTokenDto  extAllthatTokenDto   = new ExtAllthatTokenDto  ();
 		extAllthatTokenDto.setAccess_token("testToken");
 		
@@ -46,6 +50,8 @@ public class AllthatTestController {
 		extAllthatErrorDto.setCode("1000");
 		extAllthatErrorDto.setMessage("error test");
 		extAllthatTokenDto.setError(extAllthatErrorDto);
+		
+		response.setStatus(401);
 		
 		return  extAllthatTokenDto;
 	}

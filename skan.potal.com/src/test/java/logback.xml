@@ -1,42 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
- <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-	<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-		<Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} %-5level %logger{36} - %msg%n
-                </Pattern>
-	</encoder>
- </appender>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} %-5level %logger{36} - %msg%n
+			</Pattern>
+		</encoder>
+	</appender>
 
- <appender name="FILE"
-	class="ch.qos.logback.core.rolling.RollingFileAppender">
-	<file>applicationLOG.log</file>
-	<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-	   <Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
-           </Pattern>
-	</encoder>
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>applicationLOG.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} [%thread] %-5level %logger{36} -
+				%msg%n
+			</Pattern>
+		</encoder>
 
-	<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-		<FileNamePattern>c:/mkyongapp.%i.log.zip</FileNamePattern>
-		<MinIndex>1</MinIndex>
-		<MaxIndex>10</MaxIndex>
-	</rollingPolicy>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<FileNamePattern>mkyongapp.%i.log.zip</FileNamePattern>
+			<MinIndex>1</MinIndex>
+			<MaxIndex>10</MaxIndex>
+		</rollingPolicy>
 
-	<triggeringPolicy
-		class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-		<MaxFileSize>2MB</MaxFileSize>
-	</triggeringPolicy>
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>2MB</MaxFileSize>
+		</triggeringPolicy>
 
-  </appender>
+	</appender>
 
-  <logger name="org.hibernate.sql" level="DEBUG" />
-  <logger name="org.hibernate.type" level="TRACE" />
-  <logger name="org.hibernate.type.BasicTypeRegistry" level="WARN" />
-<!--   <logger name="org.hibernate" level="DEBUG" /> -->
+	<logger name="com.skan" level="DEBUG" />
+	<logger name="org.hibernate.sql" level="DEBUG" />
+	<logger name="org.hibernate.type" level="TRACE" />
+	<logger name="org.hibernate.type.BasicTypeRegistry" level="WARN" />
+	<!-- <logger name="org.hibernate" level="DEBUG" /> -->
 
-  <root level="debug">
-	<appender-ref ref="FILE" />
-	<appender-ref ref="STDOUT" />
-  </root>
+	<root level="debug">
+		<appender-ref ref="FILE" />
+		<appender-ref ref="STDOUT" />
+	</root>
 
 </configuration>

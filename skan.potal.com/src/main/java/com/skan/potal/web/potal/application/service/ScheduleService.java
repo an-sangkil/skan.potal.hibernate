@@ -1,4 +1,4 @@
-package com.skan.potal.web.potal.schedule.service;
+package com.skan.potal.web.potal.application.service;
 
 import org.springframework.stereotype.Service;
 

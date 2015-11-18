@@ -55,7 +55,7 @@ public class PersistenceJPAConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[]{"com.skan.potal.hibernate.application.model"});
+        em.setPackagesToScan(new String[]{"com.skan.potal.hibernate.application.model","com.skan.potal.web.potal.application.model"});
 
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -90,11 +90,14 @@ public class PersistenceJPAConfig {
 
     final Properties additionalProperties() {
         final Properties hibernateProperties = new Properties();
-        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");//drop-and-create-tables
+        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create");//drop-and-create-tables
         hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgresPlusDialect");
         hibernateProperties.setProperty("hibernate.enable_lazy_load_no_trans", "true");
         hibernateProperties.setProperty("hibernate.show_sql", "true");
+        hibernateProperties.setProperty("hibernate.format_sql", "true");
         
+		// <property name="hibernate.use_sql_comments" value="true" />
+		// <property name="hibernate.id.new_generator_mappings" value="true" />
         // hibernateProperties.setProperty("hibernate.globally_quoted_identifiers", "true");
         return hibernateProperties;
     }
