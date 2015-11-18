@@ -92,7 +92,7 @@ public class PersistenceJPAConfig {
         final Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");//drop-and-create-tables
         hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgresPlusDialect");
-        //hibernateProperties.setProperty("hibernate.enable_lazy_load_no_trans", "true");
+        hibernateProperties.setProperty("hibernate.enable_lazy_load_no_trans", "true");
         hibernateProperties.setProperty("hibernate.show_sql", "true");
         
         // hibernateProperties.setProperty("hibernate.globally_quoted_identifiers", "true");
