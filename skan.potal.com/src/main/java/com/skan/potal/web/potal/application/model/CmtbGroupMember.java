@@ -3,10 +3,12 @@ package com.skan.potal.web.potal.application.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -29,30 +31,23 @@ public class CmtbGroupMember implements Serializable {
 	@Id
 	private String userId;
 	
-	//@Id
+	@Id
 	/** 그룹번호. */
 	private Long groupNo;	
 
-	
+	/**
+	 * 그룹 정보 
+	 */
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="groupNo" ,insertable=false, updatable=false)
 	private CmtbGroup cmtbGroup;
 	
-	@OneToMany(fetch=FetchType.LAZY)
-	@JoinColumn(name="userid")
+	/**
+	 * 사용자 정보
+	 */
+	@OneToMany(fetch=FetchType.LAZY ,mappedBy="cmtbGroupMember")
 	private List<CmtbUser> cmtbUserList;
 	
-	@OneToMany(fetch=FetchType.LAZY)
-	// @Transient
-	private List<CmtbSchedule> cmtbScheduleList; 
-	
-	public List<CmtbSchedule> getCmtbScheduleList() {
-		return cmtbScheduleList;
-	}
-
-	public void setCmtbScheduleList(List<CmtbSchedule> cmtbScheduleList) {
-		this.cmtbScheduleList = cmtbScheduleList;
-	}
 
 	public List<CmtbUser> getCmtbUserList() {
 		return cmtbUserList;
@@ -63,14 +58,14 @@ public class CmtbGroupMember implements Serializable {
 	}
 
 	/** 일정관리 테이블 목록. */
-	
-	public CmtbGroup getCmtbGroup() {
-		return cmtbGroup;
-	}
-
-	public void setCmtbGroup(CmtbGroup cmtbGroup) {
-		this.cmtbGroup = cmtbGroup;
-	}
+//	
+//	public CmtbGroup getCmtbGroup() {
+//		return cmtbGroup;
+//	}
+//
+//	public void setCmtbGroup(CmtbGroup cmtbGroup) {
+//		this.cmtbGroup = cmtbGroup;
+//	}
 
 
 //	public String getUserId() {

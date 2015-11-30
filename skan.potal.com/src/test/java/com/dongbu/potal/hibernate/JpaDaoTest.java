@@ -2,6 +2,9 @@ package com.dongbu.potal.hibernate;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -2,22 +2,14 @@ package com.skan.potal.web.potal.application.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.ForeignKey;
 
 /**
  * cmtb_user 모델 클래스.
@@ -74,10 +66,9 @@ public class CmtbUser implements Serializable {
 
 	/** 그룹멤버 목록. */
 	@ManyToOne(fetch=FetchType.LAZY)
-	@ForeignKey(name="FK_cmtbGroupMember")
 	@JoinColumns({
-//		@JoinColumn(name="groupNo",insertable=false, updatable=false)
-		@JoinColumn(name="userId",insertable=false, updatable=false)
+		@JoinColumn(name="groupNo",insertable=false, updatable=false)
+		,@JoinColumn(name="userId",insertable=false, updatable=false)
 	})
 	private CmtbGroupMember cmtbGroupMember;
 

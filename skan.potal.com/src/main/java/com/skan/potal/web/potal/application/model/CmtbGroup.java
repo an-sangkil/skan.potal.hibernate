@@ -2,14 +2,10 @@ package com.skan.potal.web.potal.application.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -118,35 +114,6 @@ public class CmtbGroup implements Serializable {
 	 */
 	public Date getGroupCrtTime() {
 		return this.groupCrtTime;
-	}
-
-	/**
-	 * 그룹멤버 목록을 설정합니다..
-	 * 
-	 * @param cmtbGroupMemberSet
-	 *            그룹멤버 목록
-	 */
-	public void setCmtbGroupMemberSet(Set<CmtbGroupMember> cmtbGroupMemberSet) {
-		this.cmtbGroupMemberSet = cmtbGroupMemberSet;
-	}
-
-	/**
-	 * 그룹멤버를 추가합니다..
-	 * 
-	 * @param cmtbGroupMember
-	 *            그룹멤버
-	 */
-	public void addCmtbGroupMember(CmtbGroupMember cmtbGroupMember) {
-		this.cmtbGroupMemberSet.add(cmtbGroupMember);
-	}
-
-	/**
-	 * 그룹멤버 목록을 가져옵니다..
-	 * 
-	 * @return 그룹멤버 목록
-	 */
-	public Set<CmtbGroupMember> getCmtbGroupMemberSet() {
-		return this.cmtbGroupMemberSet;
 	}
 
 	/**

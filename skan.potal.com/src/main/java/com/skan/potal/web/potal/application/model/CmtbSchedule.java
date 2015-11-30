@@ -3,9 +3,10 @@ package com.skan.potal.web.potal.application.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /**
  * 일정관리 테이블 모델 클래스.
@@ -20,15 +21,8 @@ public class CmtbSchedule implements Serializable {
 	/** serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
-	/** 일정관리번호. */
-	@Id
-	private Long schMgtNo;
-
-	/** 같은날의 순번. */
-	@Id
-	private Long schSeq;
+	@EmbeddedId private CmtbSchedulePK cmtbSchedulePK;
 	
-
 	/** 제목. */
 	private String schSubject;
 
@@ -62,44 +56,26 @@ public class CmtbSchedule implements Serializable {
 	/** 공개 여부. */
 	private String publicYn;
 	
+	@NotNull
+	private String userId;
 	
-
-	/**
-	 * 일정관리번호을 설정합니다..
-	 * 
-	 * @param schMgtNo
-	 *            일정관리번호
-	 */
-	public void setSchMgtNo(Long schMgtNo) {
-		this.schMgtNo = schMgtNo;
+	@NotNull
+	private Long groupNo;
+	
+	public String getUserId() {
+		return userId;
 	}
 
-	/**
-	 * 일정관리번호을 가져옵니다..
-	 * 
-	 * @return 일정관리번호
-	 */
-	public Long getSchMgtNo() {
-		return this.schMgtNo;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
-	/**
-	 * 같은날의 순번을 설정합니다..
-	 * 
-	 * @param schSeq
-	 *            같은날의 순번
-	 */
-	public void setSchSeq(Long schSeq) {
-		this.schSeq = schSeq;
+	public Long getGroupNo() {
+		return groupNo;
 	}
 
-	/**
-	 * 같은날의 순번을 가져옵니다..
-	 * 
-	 * @return 같은날의 순번
-	 */
-	public Long getSchSeq() {
-		return this.schSeq;
+	public void setGroupNo(Long groupNo) {
+		this.groupNo = groupNo;
 	}
 
 	public String getSchSubject() {
@@ -190,5 +166,11 @@ public class CmtbSchedule implements Serializable {
 		this.publicYn = publicYn;
 	}
 
-	
+	public CmtbSchedulePK getCmtbSchedulePK() {
+		return cmtbSchedulePK;
+	}
+
+	public void setCmtbSchedulePK(CmtbSchedulePK cmtbSchedulePK) {
+		this.cmtbSchedulePK = cmtbSchedulePK;
+	}
 }
