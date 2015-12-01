@@ -1,14 +1,19 @@
 package com.dongbu.potal.web.potal.application.dao;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,20 +43,26 @@ public class CmtbUserRepositoryTest  {
 	@Autowired CmtbScheduleRepository cmtbScheduleRepository;
 	@Autowired CmtbGroupRepository cmtbGroupRepository;
 	@PersistenceContext EntityManager em;
+	@Autowired SessionFactory sessionFactory;
+	
+	@PostConstruct
+	public void aaPost(){
+		
+	}
 	
 	@Test
-	public void userSaveTest(){
+//	@Ignore
+	public void auserSaveTest(){
 		CmtbUser cmtbUser = new CmtbUser();
 		cmtbUser.setUserId("testUser2");
-		cmtbUser.setUserName("userNameTest1");
+		cmtbUser.setUserName("userNameTest2");
 		cmtbUserRepository.save(cmtbUser);
-		//cmtbScheduleRepository.save(cmtbSchedule);
 		
 		CmtbGroup cmtbGroup = new CmtbGroup();
 		cmtbGroup.setGroupNo(1L);
 		cmtbGroup.setGroupCrtTime(new Date());
-		cmtbGroup.setGroupDesc("테스트 그룹 설명");
-		cmtbGroup.setGroupName("테스트 그룹 명");
+		cmtbGroup.setGroupDesc("Group Description");
+		cmtbGroup.setGroupName("Group Name");
 		cmtbGroupRepository.save(cmtbGroup);
 		Assert.assertEquals(1, cmtbGroupRepository.count());
 		
@@ -66,10 +77,26 @@ public class CmtbUserRepositoryTest  {
 		cmtbSchedule.setGroupNo(cmtbGroup.getGroupNo());
 		cmtbScheduleRepository.save(cmtbSchedule);
 		
+		List<CmtbUser> cmtbUserList =cmtbUserRepository.findAll();
+		cmtbUserList.forEach(user -> System.out.println(user.getUserName()));
+		
 	}
-	
-	public void criteriaTest(Session session) {
+	@Test
+//	@Ignore
+	public void bcriteriaTest() {
+		Session session = sessionFactory.openSession();
+		// Session session = (Session) em.getDelegate();
+		// Session session = em.unwrap(Session.class);
 		Criteria criteria = session.createCriteria(CmtbUser.class);
-		criteria.add(Restrictions.ge("userId", "testUser"));
+		List<CmtbUser> cats =criteria.add(Restrictions.like("userName", "user" , MatchMode.ANYWHERE)).list();
+		System.out.println(cats.size());
+		cats.forEach(
+				user -> {
+							System.out.println("aaa : "+user.toString());
+							System.out.println("aaa : "+user.getCmtbGroupMember());
+				
+						}
+				);
+		//session.beginTransaction();
 	}
 }

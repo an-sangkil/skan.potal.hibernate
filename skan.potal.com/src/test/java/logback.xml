@@ -19,12 +19,12 @@
 		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
 			<FileNamePattern>mkyongapp.%i.log.zip</FileNamePattern>
 			<MinIndex>1</MinIndex>
-			<MaxIndex>10</MaxIndex>
+			<MaxIndex>100</MaxIndex>
 		</rollingPolicy>
 
 		<triggeringPolicy
 			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-			<MaxFileSize>2MB</MaxFileSize>
+			<MaxFileSize>30MB</MaxFileSize>
 		</triggeringPolicy>
 
 	</appender>

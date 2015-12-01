@@ -3,13 +3,19 @@ package com.skan.potal.web.potal.application.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 /**
  * cmtb_user 모델 클래스.
@@ -26,6 +32,7 @@ public class CmtbUser implements Serializable {
 
 	/** 사용자 아이디. */
 	@Id
+	@Column(name = "userId", nullable = false)
 	private String userId;
 
 	/** 패스워드. */
@@ -65,14 +72,22 @@ public class CmtbUser implements Serializable {
 	private String description;
 
 	/** 그룹멤버 목록. */
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY )
+	@NotFound(action=NotFoundAction.IGNORE)
 	@JoinColumns({
-		@JoinColumn(name="groupNo",insertable=false, updatable=false)
-		,@JoinColumn(name="userId",insertable=false, updatable=false)
+		@JoinColumn(name="userId",insertable=false, updatable=false)
+		,@JoinColumn(name="groupNo",insertable=false, updatable=false)
 	})
 	private CmtbGroupMember cmtbGroupMember;
+	
 
+	public CmtbGroupMember getCmtbGroupMember() {
+		return cmtbGroupMember;
+	}
 
+	public void setCmtbGroupMember(CmtbGroupMember cmtbGroupMember) {
+		this.cmtbGroupMember = cmtbGroupMember;
+	}
 
 	/**
 	 * 생성자.
@@ -327,6 +342,18 @@ public class CmtbUser implements Serializable {
 		return this.description;
 	}
 
+	@Override
+	public String toString() {
+		return "CmtbUser [userId=" + userId + ", password=" + password
+				+ ", userName=" + userName + ", email=" + email
+				+ ", phoneNumber=" + phoneNumber + ", mobilePhoneNumber="
+				+ mobilePhoneNumber + ", ssnNumber=" + ssnNumber + ", gender="
+				+ gender + ", lastLoginTime=" + lastLoginTime
+				+ ", failLoginTime=" + failLoginTime + ", failLoginCount="
+				+ failLoginCount + ", useLockState=" + useLockState
+				+ ", description=" + description + "]";
+	}
+
 	//	/**
 //	 * 주소록 관리 목록을 설정합니다..
 //	 * 
@@ -356,6 +383,6 @@ public class CmtbUser implements Serializable {
 //		return this.hmMngAddressSet;
 //	}
 
-
+	
 
 }
