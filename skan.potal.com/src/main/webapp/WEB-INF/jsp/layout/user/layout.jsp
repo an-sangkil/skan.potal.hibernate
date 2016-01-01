@@ -12,7 +12,7 @@
 <meta name="author" content="">
 <link rel="icon" href="../../favicon.ico">
 
-<title>Navbar Template for Bootstrap</title>
+<title>관리 시스템</title>
 
 <!-- Bootstrap core CSS -->
 <link href="${pageContext.request.contextPath}/assets/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet">
@@ -35,11 +35,14 @@
     <![endif]-->
 
 
-
-
 <script src="${pageContext.request.contextPath}/assets/jquery/jquery-1.11.3.js"></script>
 <script src="${pageContext.request.contextPath}/assets/bootstrap/dist/js/bootstrap.js"></script>
 <script src="${pageContext.request.contextPath}/assets/jquery/jquery-1.11.3.js"></script>
+<script src="${pageContext.request.contextPath}/assets/jquery/ui/jquery-ui.js"></script>
+
+<link href="${pageContext.request.contextPath}/assets/jquery/ui/jquery-ui.css" rel="stylesheet"></link>
+<link href="${pageContext.request.contextPath}/assets/jquery/ui/jquery-ui.structure.css" rel="stylesheet"></link>
+<link href="${pageContext.request.contextPath}/assets/jquery/ui/jquery-ui.theme.css" rel="stylesheet"></link>
 
 <!-- Favicon -->
 <link rel="shortcut icon" href="img/favicon/favicon.png">
@@ -48,12 +51,11 @@
 <body>
 
 	<div class="container">
-
 		<nav class="navbar navbar-default">
 			<tiles:insertAttribute name="header" />
 		</nav>
 
-		<div class="jumbotron">
+		<div>
 			<tiles:insertAttribute name="body" />
 		</div>
 

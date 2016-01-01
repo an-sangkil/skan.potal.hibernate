@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration>
+<configuration scan="true">	
 
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -11,8 +11,7 @@
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>applicationLOG.log</file>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-			<Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} [%thread] %-5level %logger{36} -
-				%msg%n
+			<Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
 			</Pattern>
 		</encoder>
 
@@ -22,20 +21,20 @@
 			<MaxIndex>100</MaxIndex>
 		</rollingPolicy>
 
-		<triggeringPolicy
-			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+		<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
 			<MaxFileSize>30MB</MaxFileSize>
 		</triggeringPolicy>
 
 	</appender>
 
 	<logger name="com.skan" level="DEBUG" />
+	<logger name="com.skan.potal.web.potal.application.controller" level="TRACE" />
 	<logger name="org.hibernate.sql" level="DEBUG" />
 	<logger name="org.hibernate.type" level="TRACE" />
 	<logger name="org.hibernate.type.BasicTypeRegistry" level="WARN" />
 	<!-- <logger name="org.hibernate" level="DEBUG" /> -->
 
-	<root level="debug">
+	<root level="TRACE">
 		<appender-ref ref="FILE" />
 		<appender-ref ref="STDOUT" />
 	</root>

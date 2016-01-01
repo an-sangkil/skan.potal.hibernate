@@ -73,6 +73,8 @@ public class CmtbUserRepositoryTest  {
 		cmtbSchedule.setCmtbSchedulePK(cmtbSchedulePK);
 		cmtbSchedule.setSchSubject("제목");
 		cmtbSchedule.setSchContent("내용");
+		cmtbSchedule.setStdDate("2015-12-31");
+		cmtbSchedule.setEndDate("2015-12-31");
 		cmtbSchedule.setUserId(cmtbUser.getUserId());
 		cmtbSchedule.setGroupNo(cmtbGroup.getGroupNo());
 		cmtbScheduleRepository.save(cmtbSchedule);

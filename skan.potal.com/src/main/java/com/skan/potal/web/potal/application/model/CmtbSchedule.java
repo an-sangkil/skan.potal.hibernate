@@ -8,6 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * 일정관리 테이블 모델 클래스.
  * 
@@ -24,13 +28,19 @@ public class CmtbSchedule implements Serializable {
 	@EmbeddedId private CmtbSchedulePK cmtbSchedulePK;
 	
 	/** 제목. */
+	@NotEmpty
 	private String schSubject;
 
 	/** 내용. */
 	private String schContent;
 
-	/** 기준날짜. */
+	/** 시작 날짜. */
+	@NotNull
 	private String stdDate;
+	
+	/** 종료 날짜	 */
+	@NotNull
+	private String endDate;
 
 	/** 오늘 날씨. */
 	private String todayWeatherCode;
@@ -56,10 +66,8 @@ public class CmtbSchedule implements Serializable {
 	/** 공개 여부. */
 	private String publicYn;
 	
-	@NotNull
 	private String userId;
 	
-	@NotNull
 	private Long groupNo;
 	
 	public String getUserId() {
@@ -173,4 +181,18 @@ public class CmtbSchedule implements Serializable {
 	public void setCmtbSchedulePK(CmtbSchedulePK cmtbSchedulePK) {
 		this.cmtbSchedulePK = cmtbSchedulePK;
 	}
+	
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
+	@Override
+	public String toString(){
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+	}
+
 }

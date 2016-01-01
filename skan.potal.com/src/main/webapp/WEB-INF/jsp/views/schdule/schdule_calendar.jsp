@@ -16,32 +16,40 @@ $(document).ready(function() {
 			dayClick: function() {
 				console.log('a day has been clicked!');
 		        // change the day's background color just for fun
-		        //$(this).css('background-color', 'red');
+		        $(this).css('background-color', 'red');
 			},
 			eventClick: function(calEvent, jsEvent, view) {
-				
+				document.schedule_.schMgtNo.value = calEvent.id;
+				document.schedule_.schSeq.value = calEvent.schSeq;
+				document.schedule_.action = '${pageContext.request.contextPath}/schdule/schdule_form';
+				document.schedule_.submit();
+
 				console.log('calEvent = ' , calEvent);
 		        //alert('Event: ' + calEvent.title);
 		        //alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
 		        //alert('View: ' + view.name);
 		        // change the border color just for fun
-		        $(this).css('border-color', 'red');
-
+		        $(this).css('border-color', 'blue');
 		    },
 		    eventMouseover : function () {
-		    	console.log('asdasdasd');
+		    	console.log('mouse Over');
 		    },
 			header: {
 				left: 'prev,next today',
 				center: 'title',
 				right: 'month,agendaWeek,agendaDay'
 			},
-			//defaultDate: '2014-06-12',
+			defaultDate: '${toDay}',
 			lang : 'ko',
 			selectable: true,
 			selectHelper: true,
 			select: function(start, end) {
-				var title = prompt('이벤트 제목:' , '오늘날짜~~');
+				
+				document.schedule_.startDate.value = start;
+				document.schedule_.endDate.value = end;
+				document.schedule_.action = '${pageContext.request.contextPath}/schdule/schdule_form';
+				document.schedule_.submit();
+				/*var title = prompt('이벤트 제목:' , '오늘날짜~~');
 				var eventData;
 				if (title) {
 					eventData = {
@@ -54,62 +62,36 @@ $(document).ready(function() {
 					console.log(start._d.getFullYear());					
 					$('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
 				}
-				$('#calendar').fullCalendar('unselect');
+				$('#calendar').fullCalendar('unselect');*/
 			},
 			editable: true,
 			events: [
-				{
-					title: 'All Day Event',
-					start: '2014-06-01'
-				},
-				{
-					title: 'Long Event',
-					start: '2014-06-07',
-					end: '2014-06-10'
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: '2014-06-09T16:00:00'
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: '2014-06-16T16:00:00'
-				},
-				{
-					title: 'Meeting',
-					start: '2014-06-12T10:30:00',
-					end: '2014-06-12T12:30:00'
-				},
-				{
-					title: 'Lunch',
-					start: '2014-06-12T12:00:00'
-				},
-				{
-					title: 'Birthday Party',
-					start: '2014-06-13T07:00:00'
-				},
-				{
-					title: 'Click for Google',
-					url: 'http://google.com/',
-					start: '2014-06-28'
-				}
+						<c:forEach items="${cmtbSchedules}" var="item" varStatus="status">
+							{
+								id     : '${item.cmtbSchedulePK.schMgtNo}',
+								schSeq : '${item.cmtbSchedulePK.schSeq}',
+								title  : '${item.schSubject}',
+								start  : '${item.stdDate}',
+								end    : '${item.endDate}'
+							},
+						</c:forEach>
 			]
 		});
-		
-		
-		
 	});
-	
-	
-
 </script>
+
+<form name="schedule_" method="post">
+	<input id="schMgtNo" name="schMgtNo" 	type="hidden" />
+	<input id="schSeq" 	 name="schSeq" 		type="hidden" />
+	<input id="startDate" 	name="startDate" 	type="hidden" />
+	<input id="endDate" 	name="endDate" 		type="hidden" />
+</form>
+
 
 <!-- Page heading -->
 <div class="page-head">
 	<h2 class="pull-left">
-		<i class="icon-file-alt"></i> Calendar
+		<i class="icon-file-alt"></i> 스케쥴
 	</h2>
 
 	<!-- Breadcrumb -->
@@ -135,7 +117,7 @@ $(document).ready(function() {
 				<div class="widget">
 					<!-- Widget title -->
 					<div class="widget-head">
-						<div class="pull-left">Calendar</div>
+						<div class="pull-left">스케쥴 정보</div>
 						<div class="widget-icons pull-right">
 							<a href="#" class="wminimize"><i class="icon-chevron-up"></i></a>
 							<a href="#" class="wclose"><i class="icon-remove"></i></a>
