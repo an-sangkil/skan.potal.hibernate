@@ -25,14 +25,15 @@ public class CmtbCodeRepositoryTest {
 	public void findAllTest() {
 		
 		CmtbCode cmtbCode = new CmtbCode();
-		
 		cmtbCode.setCodeMgtNo("");
 		cmtbCode.setUpperCode("");
 		cmtbCode.setCode("");
-		cmtbCode.setCodeSeq(1L);
+		cmtbCode.setCodeSeq(2L);
 		cmtbCodeRepository.save(cmtbCode);
 
 	}
+	
+	
 	
 	
 }
