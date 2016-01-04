@@ -10,9 +10,11 @@
 	</div>
 	<div id="navbar" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav">
-			<li class="active"><a href="#">Home</a></li>
+			<li class="active"><a href="${pageContext.request.contextPath}/main_page">Home</a></li>
 			<li><a href="#">About</a></li>
-			<li><a href="#">일정관리</a></li>
+			<li><a href="#">가계부</a></li>
+			<li><a href="#">주소록</a></li>
+			<li><a href="${pageContext.request.contextPath}/schdule/schdule_list">일정관리</a></li>
 			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">시스템관리 <span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li><a href="#">코드관리</a></li>
@@ -25,9 +27,8 @@
 				</ul></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
-			<li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
-			<li><a href="../navbar-static-top/">Static top</a></li>
-			<li><a href="../navbar-fixed-top/">Fixed top</a></li>
+			<li class="active"><a href="#">내정보<span class="sr-only">(current)</span></a></li>
+			<li><a href="#">로그아웃</a></li>
 		</ul>
 	</div>
 	<!--/.nav-collapse -->

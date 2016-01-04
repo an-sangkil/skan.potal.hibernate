@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/common/TagLib.jspf"%>
 
 <script src="${pageContext.request.contextPath}/assets/metro/js/calendar/lib/jquery-ui.custom.min.js"></script> <!-- jQuery UI -->
@@ -7,7 +6,22 @@
 <script	src="${pageContext.request.contextPath}/assets/metro/js/calendar/fullcalendar.js"></script>
 <script	src="${pageContext.request.contextPath}/assets/metro/js/calendar/lang-all.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/metro/js/calendar/fullcalendar.css">
-
+<style type="text/css">
+.holiday
+{
+    border:1px solid #69196c;
+    background: #764ead url(holiday.png) 50% top repeat-x; 
+    color: white;   
+}
+.fc-sat .fc-day-number {
+  background-color: #FFFFFF;
+  color: blue;
+}
+.fc-sun .fc-day-number {
+  background-color: white;
+  color: red;
+}
+</style>
 
 <script>
 $(document).ready(function() {
@@ -16,7 +30,7 @@ $(document).ready(function() {
 			dayClick: function() {
 				console.log('a day has been clicked!');
 		        // change the day's background color just for fun
-		        $(this).css('background-color', 'red');
+		        $(this).css('background-color', 'blue');
 			},
 			eventClick: function(calEvent, jsEvent, view) {
 				document.schedule_.schMgtNo.value = calEvent.id;
@@ -41,6 +55,7 @@ $(document).ready(function() {
 			},
 			defaultDate: '${toDay}',
 			lang : 'ko',
+			weekends : true,
 			selectable: true,
 			selectHelper: true,
 			select: function(start, end) {
@@ -65,6 +80,22 @@ $(document).ready(function() {
 				$('#calendar').fullCalendar('unselect');*/
 			},
 			editable: true,
+			dayRender: function (date, cell) {
+				
+				// 또다른 공휴일 설정
+				
+				var holidays = $.fullCalendar.moment('2016-01-01');
+			    if ($.inArray(date, holidays) >= 0) {
+			    	console.log(date);
+			        // if you aren't using ui theme, just remove this line
+			        $(cell).removeClass('ui-widget-content');                            
+			        $(cell).addClass('holiday');
+
+			    }
+			    //if (moment().diff(date,'days') > 0){
+		        //    cell.css("background-color","silver");
+		        //}
+			},
 			events: [
 						<c:forEach items="${cmtbSchedules}" var="item" varStatus="status">
 							{
@@ -77,6 +108,8 @@ $(document).ready(function() {
 						</c:forEach>
 			]
 		});
+		//$(".fc-sat").css('backgroundColor','#c4e1ff');//이거 토요일 의TD
+		//$(".fc-sun").css('backgroundColor','#c4e1ff');//이것은 일요일에 있을 TD
 	});
 </script>
 
@@ -91,20 +124,19 @@ $(document).ready(function() {
 <!-- Page heading -->
 <div class="page-head">
 	<h2 class="pull-left">
-		<i class="icon-file-alt"></i> 스케쥴
+		<i class="icon-file-alt"></i> Schedule
 	</h2>
-
 	<!-- Breadcrumb -->
 	<div class="bread-crumb pull-right">
-		<a href="index.html"><i class="icon-home"></i> Home</a>
+<!-- 		<a href="#"><i class="icon-home"></i> Home</a> -->
 		<!-- Divider -->
-		<span class="divider">/</span> <a href="#" class="bread-current">Dashboard</a>
+<!-- 		<span class="divider">/</span> <a href="#" class="bread-current">Dashboard</a> -->
 	</div>
-
 	<div class="clearfix"></div>
-
 </div>
 <!-- Page heading ends -->
+
+
 
 
 <!-- Matter -->
@@ -117,7 +149,7 @@ $(document).ready(function() {
 				<div class="widget">
 					<!-- Widget title -->
 					<div class="widget-head">
-						<div class="pull-left">스케쥴 정보</div>
+<!-- 						<div class="pull-left">스케쥴 정보</div> -->
 						<div class="widget-icons pull-right">
 							<a href="#" class="wminimize"><i class="icon-chevron-up"></i></a>
 							<a href="#" class="wclose"><i class="icon-remove"></i></a>

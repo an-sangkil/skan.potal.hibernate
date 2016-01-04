@@ -13,6 +13,20 @@ public class CmtbSchedulePK implements Serializable {
 	 */
 	private static final long serialVersionUID = 1636888593136605005L;
 
+	public CmtbSchedulePK() {
+		super();
+	}
+
+	/**
+	 * @param schMgtNo
+	 * @param schSeq
+	 */
+	public CmtbSchedulePK(Long schMgtNo, Long schSeq) {
+		super();
+		this.schMgtNo = schMgtNo;
+		this.schSeq = schSeq;
+	}
+
 	/** 일정관리번호. */
 	@Column
 	private Long schMgtNo;

@@ -1,7 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/common/TagLib.jspf"%>
 <script>
-	var aaaClosure = (function () {
+	var scheduleAction = (function () {
+
+		var actionUrl = "";
+		
+		if('${cmtbSchedule.cmtbSchedulePK.schMgtNo}' != '') {
+			actionUrl = "${pageContext.request.contextPath}/schdule/schdule_modify";
+		} else {
+			actionUrl = "${pageContext.request.contextPath}/schdule/schdule_insert";
+		}
+		
+		return {
+			submit : function () {
+				document.schedule_form.action=actionUrl;
+				document.schedule_form.submit();
+			}
+		}
+		
 	})();
 	
 	$(function() {
@@ -28,7 +44,9 @@
 	
 </script>
 
-<form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/schdule/schdule_insert" method="post">
+<form name="schedule_form" class="form-horizontal" role="form" action="${pageContext.request.contextPath}/schdule/schdule_insert" method="post">
+<input type="hidden" id="schMgtNo" name="schMgtNo" value="${cmtbSchedule.cmtbSchedulePK.schMgtNo}">
+<input type="hidden" id="schSeq" name="schSeq" value="${cmtbSchedule.cmtbSchedulePK.schSeq}">
 	<div class="form-group">
 		<label for="firstname" class="col-sm-2 control-label">시작날짜</label>
 		<div class="col-sm-10">
@@ -51,7 +69,11 @@
 	<div class="form-group">
 		<label for="lastname" class="col-sm-2 control-label">날씨</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" id="todayWeatherCode" name="todayWeatherCode" placeholder="맑음" value="${cmtbSchedule.todayWeatherCode}">
+			<select class="form-control" id="todayWeatherCode" name="todayWeatherCode">
+				<c:forEach var="cmtbCode" items="${cmtbCodes}" varStatus="status">
+					<option value="${cmtbCode.code}" <c:if test="${cmtbSchedule.todayWeatherCode eq cmtbCode.code}">selected</c:if>>${cmtbCode.codeName}</option>
+				</c:forEach>
+			</select> 
 			<div class="has-error">
 				<label class="control-label" for="inputSuccess1"><form:errors path="cmtbSchedule.todayWeatherCode" /></label>
 			</div>
@@ -96,8 +118,8 @@
 
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<button type="submit" class="btn btn-default">저장</button>
-			<button type="button" class="btn btn-danger" oncancel="history.back(-1)">취소</button>
+			<button type="button" class="btn btn-default" onclick="scheduleAction.submit();">저장</button>
+			<button type="button" class="btn btn-danger" onclick="history.back(-1)">취소</button>
 		</div>
 	</div>
 

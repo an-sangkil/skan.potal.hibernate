@@ -1,3 +1,20 @@
+/**
+ * <pre>
+ * Class Name  : CmtbCode.java
+ * Description : 
+ * Modification Information
+ *
+ *    수정일　　　 　　  수정자　　　     수정내용
+ *    ────────────   ─────────   ───────────────────────────────
+ *    2015. 12. 30.        ask               최초생성
+ * </pre>
+ *
+ * @author ask
+ * @since 2015. 12. 30.
+ * @version 
+ *
+ * Copyright (C) 2015 by SKAN.COMPANY All right reserved.
+ */
 package com.skan.potal.web.potal.application.model;
 
 import java.io.Serializable;
@@ -5,6 +22,9 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
  * 공통코드 모델 클래스.
@@ -157,5 +177,9 @@ public class CmtbCode implements Serializable {
 	public String getCodeComment() {
 		return this.codeComment;
 	}
-
+	
+	@Override
+	public String toString(){
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+	}
 }
