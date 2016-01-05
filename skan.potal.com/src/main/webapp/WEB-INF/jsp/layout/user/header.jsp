@@ -13,7 +13,7 @@
 			<li class="active"><a href="${pageContext.request.contextPath}/main_page">Home</a></li>
 			<li><a href="#">About</a></li>
 			<li><a href="#">가계부</a></li>
-			<li><a href="#">주소록</a></li>
+			<li><a href="${pageContext.request.contextPath}/address/address_list">주소록</a></li>
 			<li><a href="${pageContext.request.contextPath}/schdule/schdule_list">일정관리</a></li>
 			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">시스템관리 <span class="caret"></span></a>
 				<ul class="dropdown-menu">
