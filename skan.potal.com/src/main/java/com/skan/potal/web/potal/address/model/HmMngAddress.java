@@ -15,6 +15,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.skan.potal.web.potal.application.model.CmtbUser;
 
 /**
@@ -32,7 +34,7 @@ public class HmMngAddress implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address_seq_gen")
-	@SequenceGenerator(name="address_seq_gen")
+	@SequenceGenerator(name="address_seq_gen", allocationSize=1)
 	/** 관리 번호. */
 	private Long hmMgNum;
 
@@ -42,6 +44,7 @@ public class HmMngAddress implements Serializable {
 	private CmtbUser cmtbUser;
 
 	/** 이름. */
+	@NotEmpty
 	private String name;
 
 	/** 홈페이지주소. */

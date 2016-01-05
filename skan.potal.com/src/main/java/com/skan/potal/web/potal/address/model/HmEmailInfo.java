@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * 이메일 정보 모델 클래스.
  * 
@@ -34,6 +36,7 @@ public class HmEmailInfo implements Serializable {
 	private HmMngAddress hmMngAddress;
 
 	/** 이메일. */
+	@NotEmpty
 	private String hmEmail;
 
 	/**
