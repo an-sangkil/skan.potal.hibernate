@@ -17,14 +17,13 @@
  */
 package com.dongbu.potal.web.potal.address.controller;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,8 +45,7 @@ import com.skan.potal.config.WebMvcConfig;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = {WebMvcConfig.class,AppConfig.class, PersistenceJPAConfig.class }
-					)
+@ContextConfiguration(classes = { WebMvcConfig.class, AppConfig.class, PersistenceJPAConfig.class })
 public class AddressControllerTest {
 
 	@Autowired
@@ -59,14 +57,25 @@ public class AddressControllerTest {
 		// Set up a mock MVC tester based on the web application context
 		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
 	}
-	
+
 	@Test
-	public void addressInsert() throws Exception {
-//		this.mockMvc.perform(get("/address/address_list?name=kkk").accept(MediaType.TEXT_PLAIN_VALUE))
-//        .andExpect(status().isOk())
-//        .andExpect(content().contentType(MediaType.TEXT_PLAIN_VALUE))
-//        .andExpect(model().attribute("returnName", "hahahaha~"));
-		
-		this.mockMvc.perform(post("/address/address_list").accept(MediaType.TEXT_PLAIN_VALUE).param("name", "testMN") );
+	@Ignore
+	public void addressPageList() throws Exception {
+		this.mockMvc.perform(post("/address/address_list").accept(MediaType.TEXT_HTML_VALUE)
+						.contentType(MediaType.TEXT_HTML_VALUE)
+						.param("page", "1")
+						.param("size", "10")
+						.param("direction", "DESC"))
+				.andExpect(status().isOk())
+				//.andExpect(content().contentType(MediaType.TEXT_HTML_VALUE))
+				.andExpect(model().attributeExists("hmMngAddressPage"));
+
 	}
+
+	@Test
+	public void addressInsertTest() throws Exception {
+		this.mockMvc.perform(post("/address/address_insert").accept(MediaType.TEXT_HTML_VALUE).param("name", "ansangkil"));
+	}
+	
+	
 }

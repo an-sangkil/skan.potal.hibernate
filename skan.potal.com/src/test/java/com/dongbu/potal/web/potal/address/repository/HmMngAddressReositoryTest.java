@@ -48,21 +48,23 @@ public class HmMngAddressReositoryTest {
 	
 	@Test
 	public void saveTest() {
-		HmMngAddress hmMngAddress = new HmMngAddress();
-		HmEmailInfo hmEmailInfo = new HmEmailInfo();
 		
-		hmMngAddress.setHmMemo("메모 등록");
-		hmMngAddress.setName("홍길동");
-		hmMngAddress.setHomepageUrl("http://mycup.tistory.com");
-		hmMngAddressRepository.save(hmMngAddress);
-		
-		HmEmailInfoId hmEmailInfoId = new HmEmailInfoId();
-		hmEmailInfoId.setHmMngAddress(hmMngAddress);
-		hmEmailInfoId.setHmEmNo(1L);
-		hmEmailInfo.setHmEmailInfoId(hmEmailInfoId);
-		hmEmailInfo.setHmEmail("mycup@nate.com");
-		
-		hmEmailInfoRepository.save(hmEmailInfo);
-		
+		for (int i = 0; i < 800; i++) {
+			HmMngAddress hmMngAddress = new HmMngAddress();
+			HmEmailInfo hmEmailInfo = new HmEmailInfo();
+			
+			hmMngAddress.setHmMemo("메모 등록");
+			hmMngAddress.setName("김연아"+i);
+			hmMngAddress.setHomepageUrl("http://mycup.tistory.com");
+			hmMngAddressRepository.save(hmMngAddress);
+			
+			HmEmailInfoId hmEmailInfoId = new HmEmailInfoId();
+			hmEmailInfoId.setHmMngAddress(hmMngAddress);
+			hmEmailInfoId.setHmEmNo(1L);
+			hmEmailInfo.setHmEmailInfoId(hmEmailInfoId);
+			hmEmailInfo.setHmEmail("mycup@nate.com");
+			
+			hmEmailInfoRepository.save(hmEmailInfo);
+		}
 	}
 }
