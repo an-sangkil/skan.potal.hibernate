@@ -56,7 +56,10 @@ public class PersistenceJPAConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[]{"com.skan.potal.hibernate.application.model","com.skan.potal.web.potal.application.model"});
+        em.setPackagesToScan(new String[]{
+        		"com.skan.potal.hibernate.application.model",
+        		"com.skan.potal.web.potal.application.model",
+        		"com.skan.potal.web.potal.address"});
 
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
