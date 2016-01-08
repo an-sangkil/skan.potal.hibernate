@@ -30,6 +30,12 @@ public class CalendarUtils {
 	
 	public final static String CALENDER_TYPE_YYYY_MM_DD = "yyyy-MM-dd";
 	
+	/**
+	 * 패턴에 의한 날짜를 String 형태로 반환한다.
+	 * 
+	 * @param pattern
+	 * @return
+	 */
 	public static String getToDayString(String pattern) {
 		Calendar calendar = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
@@ -37,6 +43,7 @@ public class CalendarUtils {
 	}
 	
 	/**
+	 * 지정된 날짜와, 지정된 패턴으로 형태 변형한다.
 	 * 
 	 * @param date
 	 * @param pattern
