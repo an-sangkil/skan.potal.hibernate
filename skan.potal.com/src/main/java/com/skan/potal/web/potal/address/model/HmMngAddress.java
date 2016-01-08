@@ -1,6 +1,7 @@
 package com.skan.potal.web.potal.address.model;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -29,7 +30,7 @@ import com.skan.potal.web.potal.application.model.CmtbUser;
 @Table
 public class HmMngAddress implements Serializable {
 
-	/** serialVersionUID. */
+	/** serialVersionUID. */ 
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -67,7 +68,7 @@ public class HmMngAddress implements Serializable {
 
 	/** 이메일 정보 목록. */
 	@OneToMany(mappedBy="hmMngAddress")
-	private Set<HmEmailInfo> hmEmailInfoSet;
+	private List<HmEmailInfo> hmEmailInfoSet;
 
 	/**
 	 * 생성자.
@@ -267,7 +268,7 @@ public class HmMngAddress implements Serializable {
 	 * @param hmEmailInfoSet
 	 *            이메일 정보 목록
 	 */
-	public void setHmEmailInfoSet(Set<HmEmailInfo> hmEmailInfoSet) {
+	public void setHmEmailInfoSet(List<HmEmailInfo> hmEmailInfoSet) {
 		this.hmEmailInfoSet = hmEmailInfoSet;
 	}
 
@@ -286,7 +287,7 @@ public class HmMngAddress implements Serializable {
 	 * 
 	 * @return 이메일 정보 목록
 	 */
-	public Set<HmEmailInfo> getHmEmailInfoSet() {
+	public List<HmEmailInfo> getHmEmailInfoSet() {
 		return this.hmEmailInfoSet;
 	}
 

@@ -17,9 +17,11 @@
  */
 package com.skan.potal.web.potal.address.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +36,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.skan.potal.web.potal.address.model.HmAddressInfo;
+import com.skan.potal.web.potal.address.model.HmAddressPhone;
 import com.skan.potal.web.potal.address.model.HmEmailInfo;
 import com.skan.potal.web.potal.address.model.HmMngAddress;
+import com.skan.potal.web.potal.address.repository.HmAddressInfoRepository;
+import com.skan.potal.web.potal.address.repository.HmAddressPhoneRepository;
 import com.skan.potal.web.potal.address.repository.HmEmailInfoRepository;
 import com.skan.potal.web.potal.address.repository.HmMngAddressRepository;
+import com.skan.potal.web.potal.common.code.ActionStateCode;
 import com.skan.potal.web.potal.common.util.PageUtils;
 
 /**
@@ -51,6 +58,8 @@ public class AddressController {
 	
 	@Autowired HmMngAddressRepository hmMngAddressRepository;
 	@Autowired HmEmailInfoRepository hmEmailInfoRepository;
+	@Autowired HmAddressPhoneRepository hmAddressPhoneRepository; 
+	@Autowired HmAddressInfoRepository hmAddressInfoRepository;
 
 	@RequestMapping("/address/address_list")
 	public String addressList(@RequestParam(required=false , defaultValue="0") Integer page,
@@ -71,7 +80,6 @@ public class AddressController {
 		int begin = pageUtils.pagingBegin(current);
 	    int end = pageUtils.pagingEnd(hmMngAddressPage.getTotalPages());
 	    
-
 		logger.debug("pageInfo = " , hmMngAddressPage);
 		
 		modelMap.put("current", current);
@@ -83,21 +91,64 @@ public class AddressController {
 	}
 	
 	@RequestMapping("/address/address_insert")
-	public String addressInsert(@Valid HmMngAddress hmMngAddress, @Valid HmEmailInfo hmEmailInfo, BindingResult bindingResult,
+	public String addressInsert(@Valid HmMngAddress hmMngAddress,
+			BindingResult bindingResult1,
+			@Valid HmEmailInfo hmEmailInfo,
+			BindingResult bindingResult2,
+			@Valid HmAddressPhone hmAddressPhone,
+			BindingResult bindingResult3,
+			@Valid HmAddressInfo hmAddressInfo,
+			BindingResult bindingResult4,
 			HttpServletResponse response , ModelMap modelMap) throws Exception {
 		
-		if(bindingResult.hasErrors()) {
-			return "/address/address_insert.tiles";
+		logger.debug("test address insert");
+		if(bindingResult1.hasErrors()) {
+			modelMap.put(ActionStateCode.MESSAGE.name(), ActionStateCode.FAIL);
+			return "/address/address_form.tiles";
+		}
+		if(bindingResult2.hasErrors()) {
+			modelMap.put(ActionStateCode.MESSAGE.name(), ActionStateCode.FAIL);
+			return "/address/address_form.tiles";
+		}
+		if(bindingResult3.hasErrors()) {
+			modelMap.put(ActionStateCode.MESSAGE.name(), ActionStateCode.FAIL);
+			return "/address/address_form.tiles";
+		}
+		if(bindingResult4.hasErrors()) {
+			modelMap.put(ActionStateCode.MESSAGE.name(), ActionStateCode.FAIL);
+			return "/address/address_form.tiles";
 		}
 		
 		// 1. 주소 기본정보
 		hmMngAddressRepository.save(hmMngAddress);
-		
-		// 2. 이메일 정보 
-		hmEmailInfo.setHmMngAddress(hmMngAddress);
-		hmEmailInfoRepository.save(hmEmailInfo);
+		//    주소 상세정보
+//		hmAddressInfo.setHmMngAddress(hmMngAddress);
+//		hmAddressInfoRepository.save(hmAddressInfo);
+//		
+//		// 2. 이메일 정보 
+//		hmEmailInfo.setHmMngAddress(hmMngAddress);
+//		hmEmailInfoRepository.save(hmEmailInfo);
+//		
+//		// 3. 휴대폰 정보
+//		hmAddressPhone.setHmMngAddress(hmMngAddress);
+//		hmAddressPhoneRepository.save(hmAddressPhone);
+		modelMap.put(ActionStateCode.MESSAGE.name(), ActionStateCode.SUCCESS);
 		
 		return "redirect:/address/address_list";
 	}
 	
+	@RequestMapping("/address/address_form")
+	public String addressForm(
+			@RequestParam(required=false , defaultValue="") String hmMgNum,
+			HttpServletRequest request, ModelMap modelMap) throws Exception {
+		
+		if( StringUtils.isNotEmpty(hmMgNum)) {
+			HmMngAddress hmMngAddress =  hmMngAddressRepository.findOne(org.apache.commons.lang.math.NumberUtils .createLong(hmMgNum) );
+			
+			modelMap.put("hmMngAddress", hmMngAddress);
+		}
+		
+		
+		return "/address/address_form.tiles";
+	}
 }
