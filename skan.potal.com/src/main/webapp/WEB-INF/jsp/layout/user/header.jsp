@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/common/TagLib.jspf"%>
 
+<form name="header_form" action="" method="post">
+	 <input type="hidden" id="menuID" name="menuID" value="">
+</form>
+
 <div class="container-fluid">
 	<div class="navbar-header">
 		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -10,14 +14,15 @@
 	</div>
 	<div id="navbar" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav">
-			<li class="active"><a href="${pageContext.request.contextPath}/main_page">Home</a></li>
+			<li <c:if test="${MENU_CODE eq 'HOME'}">class="active"</c:if>><a href="${pageContext.request.contextPath}/main_page">Home</a></li>
 			<li><a href="#">About</a></li>
-			<li><a href="#">가계부</a></li>
-			<li><a href="${pageContext.request.contextPath}/address/address_list">주소록</a></li>
-			<li><a href="${pageContext.request.contextPath}/schdule/schdule_list">일정관리</a></li>
+			<li><a href="#">가계부</a></li> 
+			<li <c:if test="${MENU_CODE eq 'CATTLE'}">class="active"</c:if>><a href="#" onclick="headerAction.submit('CATTLE', '${pageContext.request.contextPath}/cattle/cattle_list') ">개체관리</a></li>
+			<li <c:if test="${MENU_CODE eq 'ADDRESS'}">class="active"</c:if>><a href="#" onclick="headerAction.submit('ADDRESS', '${pageContext.request.contextPath}/address/address_list') ">주소록</a></li>
+			<li <c:if test="${MENU_CODE eq 'CALENDAR'}">class="active"</c:if>><a href="#" onclick="headerAction.submit('CALENDAR', '${pageContext.request.contextPath}/schdule/schdule_list') ">일정관리</a></li>
 			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">시스템관리 <span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a href="#">코드관리</a></li>
+					<li><a href="${pageContext.request.contextPath}/code/code_list">코드관리</a></li>
 					<li><a href="#">권한관리 </a></li>
 					<li><a href="#">Something else here</a></li>
 					<li role="separator" class="divider"></li>
@@ -34,3 +39,15 @@
 	<!--/.nav-collapse -->
 </div>
 <!--/.container-fluid -->
+<script>
+	var headerAction = (function () {
+		var form  = document.header_form;
+		return {
+			submit :function (menuID , actionUrl) {
+				form.menuID.value= menuID;
+				form.action =  actionUrl;
+				form.submit();
+			}
+		}
+	})();
+</script>
