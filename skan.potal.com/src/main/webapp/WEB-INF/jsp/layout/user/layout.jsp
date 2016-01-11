@@ -12,7 +12,9 @@
 <meta name="author" content="">
 <link rel="icon" href="../../favicon.ico">
 
-<title>관리 시스템</title>
+<title>
+	<tiles:insertAttribute name="title" />
+</title>
 
 <!-- Bootstrap core CSS -->
 <link href="${pageContext.request.contextPath}/assets/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet">
