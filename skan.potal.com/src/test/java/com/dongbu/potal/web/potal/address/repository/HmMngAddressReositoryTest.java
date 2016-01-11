@@ -17,6 +17,7 @@
  */
 package com.dongbu.potal.web.potal.address.repository;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,7 @@ public class HmMngAddressReositoryTest {
 	@Autowired private HmEmailInfoRepository hmEmailInfoRepository;
 	
 	@Test
+	@Ignore
 	public void saveTest() {
 		
 		for (int i = 0; i < 800; i++) {

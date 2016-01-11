@@ -47,10 +47,11 @@ var addressAction = (function () {
 		<div class="row">
 			<div class="col-md-12">
 				<div class="form-group">
-					<label for="firstname" class="col-sm-2 control-label"> <select class="form-control">
-							<option value="">이름</option>
-							<option value="">전화번호</option>
-					</select>
+					<label for="firstname" class="col-sm-2 control-label"> 
+						<select class="form-control">
+								<option value="">이름</option>
+								<option value="">전화번호</option>
+						</select>
 					</label>
 					<div class="col-sm-4">
 						<input type="text" class="form-control" id="searchName" name="searchName" placeholder="검색어" value="${searchName}">
