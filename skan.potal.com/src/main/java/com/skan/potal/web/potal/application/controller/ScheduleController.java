@@ -30,6 +30,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -154,6 +155,7 @@ public class ScheduleController {
 		} else {
 			Session session = sessionFactory.openSession();
 			Criteria criteria= session.createCriteria(CmtbSchedule.class);
+			//criteria.add(Restrictions.eq("userId", userId))
 			criteria.addOrder(Order.desc("cmtbSchedulePK.schMgtNo"));
 			criteria.setMaxResults(1);
 			CmtbSchedule cmtbScheduleOld = (CmtbSchedule) criteria.uniqueResult();

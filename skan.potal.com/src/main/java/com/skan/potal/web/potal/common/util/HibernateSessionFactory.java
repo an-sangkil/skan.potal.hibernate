@@ -46,6 +46,6 @@ public class HibernateSessionFactory {
 	
 	@PreDestroy
 	private void endPoint() {
-		sessionFactory.close();
+		session.close();
 	}
 }

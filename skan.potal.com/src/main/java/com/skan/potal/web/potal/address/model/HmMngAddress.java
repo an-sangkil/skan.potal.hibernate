@@ -1,6 +1,7 @@
 package com.skan.potal.web.potal.address.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -74,10 +75,10 @@ public class HmMngAddress implements Serializable {
 	 * 생성자.
 	 */
 	public HmMngAddress() {
-		//this.hmAddressInfoSet = new HashSet<HmAddressInfo>();
-		//this.hmAddressPhoneSet = new HashSet<HmAddressPhone>();
-		//this.hmAnniversaryMngSet = new HashSet<HmAnniversaryMng>();
-		//this.hmEmailInfoSet = new HashSet<HmEmailInfo>();
+		this.hmAddressInfoSet = new HashSet<HmAddressInfo>();
+		this.hmAddressPhoneSet = new HashSet<HmAddressPhone>();
+		this.hmAnniversaryMngSet = new HashSet<HmAnniversaryMng>();
+//		this.hmEmailInfoSet = new HashSet<HmEmailInfo>();
 	}
 
 	/**
