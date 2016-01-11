@@ -29,7 +29,7 @@
 <div class="alert alert-success" role="alert" id="message" style="display: none;"> </div>
 
 <form name="address_form" id="address_form" class="form-horizontal" role="form" action="${pageContext.request.contextPath}/address/address_insert" method="post">
-<input type="hidden" id="hmMgNum" name="hmMgNum" value="${hmMngAddress.hmMhNum}">
+<input type="hidden" id="hmMgNum" name="hmMgNum" value="${hmMngAddress.hmMgNum}">
 
 	<div class="form-group">
 		<label for="firstname" class="col-sm-2 control-label">이름</label>
@@ -72,7 +72,7 @@
 
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<button type="button" class="btn btn-default" onclick="addressAuction.submit();">저장</button>
+			<button type="submit" class="btn btn-default" onclick="">저장</button>
 			<button type="button" class="btn btn-danger" onclick="javascript:document.address_form.reset();">취소</button>
 		</div>
 	</div>

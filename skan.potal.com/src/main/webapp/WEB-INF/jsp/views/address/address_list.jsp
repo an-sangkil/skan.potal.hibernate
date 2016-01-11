@@ -42,39 +42,35 @@ var addressAction = (function () {
 
 <form name="address_form" method="post" action="${pageContext.request.contextPath}/address/address_list">
 	<input id="page" name="page" type="hidden" value=""> <input id="hmMgtNo" name="hmMgtNo" type="hidden" value="">
-</form>
-
-
-<div class="jumbotron">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="form-group">
-				<label for="firstname" class="col-sm-2 control-label"> <select class="form-control">
-						<option value="">이름</option>
-						<option value="">전화번호</option>
-				</select>
-				</label>
-				<div class="col-sm-4">
-					<input type="text" class="form-control" id="name" name="name" placeholder="검색어" value="${cmtbaddress.stdDate}">
-					<div class="has-error">
-						<label class="control-label" for="inputSuccess1"><form:errors path="cmtbSchedule.stdDate" /></label>
+	
+	<div class="jumbotron">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label for="firstname" class="col-sm-2 control-label"> <select class="form-control">
+							<option value="">이름</option>
+							<option value="">전화번호</option>
+					</select>
+					</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="searchName" name="searchName" placeholder="검색어" value="${searchName}">
+						<div class="has-error">
+							<label class="control-label" for="inputSuccess1"></label>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-
-
-	<div class="row">
-		<div class="col-md-4 col-md-offset-8" align="right">
-			<!-- Contextual button for informational alert messages -->
-			<button type="button" class="btn btn-info" onclick="">
-				검색 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-			</button>
+	
+	
+		<div class="row">
+			<div class="col-md-4 col-md-offset-8" align="right">
+				<!-- Contextual button for informational alert messages -->
+				<button type="submit" class="btn btn-info" onclick="">검색 <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+			</div>
 		</div>
 	</div>
-</div>
-
+</form>
 
 <div class="row">
 	<div class="col-md-4 col-md-offset-8" align="right">

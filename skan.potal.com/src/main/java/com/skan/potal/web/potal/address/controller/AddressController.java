@@ -22,6 +22,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.apache.commons.lang.StringUtils;
+import org.hibernate.Criteria;
+import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,14 +40,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skan.potal.web.potal.address.model.HmAddressInfo;
+import com.skan.potal.web.potal.address.model.HmAddressInfoId;
 import com.skan.potal.web.potal.address.model.HmAddressPhone;
+import com.skan.potal.web.potal.address.model.HmAddressPhoneId;
 import com.skan.potal.web.potal.address.model.HmEmailInfo;
+import com.skan.potal.web.potal.address.model.HmEmailInfoId;
 import com.skan.potal.web.potal.address.model.HmMngAddress;
 import com.skan.potal.web.potal.address.repository.HmAddressInfoRepository;
 import com.skan.potal.web.potal.address.repository.HmAddressPhoneRepository;
 import com.skan.potal.web.potal.address.repository.HmEmailInfoRepository;
 import com.skan.potal.web.potal.address.repository.HmMngAddressRepository;
 import com.skan.potal.web.potal.common.code.ActionStateCode;
+import com.skan.potal.web.potal.common.util.HibernateSessionFactory;
 import com.skan.potal.web.potal.common.util.PageUtils;
 
 /**
@@ -60,18 +67,27 @@ public class AddressController {
 	@Autowired HmEmailInfoRepository hmEmailInfoRepository;
 	@Autowired HmAddressPhoneRepository hmAddressPhoneRepository; 
 	@Autowired HmAddressInfoRepository hmAddressInfoRepository;
+	@Autowired SessionFactory sessionFactory; 
+	@Autowired HibernateSessionFactory hibernateSessionFactory;
 
 	@RequestMapping("/address/address_list")
 	public String addressList(@RequestParam(required=false , defaultValue="0") Integer page,
 			@RequestParam(required=false , defaultValue="10") Integer size,
-			@RequestParam(required=false , defaultValue="DESC") Direction direction ,HttpServletResponse response , ModelMap modelMap) throws Exception {
+			@RequestParam(required=false , defaultValue="DESC") Direction direction, 
+			@RequestParam(required=false , defaultValue="") String searchType,
+			@RequestParam(required=false , defaultValue="") String searchName,
+			HttpServletResponse response , ModelMap modelMap) throws Exception {
 		
 		Sort sort = new Sort(
-				//new org.springframework.data.domain.Sort.Order(Direction.ASC, "name"), 
-				new Order(Direction.DESC , "hmMgNum")
+				new org.springframework.data.domain.Sort.Order(Direction.ASC, "name") 
+				//,new Order(Direction.DESC , "hmMgNum")
 				);  
-		
-		Page<HmMngAddress> hmMngAddressPage =  hmMngAddressRepository.findAll(new PageRequest(page, size, sort));
+		Page<HmMngAddress> hmMngAddressPage ;
+		if(StringUtils.isNotEmpty(searchName)) {
+			hmMngAddressPage =  hmMngAddressRepository.findByNameContaining(searchName, new PageRequest(page, size, sort));
+		} else {
+			hmMngAddressPage =  hmMngAddressRepository.findAll(new PageRequest(page, size, sort));
+		}
 		hmMngAddressPage.getTotalPages();
 		
 		PageUtils pageUtils = new PageUtils();
@@ -85,6 +101,7 @@ public class AddressController {
 		modelMap.put("current", current);
 		modelMap.put("begin", begin);
 		modelMap.put("end", end);
+		modelMap.put("searchName", searchName);
 		modelMap.put("hmMngAddressPage", hmMngAddressPage);
 		
 		return "/address/address_list.tiles";
@@ -121,17 +138,48 @@ public class AddressController {
 		
 		// 1. 주소 기본정보
 		hmMngAddressRepository.save(hmMngAddress);
-		//    주소 상세정보
-//		hmAddressInfo.setHmMngAddress(hmMngAddress);
-//		hmAddressInfoRepository.save(hmAddressInfo);
-//		
-//		// 2. 이메일 정보 
-//		hmEmailInfo.setHmMngAddress(hmMngAddress);
-//		hmEmailInfoRepository.save(hmEmailInfo);
-//		
-//		// 3. 휴대폰 정보
-//		hmAddressPhone.setHmMngAddress(hmMngAddress);
-//		hmAddressPhoneRepository.save(hmAddressPhone);
+
+		// 주소 상세정보
+		Criteria criteria = hibernateSessionFactory.getSession().createCriteria(HmAddressInfo.class);
+		criteria.addOrder(org.hibernate.criterion.Order.desc("hmAddressInfoId.hmMngAddress.hmMgNum"));
+		criteria.addOrder(org.hibernate.criterion.Order.desc("hmAddressInfoId.hmAdNo"));
+		criteria.setMaxResults(1);
+		HmAddressInfo hmAddressInfoOld = (HmAddressInfo) criteria.uniqueResult();
+		
+		HmAddressInfoId HmAddressInfoId = new HmAddressInfoId(hmMngAddress);
+		HmAddressInfoId.setHmAdNo(hmAddressInfoOld == null ? 1L : hmAddressInfoOld.getHmAddressInfoId().getHmAdNo()+1);
+		hmAddressInfo.setHmAddressInfoId(HmAddressInfoId);
+		hmAddressInfoRepository.save(hmAddressInfo);
+		
+		// 2. 이메일 정보
+		criteria = hibernateSessionFactory.getSession().createCriteria(HmEmailInfo.class);
+		criteria.add(Restrictions.eq("hmEmailInfoId.hmMngAddress.hmMgNum", hmMngAddress.getHmMgNum()));
+		criteria.addOrder(org.hibernate.criterion.Order.desc("hmEmailInfoId.hmMngAddress.hmMgNum"));
+		criteria.addOrder(org.hibernate.criterion.Order.desc("hmEmailInfoId.hmEmNo"));
+		criteria.setMaxResults(1);
+		HmEmailInfo hmEmailInfoOld = (HmEmailInfo) criteria.uniqueResult();
+		
+		HmEmailInfoId hmEmailInfoId = new HmEmailInfoId();
+		hmEmailInfoId.setHmMngAddress(hmMngAddress);
+		hmEmailInfoId.setHmEmNo(hmEmailInfoOld == null ? 1L : hmEmailInfoOld.getHmEmailInfoId().getHmEmNo() + 1L);
+		hmEmailInfo.setHmEmailInfoId(hmEmailInfoId);
+		
+		hmEmailInfoRepository.save(hmEmailInfo);
+		
+		// 3. 휴대폰 정보
+		criteria = hibernateSessionFactory.getSession().createCriteria(HmAddressPhone.class);
+		criteria.add(Restrictions.eq("hmAddressPhoneId.hmMngAddress.hmMgNum", hmMngAddress.getHmMgNum()));
+		criteria.addOrder(org.hibernate.criterion.Order.desc("hmAddressPhoneId.hmMngAddress.hmMgNum"));
+		criteria.addOrder(org.hibernate.criterion.Order.desc("hmAddressPhoneId.hmPhoNo"));
+		criteria.setMaxResults(1);
+		HmAddressPhone hmAddressPhoneOld = (HmAddressPhone) criteria.uniqueResult();
+		
+		HmAddressPhoneId hmAddressPhoneId = new HmAddressPhoneId();
+		hmAddressPhoneId.setHmMngAddress(hmMngAddress);
+		hmAddressPhoneId.setHmPhoNo(hmAddressPhoneOld == null ? 1L : hmAddressPhoneOld.getHmAddressPhoneId().getHmPhoNo() + 1L);
+		
+		hmAddressPhone.setHmAddressPhoneId(hmAddressPhoneId);
+		hmAddressPhoneRepository.save(hmAddressPhone);
 		modelMap.put(ActionStateCode.MESSAGE.name(), ActionStateCode.SUCCESS);
 		
 		return "redirect:/address/address_list";
