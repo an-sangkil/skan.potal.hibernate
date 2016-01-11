@@ -34,6 +34,13 @@ import com.skan.potal.web.potal.application.model.CmtbCode;
 @Controller
 public class CodeController {
 	
+	@RequestMapping("code/code_list")
+	private String codeList(HttpServletRequest request, ModelMap modelMap) {
+		
+		return "";
+	}
+	
+	
 	/**
 	 * Code 입력 폼
 	 * @param request

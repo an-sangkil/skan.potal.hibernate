@@ -41,7 +41,7 @@ public class LayoutController {
 		String menuID = ServletRequestUtils.getStringParameter(request, "menuCode" , "");
 		logger.debug("menuId = {} " , menuID);
 		
-		modelMap.put("MENU_CODE", "ADDRESS");
+		modelMap.put("MENU_CODE", menuID);
 		
 		return "/layout/user/header";
 	}
