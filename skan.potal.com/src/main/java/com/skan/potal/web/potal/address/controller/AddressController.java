@@ -36,6 +36,7 @@ import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -198,5 +199,10 @@ public class AddressController {
 		
 		
 		return "/address/address_form.tiles";
+	}
+	
+	@ModelAttribute
+	public void commonAttribute(ModelMap modelMap) {
+		modelMap.put("MENU_CODE", "ADDRESS");
 	}
 }
