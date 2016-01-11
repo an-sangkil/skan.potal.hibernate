@@ -33,6 +33,13 @@ public class HmAddressPhoneId implements Serializable {
 	}
 
 	/**
+	 * @param hmMngAddress2
+	 */
+	public HmAddressPhoneId(HmMngAddress hmMngAddress) {
+		this.hmMngAddress = hmMngAddress;
+	}
+
+	/**
 	 * 주소록 관리을 설정합니다..
 	 * 
 	 * @param hmMngAddress

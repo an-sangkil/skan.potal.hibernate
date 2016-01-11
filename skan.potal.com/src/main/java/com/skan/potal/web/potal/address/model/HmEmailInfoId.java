@@ -32,6 +32,10 @@ public class HmEmailInfoId implements Serializable {
 	 */
 	public HmEmailInfoId() {
 	}
+	
+	public HmEmailInfoId(HmMngAddress hmMngAddress) {
+		this.hmMngAddress = hmMngAddress;
+	}
 
 	/**
 	 * 주소록 관리을 설정합니다..
