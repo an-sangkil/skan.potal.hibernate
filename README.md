@@ -1,0 +1,1 @@
+# skan.potal.hibernate
