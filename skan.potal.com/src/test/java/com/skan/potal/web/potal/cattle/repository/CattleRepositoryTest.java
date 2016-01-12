@@ -19,6 +19,8 @@ package com.skan.potal.web.potal.cattle.repository;
 
 import static org.junit.Assert.assertSame;
 
+import java.util.Date;
+
 import javax.persistence.EntityManager;
 
 import org.junit.Ignore;
@@ -28,6 +30,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -37,6 +40,8 @@ import com.skan.potal.config.AppConfig;
 import com.skan.potal.config.PersistenceJPAConfig;
 import com.skan.potal.config.WebMvcConfig;
 import com.skan.potal.web.potal.cattle.model.HmCattleBuyInfo;
+import com.skan.potal.web.potal.cattle.model.HmCattleChildbirthRecode;
+import com.skan.potal.web.potal.cattle.model.HmCattleChildbirthRecodeId;
 import com.skan.potal.web.potal.cattle.model.HmCattleRegister;
 import com.skan.potal.web.potal.cattle.model.QHmCattleBuyInfo;
 import com.skan.potal.web.potal.cattle.model.QHmCattleRegister;
@@ -53,10 +58,12 @@ public class CattleRepositoryTest {
 	
 	@Autowired CattleRepository cattleRepository;
 	@Autowired CattleBuyInfoRepository cattleBuyInfoRepository;
+	@Autowired CattleChildbirthRecodeRepository cattleChildbirthRecodeRepository;
 	@Autowired EntityManager em;
 	
 	
 	@Test
+	@Ignore
 	public void selectJoinQueryDsl() {
 
 		QHmCattleRegister hmCattleRegister = QHmCattleRegister.hmCattleRegister;
@@ -77,7 +84,7 @@ public class CattleRepositoryTest {
 	}
 	
 	@Test
-	@Ignore
+	@Rollback(value=true)
 	public void selectAllTest() {
 		HmCattleRegister cattleRegister = new HmCattleRegister();
 		HmCattleBuyInfo hmCattleBuyInfo = new HmCattleBuyInfo();
@@ -88,6 +95,14 @@ public class CattleRepositoryTest {
 			hmCattleBuyInfo.setEntityDiscernNo(cattleRegister.getEntityDiscernNo());
 			hmCattleBuyInfo.setBuyStoreName("AAA");
 			cattleBuyInfoRepository.save(hmCattleBuyInfo);
+			
+			HmCattleChildbirthRecodeId hmCattleChildbirthRecodeId = new HmCattleChildbirthRecodeId();
+			hmCattleChildbirthRecodeId.setThNo(1L);
+			hmCattleChildbirthRecodeId.setHmCattleRegister(cattleRegister);
+			HmCattleChildbirthRecode cattleChildbirthRecode = new HmCattleChildbirthRecode();
+			cattleChildbirthRecode.setHmCattleChildbirthRecodeId(hmCattleChildbirthRecodeId);
+			cattleChildbirthRecode.setExpectedDateConfinement(new Date());
+			cattleChildbirthRecodeRepository.save(cattleChildbirthRecode);
 		}
 	}
 	
