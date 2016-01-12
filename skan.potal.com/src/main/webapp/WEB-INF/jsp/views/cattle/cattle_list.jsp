@@ -63,10 +63,28 @@ var cattleAction = (function () {
 						성별
 					</label>
 					<div class="col-sm-4">
-						<select class="form-control">
-							<option value="">황소</option>						
-							<option value="">암소</option>
+						<select class="form-control" id="searchGender" name="searchGender">
+							<option value="황소">황소</option>						
+							<option value="암소">암소</option>
 						</select>
+						<div class="has-error">
+							<label class="control-label" for="inputSuccess1"></label>
+						</div>
+					</div>
+				</div>
+			</div><div class="col-md-12">
+				<div class="form-group">
+					<label for="firstname" class="col-sm-2 control-label"> 
+						기간(분만예정일)
+					</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="expectedDateConfinementFrom" name="expectedDateConfinementFrom" placeholder="시작일" value="${expectedDateConfinementFrom}">
+						<div class="has-error">
+							<label class="control-label" for="inputSuccess1"></label>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="expectedDateConfinementTo" name="expectedDateConfinementTo" placeholder="종료일" value="${expectedDateConfinementTo}">
 						<div class="has-error">
 							<label class="control-label" for="inputSuccess1"></label>
 						</div>
@@ -79,13 +97,13 @@ var cattleAction = (function () {
 						기간(출생일)
 					</label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control" id="searchBirthDayFrom" name="searchBirthDayFrom" placeholder="시작일" value="${searchName}">
+						<input type="text" class="form-control" id="searchBirthDayFrom" name="searchBirthDayFrom" placeholder="시작일" value="${searchBirthDayFrom}">
 						<div class="has-error">
 							<label class="control-label" for="inputSuccess1"></label>
 						</div>
 					</div>
 					<div class="col-sm-4">
-						<input type="text" class="form-control" id="searchBirthDayTo" name="searchBirthDayTo" placeholder="종료일" value="${searchName}">
+						<input type="text" class="form-control" id="searchBirthDayTo" name="searchBirthDayTo" placeholder="종료일" value="${searchBirthDayTo}">
 						<div class="has-error">
 							<label class="control-label" for="inputSuccess1"></label>
 						</div>
