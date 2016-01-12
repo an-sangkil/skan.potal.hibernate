@@ -17,9 +17,14 @@
  */
 package com.skan.potal.web.potal.common.util;
 
+import java.text.ParseException;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
+
+import org.apache.commons.lang.StringUtils;
 
 /**
  * 
@@ -27,6 +32,21 @@ import java.util.Date;
  *
  */
 public class CalendarUtils {
+	
+	public enum CalendarPattermn {
+		
+		CALENDER_TYPE_YYYY_MM_DD("yyyy-MM-dd");
+
+		private String pattern;
+		
+		private CalendarPattermn(String patternStr) {
+			this.pattern=patternStr;
+		}
+
+		public String getPattern() {
+			return pattern;
+		}
+	}
 	
 	public final static String CALENDER_TYPE_YYYY_MM_DD = "yyyy-MM-dd";
 	
@@ -54,6 +74,46 @@ public class CalendarUtils {
 		calendar.setTime(date);
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 		return sdf.format(calendar.getTime());
+	}
+	
+	public static Date convertStringToDate(String date, CalendarPattermn calendarPattermn) throws Exception {
+		if(StringUtils.isEmpty(date)){
+			return null;
+		}
+		
+		SimpleDateFormat formatter = new SimpleDateFormat ( calendarPattermn.getPattern());
+		return formatter.parse(date); 
+	}
+	
+	public static Date convertStringToDate(String date, Locale locale, CalendarPattermn calendarPattermn){
+		
+		SimpleDateFormat formatter = new SimpleDateFormat ( calendarPattermn.getPattern() , locale);
+		ParsePosition pos = new ParsePosition ( 0 );
+		
+		return formatter.parse(date, pos); 
+	}
+	
+	/**
+	 * 날짜에 대한 유효성 검사
+	 * 
+	 * @param szDate
+	 * @param szFormat
+	 * @return
+	 */
+	public static boolean checkDate(String szDate, CalendarPattermn calendarPattermn) {
+
+		boolean bResult = true;
+		SimpleDateFormat oDateFormat = new SimpleDateFormat();
+
+		oDateFormat.applyPattern(calendarPattermn.getPattern());
+		oDateFormat.setLenient(false); // 엄밀하게 검사한다는 옵션 (반드시 있어야 한다)
+
+		try {
+			oDateFormat.parse(szDate);
+		} catch (ParseException e) {
+			bResult = false;
+		}
+		return bResult;
 	}
 	
 }
