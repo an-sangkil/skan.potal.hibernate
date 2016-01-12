@@ -112,8 +112,8 @@ public class ScheduleController {
 			String endDate  = ServletRequestUtils.getStringParameter(request, "endDate", "");
 			
 			SimpleDateFormat formatter = new SimpleDateFormat ( "EEE MMM dd yyyy hh:mm:ss",Locale.ENGLISH );
-			
 			ParsePosition pos = new ParsePosition ( 0 );
+
 			logger.trace("startDate = {} ", startDate );
 			logger.trace("endDate = {} ", endDate );
 			
