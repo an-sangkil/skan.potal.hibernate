@@ -17,17 +17,29 @@
  */
 package com.skan.potal.web.potal.cattle.repository;
 
+import static org.junit.Assert.assertSame;
+
+import javax.persistence.EntityManager;
+
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import com.mysema.query.jpa.impl.JPAQuery;
 import com.skan.potal.config.AppConfig;
 import com.skan.potal.config.PersistenceJPAConfig;
 import com.skan.potal.config.WebMvcConfig;
+import com.skan.potal.web.potal.cattle.model.HmCattleBuyInfo;
 import com.skan.potal.web.potal.cattle.model.HmCattleRegister;
+import com.skan.potal.web.potal.cattle.model.QHmCattleBuyInfo;
+import com.skan.potal.web.potal.cattle.model.QHmCattleRegister;
 
 /**
  * @author ahn
@@ -40,14 +52,52 @@ import com.skan.potal.web.potal.cattle.model.HmCattleRegister;
 public class CattleRepositoryTest {
 	
 	@Autowired CattleRepository cattleRepository;
+	@Autowired CattleBuyInfoRepository cattleBuyInfoRepository;
+	@Autowired EntityManager em;
+	
 	
 	@Test
-	public void selectAllTest() {
-		cattleRepository.findAll();
-		HmCattleRegister cattleRegister = new HmCattleRegister();
-		cattleRegister.setEntityDiscernNo("43-598-0908");
-		cattleRepository.save(cattleRegister);
+	public void selectJoinQueryDsl() {
+
+		QHmCattleRegister hmCattleRegister = QHmCattleRegister.hmCattleRegister;
+		JPAQuery query = new JPAQuery(em);
+		query.from(hmCattleRegister)
+			.leftJoin(QHmCattleRegister.hmCattleRegister.hmCattleBuyInfoSet, QHmCattleBuyInfo.hmCattleBuyInfo)
+			.where(QHmCattleRegister.hmCattleRegister.gender.eq("황소").or(QHmCattleRegister.hmCattleRegister.gender.eq("암소"))
+					,QHmCattleBuyInfo.hmCattleBuyInfo.buyStoreName.eq("AAA") 
+					);
+			//.list(hmCattleRegister)
+			//.forEach(item->{System.out.println(item.getEntityDiscernNo());});
+		
+		Page<HmCattleRegister> hmCattleRegisterPage = cattleRepository.buildPage(query, query, new PageRequest(0, 10));
+		for (HmCattleRegister obj : hmCattleRegisterPage.getContent()) {
+			System.out.println(obj.getEntityDiscernNo());
+		}
+//		assertSame(1, hmCattleRegisterPage.getContent().size());
 	}
 	
+	@Test
+	@Ignore
+	public void selectAllTest() {
+		HmCattleRegister cattleRegister = new HmCattleRegister();
+		HmCattleBuyInfo hmCattleBuyInfo = new HmCattleBuyInfo();
+		for (int i = 0; i < 100; i++) {
+			cattleRegister.setEntityDiscernNo("43-598-0908-"+i);
+			cattleRegister.setGender("황소");
+			cattleRepository.save(cattleRegister);
+			hmCattleBuyInfo.setEntityDiscernNo(cattleRegister.getEntityDiscernNo());
+			hmCattleBuyInfo.setBuyStoreName("AAA");
+			cattleBuyInfoRepository.save(hmCattleBuyInfo);
+		}
+	}
+	
+	
+	@Test
+	@Ignore
+	public void selectQueryDsl() {
+		Page<HmCattleRegister> paging = cattleRepository.findAll(QHmCattleRegister.hmCattleRegister.entityDiscernNo.eq("43-598-0908"), new PageRequest(0, 10, Direction.DESC,"birthDay", "entityDiscernNo"));
+		paging.getContent().forEach(item -> System.out.println(item.getEntityDiscernNo()));
+		assertSame(1, paging.getContent().size());
+	}
 	
 }

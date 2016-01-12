@@ -37,7 +37,7 @@ public class CodeController {
 	@RequestMapping("code/code_list")
 	private String codeList(HttpServletRequest request, ModelMap modelMap) {
 		
-		return "";
+		return "/code/code_list.tiles";
 	}
 	
 	

@@ -17,16 +17,38 @@
  */
 package com.skan.potal.web.potal.cattle.repository;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 import org.springframework.stereotype.Repository;
 
+import com.mysema.query.jpa.JPQLQuery;
 import com.skan.potal.web.potal.cattle.model.HmCattleRegister;
+import com.skan.potal.web.potal.cattle.model.QHmCattleRegister;
 
 /**
  * @author ahn
  *
  */
 @Repository
-public interface CattleRepository extends JpaRepository<HmCattleRegister, String> {
+public interface CattleRepository
+		extends JpaRepository<HmCattleRegister, String>, QueryDslPredicateExecutor<HmCattleRegister> {
 
+	default Page<HmCattleRegister> buildPage(JPQLQuery countQuery, JPQLQuery query, Pageable pageable) {
+		
+		Long total = countQuery.count();
+		
+		query.offset(pageable.getOffset());
+		query.limit(pageable.getPageSize());
+		
+		List<HmCattleRegister> content = total > pageable.getOffset() ? query.list(QHmCattleRegister.hmCattleRegister) : Collections.<HmCattleRegister> emptyList();
+		
+		return  new PageImpl<HmCattleRegister>(content, pageable, total);
+	}
 }
