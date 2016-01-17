@@ -17,16 +17,11 @@
  */
 package com.skan.potal.web.potal.cattle.controller;
 
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.apache.commons.lang.StringUtils;
-import org.hibernate.type.descriptor.java.CalendarDateTypeDescriptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,16 +32,29 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mysema.query.jpa.impl.JPAQuery;
+import com.skan.potal.web.potal.cattle.model.HmCattleBuyInfo;
+import com.skan.potal.web.potal.cattle.model.HmCattleCalfRecode;
+import com.skan.potal.web.potal.cattle.model.HmCattleCalfRecodeId;
+import com.skan.potal.web.potal.cattle.model.HmCattleChildbirthRecode;
+import com.skan.potal.web.potal.cattle.model.HmCattleChildbirthRecodeId;
+import com.skan.potal.web.potal.cattle.model.HmCattleCureInfo;
+import com.skan.potal.web.potal.cattle.model.HmCattleCureInfoId;
 import com.skan.potal.web.potal.cattle.model.HmCattleRegister;
-import com.skan.potal.web.potal.cattle.model.QHmCattleBuyInfo;
+import com.skan.potal.web.potal.cattle.model.HmCattleSellStoreInfo;
 import com.skan.potal.web.potal.cattle.model.QHmCattleChildbirthRecode;
 import com.skan.potal.web.potal.cattle.model.QHmCattleRegister;
-import com.skan.potal.web.potal.cattle.repository.CattleRepository;
+import com.skan.potal.web.potal.cattle.repository.CattleBuyInfoRepository;
+import com.skan.potal.web.potal.cattle.repository.CattleCalfRecodeRepository;
+import com.skan.potal.web.potal.cattle.repository.CattleChildbirthRecodeRepository;
+import com.skan.potal.web.potal.cattle.repository.CattleCureInfoRepository;
+import com.skan.potal.web.potal.cattle.repository.CattleRegisterRepository;
+import com.skan.potal.web.potal.cattle.repository.CattleSellStoreInfoRepository;
 import com.skan.potal.web.potal.common.util.CalendarUtils;
 import com.skan.potal.web.potal.common.util.CalendarUtils.CalendarPattermn;
 import com.skan.potal.web.potal.common.util.PageUtils;
@@ -60,7 +68,14 @@ public class CattleController {
 	
 	private final Logger logger = LoggerFactory.getLogger(CattleController.class);
 	
-	@Autowired private CattleRepository cattleRepository;
+	@Autowired CattleRegisterRepository 		cattleRegisterRepository;  
+	@Autowired CattleBuyInfoRepository 			cattleBuyInfoRepository; 
+	@Autowired CattleCalfRecodeRepository 		cattleCalfRecodeRepository; 
+	@Autowired CattleChildbirthRecodeRepository cattleChildbirthRecodeRepository; 
+	@Autowired CattleCureInfoRepository 		cattleCureInfoRepository; 
+	@Autowired CattleSellStoreInfoRepository 	cattleSellStoreInfoRepository;
+	
+	
 	@Autowired private EntityManager entityManager;
 	
 	@RequestMapping("cattle/cattle_list")
@@ -118,7 +133,7 @@ public class CattleController {
 			}
 		}
 		
-		Page<HmCattleRegister> hmCattlePage = cattleRepository.buildPage(query, query, new PageRequest(page, size, sort));
+		Page<HmCattleRegister> hmCattlePage = cattleRegisterRepository.buildPage(query, query, new PageRequest(page, size, sort));
 		
 		PageUtils pageUtils = new PageUtils();
 		int current = hmCattlePage.getNumber() + 1;
@@ -141,6 +156,69 @@ public class CattleController {
 		
 		return "/cattle/cattle_list.tiles";
 	}
+	
+	/**
+	 * 개체 관리 저장 
+	 * @param hmCattleRegister
+	 * @param bindingResult1
+	 * @param hmCattleBuyInfo
+	 * @param bindingResult2
+	 * @param hmCattleCalfRecode
+	 * @param bindingResult3
+	 * @param hmCattleChildbirthRecode
+	 * @param bindingResult4
+	 * @param hmCattleCureInfo
+	 * @param bindingResult5
+	 * @param hmCattleSellStoreInfo
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("cattle/cattle_form") 
+	public String cattleForm(@Valid HmCattleRegister hmCattleRegister , BindingResult bindingResult1  
+			,@Valid HmCattleBuyInfo hmCattleBuyInfo , BindingResult bindingResult2
+			,@Valid HmCattleCalfRecode hmCattleCalfRecode , BindingResult bindingResult3
+			,@Valid HmCattleChildbirthRecode hmCattleChildbirthRecode , BindingResult bindingResult4
+			,@Valid HmCattleCureInfo hmCattleCureInfo , BindingResult bindingResult5
+			,@Valid HmCattleSellStoreInfo hmCattleSellStoreInfo, BindingResult bindingResult6) throws Exception { 
+		
+		//1. 기본정보
+		cattleRegisterRepository.save(hmCattleRegister);
+		
+		if(StringUtils.isNotEmpty(hmCattleBuyInfo.getBuyStoreName())){
+
+			if(bindingResult2.hasErrors()){
+				return "";
+			}
+			//2. 구입정보 
+			cattleBuyInfoRepository.save(hmCattleBuyInfo);
+			
+			
+		}
+		
+		
+		//3. 
+		HmCattleCalfRecodeId hmCattleCalfRecodeId = new HmCattleCalfRecodeId();
+		hmCattleCalfRecodeId.setHmCattleRegister(hmCattleRegister);
+		cattleCalfRecodeRepository.save(hmCattleCalfRecode);
+		
+		//4. 
+		HmCattleChildbirthRecodeId hmCattleChildbirthRecodeId = new HmCattleChildbirthRecodeId();
+		hmCattleChildbirthRecodeId.setHmCattleRegister(hmCattleRegister);
+		cattleChildbirthRecodeRepository.save(hmCattleChildbirthRecode);
+		
+		//5. 판매정보
+		HmCattleCureInfoId hmCattleCureInfoId = new HmCattleCureInfoId();
+		hmCattleCureInfoId.setHmCattleRegister(hmCattleRegister);
+		cattleCureInfoRepository.save(hmCattleCureInfo);         
+		
+		//6. 
+		cattleSellStoreInfoRepository.save(hmCattleSellStoreInfo);       
+		
+		
+		
+		return "/cattle/cattle_form.tiles";
+	}
+	
 	
 	@ModelAttribute
 	public void commonAttribute(ModelMap modelMap) {

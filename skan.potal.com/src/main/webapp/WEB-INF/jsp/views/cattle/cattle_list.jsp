@@ -26,11 +26,11 @@ var pagingAction = (function (){
 var cattleAction = (function () {
 	return {
 		moveForm : function () {
-			document.cattle_form.action = "${pageContext.request.contextPath}/address/cattle_form";
+			document.cattle_form.action = "${pageContext.request.contextPath}/cattle/cattle_form";
 			document.cattle_form.submit();
 		},
 		detailView : function (hmMgtNo) {
-			document.cattle_form.action = "${pageContext.request.contextPath}/address/cattle_form";
+			document.cattle_form.action = "${pageContext.request.contextPath}/cattle/cattle_form";
 			document.cattle_form.hmMgtNo.value= hmMgtNo;
 			document.cattle_form.submit();
 		}
@@ -126,7 +126,7 @@ var cattleAction = (function () {
 <div class="row">
 	<div class="col-md-4 col-md-offset-8" align="right">
 		<!-- Contextual button for informational alert messages -->
-		<button type="button" class="btn btn-info" onclick="addressAction.moveForm()">
+		<button type="button" class="btn btn-info" onclick="cattleAction.moveForm()">
 			개체추가 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 		</button>
 	</div>

@@ -17,7 +17,6 @@
  */
 package com.skan.potal.web.potal.cattle.repository;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -37,7 +36,7 @@ import com.skan.potal.web.potal.cattle.model.QHmCattleRegister;
  *
  */
 @Repository
-public interface CattleRepository
+public interface CattleRegisterRepository
 		extends JpaRepository<HmCattleRegister, String>, QueryDslPredicateExecutor<HmCattleRegister> {
 
 	default Page<HmCattleRegister> buildPage(JPQLQuery countQuery, JPQLQuery query, Pageable pageable) {

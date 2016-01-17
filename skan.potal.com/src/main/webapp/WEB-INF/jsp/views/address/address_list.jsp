@@ -29,9 +29,9 @@ var addressAction = (function () {
 			document.address_form.action = "${pageContext.request.contextPath}/address/address_form";
 			document.address_form.submit();
 		},
-		detailView : function (hmMgtNo) {
+		detailView : function (hmMgNum) {
 			document.address_form.action = "${pageContext.request.contextPath}/address/address_form";
-			document.address_form.hmMgtNo.value= hmMgtNo;
+			document.address_form.hmMgNum.value= hmMgNum;
 			document.address_form.submit();
 		}
 	}
@@ -41,7 +41,7 @@ var addressAction = (function () {
 
 
 <form name="address_form" method="post" action="${pageContext.request.contextPath}/address/address_list">
-	<input id="page" name="page" type="hidden" value=""> <input id="hmMgtNo" name="hmMgtNo" type="hidden" value="">
+	<input id="page" name="page" type="hidden" value=""> <input id="hmMgNum" name="hmMgNum" type="hidden" value="">
 	
 	<div class="jumbotron">
 		<div class="row">
@@ -95,7 +95,7 @@ var addressAction = (function () {
 		</thead>
 		<tbody>
 			<c:forEach var="item" items="${hmMngAddressPage.content}" varStatus="status">
-				<tr>
+				<tr onclick="addressAction.detailView('${item.hmMgNum}')">
 					<th scope="row">${item.hmMgNum}</th>
 					<td>${item.name}</td>
 					<td><c:forEach var="hmAddressPhone" items="${item.hmAddressPhoneSet}" varStatus="status">

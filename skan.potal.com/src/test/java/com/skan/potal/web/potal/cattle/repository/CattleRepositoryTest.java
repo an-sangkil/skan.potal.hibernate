@@ -56,7 +56,7 @@ import com.skan.potal.web.potal.cattle.model.QHmCattleRegister;
 @ContextConfiguration(classes = { WebMvcConfig.class, AppConfig.class, PersistenceJPAConfig.class })
 public class CattleRepositoryTest {
 	
-	@Autowired CattleRepository cattleRepository;
+	@Autowired CattleRegisterRepository cattleRepository;
 	@Autowired CattleBuyInfoRepository cattleBuyInfoRepository;
 	@Autowired CattleChildbirthRecodeRepository cattleChildbirthRecodeRepository;
 	@Autowired EntityManager em;

@@ -202,6 +202,17 @@ public class AddressController {
 	}
 	
 	@ModelAttribute
+	public void paggingInfo(@RequestParam(required=false , defaultValue="0") Integer page,
+			@RequestParam(required=false , defaultValue="10") Integer size,
+			@RequestParam(required=false , defaultValue="DESC") Direction direction, 
+			@RequestParam(required=false , defaultValue="") String searchType,
+			@RequestParam(required=false , defaultValue="") String searchName,
+			ModelMap modelMap) {
+		// TODO
+		
+	}
+	
+	@ModelAttribute
 	public void commonAttribute(ModelMap modelMap) {
 		modelMap.put("MENU_CODE", "ADDRESS");
 	}
