@@ -3,6 +3,8 @@ package com.skan.potal.web.potal.cattle.model;
 import java.io.Serializable;
 
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * 질병 및 치료 composite - id 클래스.
@@ -17,6 +19,8 @@ public class HmCattleCureInfoId implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/** 한우(암소/수소) 개체관리기록부. */
+	@ManyToOne
+	@JoinColumn(name="entityDiscernNo",insertable=false, updatable=false)
 	private HmCattleRegister hmCattleRegister;
 
 	/** 회차. */

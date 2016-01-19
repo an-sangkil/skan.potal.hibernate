@@ -47,7 +47,9 @@ import com.skan.potal.web.potal.cattle.model.HmCattleCureInfo;
 import com.skan.potal.web.potal.cattle.model.HmCattleCureInfoId;
 import com.skan.potal.web.potal.cattle.model.HmCattleRegister;
 import com.skan.potal.web.potal.cattle.model.HmCattleSellStoreInfo;
+import com.skan.potal.web.potal.cattle.model.QHmCattleCalfRecode;
 import com.skan.potal.web.potal.cattle.model.QHmCattleChildbirthRecode;
+import com.skan.potal.web.potal.cattle.model.QHmCattleCureInfo;
 import com.skan.potal.web.potal.cattle.model.QHmCattleRegister;
 import com.skan.potal.web.potal.cattle.repository.CattleBuyInfoRepository;
 import com.skan.potal.web.potal.cattle.repository.CattleCalfRecodeRepository;
@@ -191,30 +193,50 @@ public class CattleController {
 			}
 			//2. 구입정보 
 			cattleBuyInfoRepository.save(hmCattleBuyInfo);
-			
-			
 		}
 		
+		//3. 송아지 기록
+		QHmCattleCalfRecode qhmCattleCalfRecode = QHmCattleCalfRecode.hmCattleCalfRecode;
+		JPAQuery query = new JPAQuery(entityManager);
+		Long thno = query.from(qhmCattleCalfRecode)
+				.where(QHmCattleCalfRecode.hmCattleCalfRecode.hmCattleCalfRecodeId.hmCattleRegister.entityDiscernNo.eq(hmCattleRegister.getEntityDiscernNo()) )
+				.singleResult(QHmCattleCalfRecode.hmCattleCalfRecode.hmCattleCalfRecodeId.thNo.max());
 		
-		//3. 
 		HmCattleCalfRecodeId hmCattleCalfRecodeId = new HmCattleCalfRecodeId();
+		// TODO : BUG 수정 or 추가 ? 일단은 수정으로...
+		hmCattleCalfRecodeId.setThNo(thno == null ? 1L : thno);
 		hmCattleCalfRecodeId.setHmCattleRegister(hmCattleRegister);
+		hmCattleCalfRecode.setHmCattleCalfRecodeId(hmCattleCalfRecodeId);
 		cattleCalfRecodeRepository.save(hmCattleCalfRecode);
 		
-		//4. 
+		//4. 분만기록
+		query = new JPAQuery(entityManager);
+		Long thno2 = query.from(QHmCattleChildbirthRecode.hmCattleChildbirthRecode)
+		.where(QHmCattleChildbirthRecode.hmCattleChildbirthRecode.hmCattleChildbirthRecodeId.hmCattleRegister.entityDiscernNo.eq(hmCattleRegister.getEntityDiscernNo()))
+		.singleResult(QHmCattleChildbirthRecode.hmCattleChildbirthRecode.hmCattleChildbirthRecodeId.thNo.max());
+		
 		HmCattleChildbirthRecodeId hmCattleChildbirthRecodeId = new HmCattleChildbirthRecodeId();
 		hmCattleChildbirthRecodeId.setHmCattleRegister(hmCattleRegister);
+		// TODO : BUG 수정 or 추가 ? 일단은 수정으로...
+		hmCattleChildbirthRecodeId.setThNo(thno2 == null ? 1L : thno2);
+		hmCattleChildbirthRecode.setHmCattleChildbirthRecodeId(hmCattleChildbirthRecodeId);
 		cattleChildbirthRecodeRepository.save(hmCattleChildbirthRecode);
 		
-		//5. 판매정보
+		//5. 질병치료 기록 
+		query = new JPAQuery(entityManager);
+		Long thno3 = query.from(QHmCattleCureInfo.hmCattleCureInfo)
+		.where( QHmCattleCureInfo.hmCattleCureInfo.hmCattleCureInfoId.hmCattleRegister.entityDiscernNo.eq(hmCattleRegister.getEntityDiscernNo()))
+		.uniqueResult(QHmCattleCureInfo.hmCattleCureInfo.hmCattleCureInfoId.thNo.max());
+		
 		HmCattleCureInfoId hmCattleCureInfoId = new HmCattleCureInfoId();
 		hmCattleCureInfoId.setHmCattleRegister(hmCattleRegister);
+		// TODO : BUG 수정 or 추가 ? 일단은 수정으로...
+		hmCattleCureInfoId.setThNo(thno3 == null ? 1L : thno3);
+		hmCattleCureInfo.setHmCattleCureInfoId(hmCattleCureInfoId);
 		cattleCureInfoRepository.save(hmCattleCureInfo);         
 		
-		//6. 
-		cattleSellStoreInfoRepository.save(hmCattleSellStoreInfo);       
-		
-		
+		//6. 판매정보
+		cattleSellStoreInfoRepository.save(hmCattleSellStoreInfo);     
 		
 		return "/cattle/cattle_form.tiles";
 	}
