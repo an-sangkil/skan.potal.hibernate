@@ -188,6 +188,7 @@ public class CattleController {
 		
 		if(StringUtils.isNotEmpty(hmCattleBuyInfo.getBuyStoreName())){
 
+			
 			if(bindingResult2.hasErrors()){
 				return "";
 			}
@@ -203,7 +204,7 @@ public class CattleController {
 				.singleResult(QHmCattleCalfRecode.hmCattleCalfRecode.hmCattleCalfRecodeId.thNo.max());
 		
 		HmCattleCalfRecodeId hmCattleCalfRecodeId = new HmCattleCalfRecodeId();
-		// TODO : BUG 수정 or 추가 ? 일단은 수정으로...
+		// TODO : BUG 수정 or 추가 ? 멀티 저장 없이 한번만 저장함. 이후 수정 필요
 		hmCattleCalfRecodeId.setThNo(thno == null ? 1L : thno);
 		hmCattleCalfRecodeId.setHmCattleRegister(hmCattleRegister);
 		hmCattleCalfRecode.setHmCattleCalfRecodeId(hmCattleCalfRecodeId);
@@ -217,26 +218,31 @@ public class CattleController {
 		
 		HmCattleChildbirthRecodeId hmCattleChildbirthRecodeId = new HmCattleChildbirthRecodeId();
 		hmCattleChildbirthRecodeId.setHmCattleRegister(hmCattleRegister);
-		// TODO : BUG 수정 or 추가 ? 일단은 수정으로...
+		// TODO : BUG 수정 or 추가 ? 멀티 저장 없이 한번만 저장함. 이후 수정 필요
 		hmCattleChildbirthRecodeId.setThNo(thno2 == null ? 1L : thno2);
 		hmCattleChildbirthRecode.setHmCattleChildbirthRecodeId(hmCattleChildbirthRecodeId);
 		cattleChildbirthRecodeRepository.save(hmCattleChildbirthRecode);
 		
 		//5. 질병치료 기록 
-		query = new JPAQuery(entityManager);
-		Long thno3 = query.from(QHmCattleCureInfo.hmCattleCureInfo)
-		.where( QHmCattleCureInfo.hmCattleCureInfo.hmCattleCureInfoId.hmCattleRegister.entityDiscernNo.eq(hmCattleRegister.getEntityDiscernNo()))
-		.uniqueResult(QHmCattleCureInfo.hmCattleCureInfo.hmCattleCureInfoId.thNo.max());
-		
-		HmCattleCureInfoId hmCattleCureInfoId = new HmCattleCureInfoId();
-		hmCattleCureInfoId.setHmCattleRegister(hmCattleRegister);
-		// TODO : BUG 수정 or 추가 ? 일단은 수정으로...
-		hmCattleCureInfoId.setThNo(thno3 == null ? 1L : thno3);
-		hmCattleCureInfo.setHmCattleCureInfoId(hmCattleCureInfoId);
-		cattleCureInfoRepository.save(hmCattleCureInfo);         
-		
+		if(StringUtils.isNotEmpty(hmCattleCureInfo.getDiseaseName())){
+			query = new JPAQuery(entityManager);
+			Long thno3 = query.from(QHmCattleCureInfo.hmCattleCureInfo)
+			.where( QHmCattleCureInfo.hmCattleCureInfo.hmCattleCureInfoId.hmCattleRegister.entityDiscernNo.eq(hmCattleRegister.getEntityDiscernNo()))
+			.uniqueResult(QHmCattleCureInfo.hmCattleCureInfo.hmCattleCureInfoId.thNo.max());
+			
+			HmCattleCureInfoId hmCattleCureInfoId = new HmCattleCureInfoId();
+			hmCattleCureInfoId.setHmCattleRegister(hmCattleRegister);
+			// TODO : BUG 수정 or 추가 ? 멀티 저장 없이 한번만 저장함. 이후 수정 필요
+			hmCattleCureInfoId.setThNo(thno3 == null ? 1L : thno3);
+			hmCattleCureInfo.setHmCattleCureInfoId(hmCattleCureInfoId);
+			cattleCureInfoRepository.save(hmCattleCureInfo);         
+		}
 		//6. 판매정보
-		cattleSellStoreInfoRepository.save(hmCattleSellStoreInfo);     
+		
+		if(StringUtils.isNotEmpty(hmCattleSellStoreInfo.getStoreName())) {
+			hmCattleSellStoreInfo.setEntityDiscernNo(hmCattleRegister.getEntityDiscernNo());
+			cattleSellStoreInfoRepository.save(hmCattleSellStoreInfo);     
+		}
 		
 		return "/cattle/cattle_form.tiles";
 	}
