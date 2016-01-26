@@ -19,8 +19,8 @@ package com.skan.potal.web.potal.application.model;
 
 import java.io.Serializable;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -40,17 +40,13 @@ public class CmtbCode implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/** 코드 관리번호. */
-	@Id
-	private String codeMgtNo;
+	@EmbeddedId private CmtbCodeId cmtbCodeId;
 
 	/** 상위코드. */
 	private String upperCode;
 
 	/** 그룹별 코드 순번. */
 	private Long codeSeq;
-
-	/** 코드. */
-	private String code;
 
 	/** 코드이름. */
 	private String codeName;
@@ -63,25 +59,20 @@ public class CmtbCode implements Serializable {
 	 */
 	public CmtbCode() {
 	}
-
-	/**
-	 * 코드 관리번호을 설정합니다..
-	 * 
-	 * @param codeMgtNo
-	 *            코드 관리번호
-	 */
-	public void setCodeMgtNo(String codeMgtNo) {
-		this.codeMgtNo = codeMgtNo;
+	
+	
+	public CmtbCodeId getCmtbCodeId() {
+		return cmtbCodeId;
 	}
 
-	/**
-	 * 코드 관리번호을 가져옵니다..
-	 * 
-	 * @return 코드 관리번호
-	 */
-	public String getCodeMgtNo() {
-		return this.codeMgtNo;
+	
+	public void setCmtbCodeId(CmtbCodeId cmtbCodeId) {
+		this.cmtbCodeId = cmtbCodeId;
 	}
+
+
+
+
 
 	/**
 	 * 상위코드을 설정합니다..
@@ -121,24 +112,6 @@ public class CmtbCode implements Serializable {
 		return this.codeSeq;
 	}
 
-	/**
-	 * 코드을 설정합니다..
-	 * 
-	 * @param code
-	 *            코드
-	 */
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	/**
-	 * 코드을 가져옵니다..
-	 * 
-	 * @return 코드
-	 */
-	public String getCode() {
-		return this.code;
-	}
 
 	/**
 	 * 코드이름을 설정합니다..
