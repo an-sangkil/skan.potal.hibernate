@@ -1,4 +1,4 @@
-package com.dongbu.potal.web.potal.application.dao;
+package com.skan.potal.web.potal.code.controller;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,12 +24,6 @@ public class CmtbCodeRepositoryTest {
 	@Test
 	public void findAllTest() {
 		
-		CmtbCode cmtbCode = new CmtbCode();
-		cmtbCode.setCodeMgtNo("");
-		cmtbCode.setUpperCode("");
-		cmtbCode.setCode("");
-		cmtbCode.setCodeSeq(2L);
-		cmtbCodeRepository.save(cmtbCode);
 
 	}
 	
