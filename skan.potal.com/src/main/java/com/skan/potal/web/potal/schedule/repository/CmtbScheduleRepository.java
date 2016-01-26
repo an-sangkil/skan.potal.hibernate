@@ -1,11 +1,11 @@
-package com.skan.potal.web.potal.application.dao;
+package com.skan.potal.web.potal.schedule.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.skan.potal.web.potal.application.model.CmtbSchedule;
-import com.skan.potal.web.potal.application.model.CmtbSchedulePK;
+import com.skan.potal.web.potal.schedule.model.CmtbSchedule;
+import com.skan.potal.web.potal.schedule.model.CmtbSchedulePK;
 
 public interface CmtbScheduleRepository extends JpaRepository<CmtbSchedule, CmtbSchedulePK> {
 

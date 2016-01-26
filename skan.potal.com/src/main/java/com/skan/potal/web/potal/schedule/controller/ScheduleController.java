@@ -15,7 +15,7 @@
  *
  * Copyright (C) 2015 by SKAN.COMPANY All right reserved.
  */
-package com.skan.potal.web.potal.application.controller;
+package com.skan.potal.web.potal.schedule.controller;
 
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
@@ -43,11 +43,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skan.potal.web.potal.application.dao.CmtbCodeRepository;
-import com.skan.potal.web.potal.application.dao.CmtbScheduleRepository;
 import com.skan.potal.web.potal.application.model.CmtbCode;
-import com.skan.potal.web.potal.application.model.CmtbSchedule;
-import com.skan.potal.web.potal.application.model.CmtbSchedulePK;
 import com.skan.potal.web.potal.common.util.CalendarUtils;
+import com.skan.potal.web.potal.schedule.model.CmtbSchedule;
+import com.skan.potal.web.potal.schedule.model.CmtbSchedulePK;
+import com.skan.potal.web.potal.schedule.repository.CmtbScheduleRepository;
 
 @Controller
 public class ScheduleController {

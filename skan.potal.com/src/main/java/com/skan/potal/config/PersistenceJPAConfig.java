@@ -59,8 +59,9 @@ public class PersistenceJPAConfig {
         em.setPackagesToScan(new String[]{
         		"com.skan.potal.hibernate.application.model",
         		"com.skan.potal.web.potal.application.model",
-        		"com.skan.potal.web.potal.address",
-        		"com.skan.potal.web.potal.cattle"
+        		"com.skan.potal.web.potal.address.model",
+        		"com.skan.potal.web.potal.cattle.model",
+        		"com.skan.potal.web.potal.schedule.model"
         });
 
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();

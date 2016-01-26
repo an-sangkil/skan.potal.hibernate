@@ -21,10 +21,10 @@ import com.skan.potal.config.AppConfig;
 import com.skan.potal.config.PersistenceJPAConfig;
 import com.skan.potal.config.WebMvcConfig;
 import com.skan.potal.web.potal.application.dao.CmtbGroupRepository;
-import com.skan.potal.web.potal.application.dao.CmtbScheduleRepository;
 import com.skan.potal.web.potal.application.dao.CmtbUserRepository;
-import com.skan.potal.web.potal.application.model.CmtbSchedule;
-import com.skan.potal.web.potal.application.model.CmtbSchedulePK;
+import com.skan.potal.web.potal.schedule.model.CmtbSchedule;
+import com.skan.potal.web.potal.schedule.model.CmtbSchedulePK;
+import com.skan.potal.web.potal.schedule.repository.CmtbScheduleRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration

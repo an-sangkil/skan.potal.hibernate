@@ -1,4 +1,4 @@
-package com.skan.potal.web.potal.application.model;
+package com.skan.potal.web.potal.schedule.model;
 
 import java.io.Serializable;
 
