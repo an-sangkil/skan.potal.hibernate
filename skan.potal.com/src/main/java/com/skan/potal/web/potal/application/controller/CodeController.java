@@ -37,11 +37,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.mysema.query.jpa.impl.JPAQuery;
 import com.skan.potal.web.potal.application.dao.CmtbCodeRepository;
 import com.skan.potal.web.potal.application.model.CmtbCode;
 import com.skan.potal.web.potal.application.model.CmtbCodeId;
-import com.skan.potal.web.potal.application.model.QCmtbCode;
 import com.skan.potal.web.potal.application.service.CmtbCodeService;
 import com.skan.potal.web.potal.common.util.PageUtils;
 import com.skan.potal.web.potal.common.util.UUIDUtils;
