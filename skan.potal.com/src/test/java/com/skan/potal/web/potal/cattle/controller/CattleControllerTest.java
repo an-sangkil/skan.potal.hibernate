@@ -41,7 +41,7 @@ import com.mysema.query.jpa.impl.JPAQuery;
 import com.skan.potal.config.AppConfig;
 import com.skan.potal.config.PersistenceJPAConfig;
 import com.skan.potal.config.WebMvcConfig;
-import com.skan.potal.web.potal.cattle.model.QHmCattleCalfRecode;
+import com.skan.potal.web.potal.cattle.dto.QHmCattleCalfRecode;
 
 /**
  * @author ahn

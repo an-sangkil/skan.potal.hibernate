@@ -1,4 +1,4 @@
-package com.skan.potal.web.potal.cattle.model;
+package com.skan.potal.web.potal.cattle.dto;
 
 import java.io.Serializable;
 

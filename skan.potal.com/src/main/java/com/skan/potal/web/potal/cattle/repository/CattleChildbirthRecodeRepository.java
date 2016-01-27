@@ -20,8 +20,8 @@ package com.skan.potal.web.potal.cattle.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.skan.potal.web.potal.cattle.model.HmCattleChildbirthRecode;
-import com.skan.potal.web.potal.cattle.model.HmCattleChildbirthRecodeId;
+import com.skan.potal.web.potal.cattle.dto.HmCattleChildbirthRecode;
+import com.skan.potal.web.potal.cattle.dto.HmCattleChildbirthRecodeId;
 
 /**
  * @author ahn

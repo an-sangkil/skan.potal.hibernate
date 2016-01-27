@@ -28,8 +28,8 @@ import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 import org.springframework.stereotype.Repository;
 
 import com.mysema.query.jpa.JPQLQuery;
-import com.skan.potal.web.potal.cattle.model.HmCattleRegister;
-import com.skan.potal.web.potal.cattle.model.QHmCattleRegister;
+import com.skan.potal.web.potal.cattle.dto.HmCattleRegister;
+import com.skan.potal.web.potal.cattle.dto.QHmCattleRegister;
 
 /**
  * @author ahn
@@ -38,7 +38,14 @@ import com.skan.potal.web.potal.cattle.model.QHmCattleRegister;
 @Repository
 public interface CattleRegisterRepository
 		extends JpaRepository<HmCattleRegister, String>, QueryDslPredicateExecutor<HmCattleRegister> {
-
+	
+	/**
+	 * 페이징 
+	 * @param countQuery
+	 * @param query
+	 * @param pageable
+	 * @return
+	 */
 	default Page<HmCattleRegister> buildPage(JPQLQuery countQuery, JPQLQuery query, Pageable pageable) {
 		
 		Long total = countQuery.count();

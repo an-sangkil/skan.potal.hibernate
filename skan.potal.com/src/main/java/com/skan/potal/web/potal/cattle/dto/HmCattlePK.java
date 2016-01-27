@@ -16,7 +16,7 @@
  *
  * Copyright (C) 2016 by SKAN.COMPANY All right reserved.
  */
-package com.skan.potal.web.potal.cattle.model;
+package com.skan.potal.web.potal.cattle.dto;
 
 import java.io.Serializable;
 

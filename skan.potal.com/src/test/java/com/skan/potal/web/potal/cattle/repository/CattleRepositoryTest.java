@@ -39,12 +39,12 @@ import com.mysema.query.jpa.impl.JPAQuery;
 import com.skan.potal.config.AppConfig;
 import com.skan.potal.config.PersistenceJPAConfig;
 import com.skan.potal.config.WebMvcConfig;
-import com.skan.potal.web.potal.cattle.model.HmCattleBuyInfo;
-import com.skan.potal.web.potal.cattle.model.HmCattleChildbirthRecode;
-import com.skan.potal.web.potal.cattle.model.HmCattleChildbirthRecodeId;
-import com.skan.potal.web.potal.cattle.model.HmCattleRegister;
-import com.skan.potal.web.potal.cattle.model.QHmCattleBuyInfo;
-import com.skan.potal.web.potal.cattle.model.QHmCattleRegister;
+import com.skan.potal.web.potal.cattle.dto.HmCattleBuyInfo;
+import com.skan.potal.web.potal.cattle.dto.HmCattleChildbirthRecode;
+import com.skan.potal.web.potal.cattle.dto.HmCattleChildbirthRecodeId;
+import com.skan.potal.web.potal.cattle.dto.HmCattleRegister;
+import com.skan.potal.web.potal.cattle.dto.QHmCattleBuyInfo;
+import com.skan.potal.web.potal.cattle.dto.QHmCattleRegister;
 
 /**
  * @author ahn

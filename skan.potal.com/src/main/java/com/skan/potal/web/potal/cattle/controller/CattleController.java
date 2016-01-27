@@ -38,19 +38,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mysema.query.jpa.impl.JPAQuery;
-import com.skan.potal.web.potal.cattle.model.HmCattleBuyInfo;
-import com.skan.potal.web.potal.cattle.model.HmCattleCalfRecode;
-import com.skan.potal.web.potal.cattle.model.HmCattleCalfRecodeId;
-import com.skan.potal.web.potal.cattle.model.HmCattleChildbirthRecode;
-import com.skan.potal.web.potal.cattle.model.HmCattleChildbirthRecodeId;
-import com.skan.potal.web.potal.cattle.model.HmCattleCureInfo;
-import com.skan.potal.web.potal.cattle.model.HmCattleCureInfoId;
-import com.skan.potal.web.potal.cattle.model.HmCattleRegister;
-import com.skan.potal.web.potal.cattle.model.HmCattleSellStoreInfo;
-import com.skan.potal.web.potal.cattle.model.QHmCattleCalfRecode;
-import com.skan.potal.web.potal.cattle.model.QHmCattleChildbirthRecode;
-import com.skan.potal.web.potal.cattle.model.QHmCattleCureInfo;
-import com.skan.potal.web.potal.cattle.model.QHmCattleRegister;
+import com.skan.potal.web.potal.cattle.dto.HmCattleBuyInfo;
+import com.skan.potal.web.potal.cattle.dto.HmCattleCalfRecode;
+import com.skan.potal.web.potal.cattle.dto.HmCattleCalfRecodeId;
+import com.skan.potal.web.potal.cattle.dto.HmCattleChildbirthRecode;
+import com.skan.potal.web.potal.cattle.dto.HmCattleChildbirthRecodeId;
+import com.skan.potal.web.potal.cattle.dto.HmCattleCureInfo;
+import com.skan.potal.web.potal.cattle.dto.HmCattleCureInfoId;
+import com.skan.potal.web.potal.cattle.dto.HmCattleRegister;
+import com.skan.potal.web.potal.cattle.dto.HmCattleSellStoreInfo;
+import com.skan.potal.web.potal.cattle.dto.QHmCattleCalfRecode;
+import com.skan.potal.web.potal.cattle.dto.QHmCattleChildbirthRecode;
+import com.skan.potal.web.potal.cattle.dto.QHmCattleCureInfo;
+import com.skan.potal.web.potal.cattle.dto.QHmCattleRegister;
 import com.skan.potal.web.potal.cattle.repository.CattleBuyInfoRepository;
 import com.skan.potal.web.potal.cattle.repository.CattleCalfRecodeRepository;
 import com.skan.potal.web.potal.cattle.repository.CattleChildbirthRecodeRepository;
@@ -76,7 +76,6 @@ public class CattleController {
 	@Autowired CattleChildbirthRecodeRepository cattleChildbirthRecodeRepository; 
 	@Autowired CattleCureInfoRepository 		cattleCureInfoRepository; 
 	@Autowired CattleSellStoreInfoRepository 	cattleSellStoreInfoRepository;
-	
 	
 	@Autowired private EntityManager entityManager;
 	
@@ -183,7 +182,7 @@ public class CattleController {
 			,@Valid HmCattleCureInfo hmCattleCureInfo , BindingResult bindingResult5
 			,@Valid HmCattleSellStoreInfo hmCattleSellStoreInfo, BindingResult bindingResult6) throws Exception { 
 		
-		//1. 기본정보
+		//1. 기본정보 
 		cattleRegisterRepository.save(hmCattleRegister);
 		
 		if(StringUtils.isNotEmpty(hmCattleBuyInfo.getBuyStoreName())){
@@ -196,6 +195,8 @@ public class CattleController {
 			cattleBuyInfoRepository.save(hmCattleBuyInfo);
 		}
 		
+		
+		// 3 ~ 5 번 데이터 삭제후 등록 
 		//3. 송아지 기록
 		QHmCattleCalfRecode qhmCattleCalfRecode = QHmCattleCalfRecode.hmCattleCalfRecode;
 		JPAQuery query = new JPAQuery(entityManager);
