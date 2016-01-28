@@ -20,7 +20,7 @@
 			<li <c:if test="${MENU_CODE eq 'CATTLE'}">class="active"</c:if>><a href="#" onclick="headerAction.submit('CATTLE', '${pageContext.request.contextPath}/cattle/cattle_list') ">개체관리</a></li>
 			<li <c:if test="${MENU_CODE eq 'ADDRESS'}">class="active"</c:if>><a href="#" onclick="headerAction.submit('ADDRESS', '${pageContext.request.contextPath}/address/address_list') ">주소록</a></li>
 			<li <c:if test="${MENU_CODE eq 'CALENDAR'}">class="active"</c:if>><a href="#" onclick="headerAction.submit('CALENDAR', '${pageContext.request.contextPath}/schdule/schdule_list') ">일정관리</a></li>
-			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">시스템관리 <span class="caret"></span></a>
+			<li <c:if test="${MENU_CODE eq 'CONFIGRATION'}">class="active"</c:if>class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">시스템관리 <span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li><a href="${pageContext.request.contextPath}/code/code_list">코드관리</a></li>
 					<li><a href="#">권한관리 </a></li>

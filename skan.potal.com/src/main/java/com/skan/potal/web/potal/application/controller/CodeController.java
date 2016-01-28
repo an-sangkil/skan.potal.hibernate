@@ -30,6 +30,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -67,8 +68,9 @@ public class CodeController {
 			ModelMap modelMap) throws Exception {
 		
 		Sort sort = new Sort(
-				new org.springframework.data.domain.Sort.Order(Direction.ASC, "codeName") 
-				//,new Order(Direction.DESC , "hmMgNum")
+				new Order(Direction.DESC , "cmtbCodeId.code")
+				,new Order(Direction.DESC , "codeSeq")
+				,new org.springframework.data.domain.Sort.Order(Direction.ASC, "codeName") 
 				);  
 		
 		Page<CmtbCode> codePage;
@@ -103,7 +105,7 @@ public class CodeController {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping("code/form")
+	@RequestMapping("code/code_form")
 	private String codeForm(@RequestParam(required=false) String codeMgtNo
 			, @RequestParam(required=false) String code
 			, ModelMap modelMap) {
@@ -114,7 +116,7 @@ public class CodeController {
 			cmtbCodeId.setCodeMgtNo(codeMgtNo);
 			cmtbCodeId.setCode(code);
 			CmtbCode cmtbCode = cmtbCodeRepository.findOne(cmtbCodeId);
-			modelMap.put("code", cmtbCode);
+			modelMap.put("cmtbCode", cmtbCode);
 			
 		}
 		
@@ -131,7 +133,7 @@ public class CodeController {
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping("code/insert")
+	@RequestMapping("code/code_insert")
 	private String saveCode(@Valid CmtbCode cmtbCode ,@ModelAttribute CmtbCodeId cmtbCodeId ,BindingResult bindingResult, HttpServletRequest request, ModelMap modelMap) throws Exception {
 		
 		if(StringUtils.isEmpty(cmtbCodeId.getCodeMgtNo())|| StringUtils.isNotEmpty(cmtbCode.getUpperCode())){
@@ -145,6 +147,11 @@ public class CodeController {
 		cmtbCode.setCmtbCodeId(cmtbCodeId);
 		cmtbCodeRepository.save(cmtbCode);
 		 
-		return "redirect:code/code_list";
+		return "redirect:/code/code_list";
+	}
+	
+	@ModelAttribute
+	public void commonAttribute(ModelMap modelMap) {
+		modelMap.put("MENU_CODE", "CONFIGRATION");
 	}
 }

@@ -71,7 +71,7 @@
 		<div class="col-sm-10">
 			<select class="form-control" id="todayWeatherCode" name="todayWeatherCode">
 				<c:forEach var="cmtbCode" items="${cmtbCodes}" varStatus="status">
-					<option value="${cmtbCode.code}" <c:if test="${cmtbSchedule.todayWeatherCode eq cmtbCode.code}">selected</c:if>>${cmtbCode.codeName}</option>
+					<option value="${cmtbCode.cmtbCodeId.code}" <c:if test="${cmtbSchedule.todayWeatherCode eq cmtbCode.cmtbCodeId.code}">selected</c:if>>${cmtbCode.codeName}</option>
 				</c:forEach>
 			</select> 
 			<div class="has-error">
