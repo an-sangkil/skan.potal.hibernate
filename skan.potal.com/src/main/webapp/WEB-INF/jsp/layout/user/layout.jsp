@@ -36,15 +36,13 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-
-<script src="${pageContext.request.contextPath}/assets/jquery/jquery-1.11.3.js"></script>
-<script src="${pageContext.request.contextPath}/assets/bootstrap/dist/js/bootstrap.js"></script>
-<script src="${pageContext.request.contextPath}/assets/jquery/jquery-1.11.3.js"></script>
-<script src="${pageContext.request.contextPath}/assets/jquery/ui/jquery-ui.js"></script>
-
 <link href="${pageContext.request.contextPath}/assets/jquery/ui/jquery-ui.css" rel="stylesheet"></link>
 <link href="${pageContext.request.contextPath}/assets/jquery/ui/jquery-ui.structure.css" rel="stylesheet"></link>
 <link href="${pageContext.request.contextPath}/assets/jquery/ui/jquery-ui.theme.css" rel="stylesheet"></link>
+
+<script src="${pageContext.request.contextPath}/assets/jquery/jquery-1.11.3.js"></script>
+<script src="${pageContext.request.contextPath}/assets/bootstrap/dist/js/bootstrap.js"></script>
+<script src="${pageContext.request.contextPath}/assets/jquery/ui/jquery-ui.js"></script>
 
 <!-- Favicon -->
 <link rel="shortcut icon" href="img/favicon/favicon.png">

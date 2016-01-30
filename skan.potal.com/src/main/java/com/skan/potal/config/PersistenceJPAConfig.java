@@ -76,6 +76,7 @@ public class PersistenceJPAConfig {
 		
 		DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
 		driverManagerDataSource.setDriverClassName("org.postgresql.Driver");
+//		driverManagerDataSource.setDriverClassName("com.p6spy.engine.spy.P6SpyDriver");
 		driverManagerDataSource.setUrl("jdbc:postgresql://127.0.0.1:5432/potaldb");
 		driverManagerDataSource.setUsername("skan");
 		driverManagerDataSource.setPassword("1111");
@@ -102,8 +103,7 @@ public class PersistenceJPAConfig {
         hibernateProperties.setProperty("hibernate.enable_lazy_load_no_trans", "true");
         hibernateProperties.setProperty("hibernate.show_sql", "true");
         hibernateProperties.setProperty("hibernate.format_sql", "true");
-        
-		// <property name="hibernate.use_sql_comments" value="true" />
+		// hibernateProperties.setProperty("hibernate.use_sql_comments", "true");
 		// <property name="hibernate.id.new_generator_mappings" value="true" />
         // hibernateProperties.setProperty("hibernate.globally_quoted_identifiers", "true");
         return hibernateProperties;
