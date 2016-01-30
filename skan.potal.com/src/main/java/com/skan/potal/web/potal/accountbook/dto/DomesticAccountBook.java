@@ -6,6 +6,8 @@ import java.util.Date;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -35,6 +37,7 @@ public class DomesticAccountBook implements Serializable {
 
 	/** 거래일. */
 	@DateTimeFormat(iso=ISO.DATE)
+	@Temporal(TemporalType.DATE)
 	private Date businessDay;
 
 	/** 금액. */

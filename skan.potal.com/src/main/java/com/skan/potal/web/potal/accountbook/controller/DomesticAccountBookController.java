@@ -18,6 +18,7 @@
 package com.skan.potal.web.potal.accountbook.controller;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -68,11 +69,17 @@ public class DomesticAccountBookController {
 			@RequestParam(defaultValue="", required=false) String searchType,
 			ModelMap modelMap) {
 		
-		Sort sort = new Sort(
-				new org.springframework.data.domain.Sort.Order(Direction.DESC, "businessDay") 
-				//,new Order(Direction.DESC , "hmMgNum")
-				);  
-		List<DomesticAccountBook> domesticAccountBooks = domesticAccountBookRepository.findAll(sort);
+//		Sort sort = new Sort(
+//				new org.springframework.data.domain.Sort.Order(Direction.DESC, "businessDay") 
+//				//,new Order(Direction.DESC , "hmMgNum")
+//				);  
+		
+		// 기본 : 해당년 01.01 ~ 오늘까지					 > form ~ to 자동 계산
+		// 오늘을 기준으로 : 일주일 , 1개월 , 3개월, 6개월, 1년    > from ~ to 자동 계산
+		// 기간 지정 : from ~ to
+		
+		List<DomesticAccountBook> domesticAccountBooks = domesticAccountBookRepository.findByBusinessDayBetween(new Date(), new Date());
+		//List<DomesticAccountBook> domesticAccountBooks = domesticAccountBookRepository.findAll(sort);
 		
 		// TODO 총금액 계산 DB에서 할가? 서버에서 할까...
 		// 유형별 두가지 : 수입 / 지출 
@@ -101,7 +108,8 @@ public class DomesticAccountBookController {
 		
 		if(StringUtils.isEmpty( dabMngNo)) {
 			//불러오기
-			domesticAccountBookRepository.findOne(dabMngNo);
+			DomesticAccountBook domesticAccountBook = domesticAccountBookRepository.findOne(dabMngNo);
+			modelMap.put("domesticAccountBook", domesticAccountBook);
 		}
 		
 		return "/accountbook/domesticAccountBook_form.tiles";

@@ -40,8 +40,8 @@ public class DomesticAccountBookControllerTest {
 	}
 	
 	@Test
-	public void domesticAccountBookList() {
-		
+	public void domesticAccountBookList() throws Exception {
+		mockMvc.perform(post("/domestic_account_book/list"));
 	}
 	
 	@Test
@@ -56,4 +56,13 @@ public class DomesticAccountBookControllerTest {
 				.param("detailContents", "사이트 정량 비용")
 				);
 	}
+	
+	@Test
+	public void domesticAccountBookDelete() throws Exception {
+		mockMvc.perform(post("/domestic_account_book/delete")
+				.param("dabMngNo", "cd55bf33-2402-452c-81b1-52e92cf29507")
+				);
+	}
+	
+	
 }
