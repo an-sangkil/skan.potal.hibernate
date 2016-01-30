@@ -60,8 +60,10 @@ public class PersistenceJPAConfig {
         		"com.skan.potal.hibernate.application.model",
         		"com.skan.potal.web.potal.application.model",
         		"com.skan.potal.web.potal.address.model",
+        		"com.skan.potal.web.potal.schedule.model",
         		"com.skan.potal.web.potal.cattle.dto",
-        		"com.skan.potal.web.potal.schedule.model"
+        		"com.skan.potal.web.potal.accountbook.dto",
+        		"com.skan.potal.web.account.dto"
         });
 
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
