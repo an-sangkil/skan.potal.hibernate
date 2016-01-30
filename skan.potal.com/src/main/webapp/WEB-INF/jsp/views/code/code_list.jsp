@@ -104,6 +104,9 @@ var addressAction = (function () {
 					</td>
 					<td>
 						${item.upperCode }
+						<c:if test="${!empty item.cmtbUpperCode }">
+						(${item.cmtbUpperCode.codeName})
+						</c:if>
 					</td>
 					<td>
 						<c:choose>
