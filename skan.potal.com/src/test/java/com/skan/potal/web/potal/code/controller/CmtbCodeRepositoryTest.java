@@ -1,5 +1,7 @@
 package com.skan.potal.web.potal.code.controller;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +24,11 @@ public class CmtbCodeRepositoryTest {
 	@Autowired private CmtbCodeRepository cmtbCodeRepository;
 	
 	@Test
-	public void findAllTest() {
-		
-
+	public void findAllTest() throws Exception {
+		List<CmtbCode> cmtbCode =  cmtbCodeRepository.findAll();
+		cmtbCode.forEach(item -> {
+			item.getCodeName();	
+		});
 	}
 	
 	
