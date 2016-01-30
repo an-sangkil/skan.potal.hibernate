@@ -24,18 +24,18 @@ public class CmtbCodeId implements Serializable {
 	private static final long serialVersionUID = 841812616897421032L;
 
 	/** 코드 관리번호. */
-	private String codeMgtNo;
+//	private String codeMgtNo;
 
 	/** 코드. */
 	private String code;
 
-	public String getCodeMgtNo() {
-		return codeMgtNo;
-	}
-
-	public void setCodeMgtNo(String codeMgtNo) {
-		this.codeMgtNo = codeMgtNo;
-	}
+//	public String getCodeMgtNo() {
+//		return codeMgtNo;
+//	}
+//
+//	public void setCodeMgtNo(String codeMgtNo) {
+//		this.codeMgtNo = codeMgtNo;
+//	}
 
 	public String getCode() {
 		return code;
@@ -50,7 +50,7 @@ public class CmtbCodeId implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((code == null) ? 0 : code.hashCode());
-		result = prime * result + ((codeMgtNo == null) ? 0 : codeMgtNo.hashCode());
+//		result = prime * result + ((codeMgtNo == null) ? 0 : codeMgtNo.hashCode());
 		return result;
 	}
 
@@ -68,11 +68,11 @@ public class CmtbCodeId implements Serializable {
 				return false;
 		} else if (!code.equals(other.code))
 			return false;
-		if (codeMgtNo == null) {
-			if (other.codeMgtNo != null)
-				return false;
-		} else if (!codeMgtNo.equals(other.codeMgtNo))
-			return false;
+//		if (codeMgtNo == null) {
+//			if (other.codeMgtNo != null)
+//				return false;
+//		} else if (!codeMgtNo.equals(other.codeMgtNo))
+//			return false;
 		return true;
 	}
 	
