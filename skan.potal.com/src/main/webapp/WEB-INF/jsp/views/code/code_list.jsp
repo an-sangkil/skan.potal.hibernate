@@ -29,10 +29,8 @@ var addressAction = (function () {
 			document.code_form.action = "${pageContext.request.contextPath}/code/code_form";
 			document.code_form.submit();
 		},
-		detailView : function (codeMgtNo,code) {
-			alert(code);
+		detailView : function (code) {
 			document.code_form.action = "${pageContext.request.contextPath}/code/code_form";
-			document.code_form.codeMgtNo.value= codeMgtNo;
 			document.code_form.code.value= code;
 			document.code_form.submit();
 		}
@@ -44,7 +42,6 @@ var addressAction = (function () {
 
 <form name="code_form" method="post" action="${pageContext.request.contextPath}/code/code_list">
 	<input id="page" 		name="page" 		type="hidden" value=""> 
-	<input id="codeMgtNo" 	name="codeMgtNo" 	type="hidden" value="">
 	<input id="code" 		name="code" 		type="hidden" value="">
 	
 	<div class="jumbotron">
@@ -99,7 +96,7 @@ var addressAction = (function () {
 		</thead>
 		<tbody>
 			<c:forEach var="item" items="${codePage.content}" varStatus="status">
-				<tr onclick="addressAction.detailView('${item.cmtbCodeId.codeMgtNo}','${item.cmtbCodeId.code}')">
+				<tr onclick="addressAction.detailView('${item.cmtbCodeId.code}')">
 					<th scope="row">${item.cmtbCodeId.code}</th>
 					<td>${item.codeSeq}</td>
 					<td>
