@@ -21,5 +21,10 @@
 		<put-attribute name="header" expression="/layout/header_page?menuCode=${MENU_CODE}"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/views/code/{1}.jsp" />
 	</definition>
+	
+	<definition name="/accountbook/*.tiles" extends="user.base.layout2">
+		<put-attribute name="header" expression="/layout/header_page?menuCode=${MENU_CODE}"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/views/accountbook/{1}.jsp" />
+	</definition>
 
 </tiles-definitions>
