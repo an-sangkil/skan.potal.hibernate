@@ -18,9 +18,21 @@
 package com.skan.potal.web.potal.application.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.annotation.Nullable;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -34,6 +46,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
  */
 @Entity
 @Table
+//@org.hibernate.annotations.Entity(dynamicInsert=true)
 public class CmtbCode implements Serializable {
 
 	/** serialVersionUID. */
@@ -43,6 +56,7 @@ public class CmtbCode implements Serializable {
 	@EmbeddedId private CmtbCodeId cmtbCodeId;
 
 	/** 상위코드. */
+	@Column(nullable=true)
 	private String upperCode;
 
 	/** 그룹별 코드 순번. */
@@ -53,7 +67,24 @@ public class CmtbCode implements Serializable {
 
 	/** 코드 설명. */
 	private String codeComment;
+	
+	@OneToOne(fetch=FetchType.LAZY
+			//,cascade={CascadeType.ALL}
+	)
+    @JoinColumns(
+    		{
+    				@JoinColumn(name="upperCode", insertable=false, updatable=false , columnDefinition="code",nullable=true)
+//    				,@JoinColumn(name="codeMgtNo", insertable=false, updatable=false)
+    			}
+    		
+    		)
+    private CmtbCode cmtbUpperCode;
 
+//	@OneToMany(mappedBy="cmtbUpperCode",fetch=FetchType.LAZY)
+//    private Set<CmtbCode> subCmtbCode = new HashSet<CmtbCode>();
+ 
+    
+	
 	/**
 	 * 생성자.
 	 */
@@ -61,6 +92,11 @@ public class CmtbCode implements Serializable {
 	}
 	
 	
+	public CmtbCode getCmtbUpperCode() {
+		return cmtbUpperCode;
+	}
+
+
 	public CmtbCodeId getCmtbCodeId() {
 		return cmtbCodeId;
 	}
@@ -70,10 +106,7 @@ public class CmtbCode implements Serializable {
 		this.cmtbCodeId = cmtbCodeId;
 	}
 
-
-
-
-
+	
 	/**
 	 * 상위코드을 설정합니다..
 	 * 
