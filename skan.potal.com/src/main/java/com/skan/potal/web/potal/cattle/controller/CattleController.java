@@ -62,6 +62,7 @@ import com.skan.potal.web.potal.common.util.CalendarUtils.CalendarPattermn;
 import com.skan.potal.web.potal.common.util.PageUtils;
 
 /**
+ * 개체 기록 관리
  * @author ahn
  *
  */
