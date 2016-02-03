@@ -2,12 +2,12 @@
 <%@ include file="/WEB-INF/jsp/common/TagLib.jspf"%>
 
 <script>
-	var addressAuction = (function (){
+	var DomesticAccountBookAction = (function (){
 		
 		return {
 			submit : function () {
-				document.code_form.action = "${pageContext.request.contextPath}/code/code_insert";
-				document.code_form.submit();
+				document.domesticAccountBook_form.action = "${pageContext.request.contextPath}/domestic_account_book/insert";
+				document.domesticAccountBook_form.submit();
 			},
 			upperCode : function () {
 				$('#upperCode').val($('#upperCodeData').val());
@@ -15,7 +15,8 @@
 			}
 		}
 	})();
-
+	
+	// 성공 실패 메시지...
 	function callback() {
 		setTimeout(function() {
 	        $( "#message:visible" ).removeAttr( "style" ).fadeOut();
@@ -46,48 +47,82 @@
 
 </div>
 
-<form name="code_form" id="code_form" class="form-horizontal" role="form" action="${pageContext.request.contextPath}/code/code_insert" method="post">
-<%-- <input type="hidden" id="codeMgtNo" name="codeMgtNo" value="${cmtbCode.cmtbCodeId.codeMgtNo}"> --%>
-<input type="hidden" id="code" 		name="code" 	 value="${cmtbCode.cmtbCodeId.code}">
-<input type="hidden" id="codeSeq" 	name="codeSeq" 	 value="${cmtbCode.codeSeq}">
+<form name="domesticAccountBook_form" id="domesticAccountBook_form" class="form-horizontal" role="form" action="${pageContext.request.contextPath}/domestic_account_book/insert" method="post">
+<input type="hidden" id="dabMngNo" 		name="dabMngNo" 	 value="${domesticAccountBook.dabMngNo}">
+
 	<div class="form-group">
-		<label for="firstname" class="col-sm-2 control-label">상위코드</label>
+		<label for="firstname" class="col-sm-2 control-label">수입/지출 유형</label>
 		<div class="col-sm-8">
-			<input type="text" class="form-control" id="upperCode" name="upperCode" placeholder="상위코드" value="${cmtbCode.upperCode}" readonly="readonly">
+			<input type="text" class="form-control" id="typeCode" name="typeCode" placeholder="상위코드" value="${domesticAccountBook.typeCode}" readonly="readonly">
 			<div class="has-error">
-				<label class="control-label" for="inputSuccess1"><form:errors path="cmtbCode.upperCode" /></label>
+				<label class="control-label" for="inputSuccess1"><form:errors path="domesticAccountBook.upperCode" /></label>
 			</div>
 		</div>
 		<div class="col-sm-2">
-		<button type="button" class="btn btn-info btn-lg" id="myBtn">선택하세요</button> 
+			<button type="button" class="btn btn-info btn-lg" id="myBtn">선택하세요</button> 
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="firstname" class="col-sm-2 control-label">코드명</label>
-		<div class="col-sm-10">
-			<input type="text" class="form-control" id="codeName" name="codeName" placeholder="코드명" value="${cmtbCode.codeName}" >
+		<label for="firstname" class="col-sm-2 control-label">세부 유형</label>
+		<div class="col-sm-8">
+			<input type="text" class="form-control" id="detailTypeCode" name="detailTypeCode" placeholder="코드명" value="${domesticAccountBook.detailTypeCode}" >
 			<div class="has-error">
-				<label class="control-label" for="inputSuccess1"><form:errors path="cmtbCode.codeName" /></label>
+				<label class="control-label" for="inputSuccess1"><form:errors path="domesticAccountBook.detailTypeCode" /></label>
 			</div>
+		</div>
+		<div class="col-sm-2">
+			<button type="button" class="btn btn-info btn-lg" id="myBtn">선택하세요</button> 
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label for="lastname" class="col-sm-2 control-label">코드설명</label>
+		<label for="lastname" class="col-sm-2 control-label">거래일</label>
 		<div class="col-sm-10">
-			<textarea class="form-control" rows="" cols="" id="codeComment" name="codeComment">${cmtbCode.codeComment}</textarea>
+			<input type="text" class="form-control" id="businessDay" name="businessDay" placeholder="yyyy-MM-dd" value="${domesticAccountBook.businessDay}" >
 			
 			<div class="has-error">
-				<label class="control-label" for="inputSuccess1"><form:errors path="cmtbCode.codeComment" /></label>
+				<label class="control-label" for="inputSuccess1"><form:errors path="domesticAccountBook.businessDay" /></label>
 			</div>
 		</div>
 	</div>
 
+	<div class="form-group">
+		<label for="lastname" class="col-sm-2 control-label">금액</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="amount" name="amount" placeholder="금액" value="${domesticAccountBook.amount}" >
+			
+			<div class="has-error">
+				<label class="control-label" for="inputSuccess1"><form:errors path="domesticAccountBook.amount" /></label>
+			</div>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label for="lastname" class="col-sm-2 control-label">내역</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="breakdown" name="breakdown" placeholder="내역" value="${domesticAccountBook.breakdown}" >
+			
+			<div class="has-error">
+				<label class="control-label" for="inputSuccess1"><form:errors path="domesticAccountBook.breakdown" /></label>
+			</div>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label for="lastname" class="col-sm-2 control-label">세부내용</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="detailContents" name="detailContents" placeholder="세부내용" value="${domesticAccountBook.detailContents}" >
+			
+			<div class="has-error">
+				<label class="control-label" for="inputSuccess1"><form:errors path="domesticAccountBook.detailContents" /></label>
+			</div>
+		</div>
+	</div>
 
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
 			<button type="submit" class="btn btn-default" onclick="">저장</button>
-			<button type="button" class="btn btn-danger" onclick="javascript:document.code_form.reset();">취소</button>
+			<button type="button" class="btn btn-danger" onclick="javascript:document.domesticAccountBook_form.reset();">취소</button>
 		</div>
 	</div>
 
@@ -118,7 +153,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-				<button type="button" class="btn btn-primary" onclick="addressAuction.upperCode()">확인</button>
+				<button type="button" class="btn btn-primary" onclick="DomesticAccountBookAction.upperCode()">확인</button>
 			</div>
 		</div>
 		<!-- /.modal-content -->
@@ -142,7 +177,7 @@
 			}).done(function(data) {
 				$('#upperCodeData').find('option').remove();
 				$(data).each(function (index, obj){
-					$('#upperCodeData').append('<option value='+obj.cmtbCodeId.code+'>' + obj.codeName +'</option>')
+					$('#upperCodeData').append('<option value='+obj.domesticAccountBookId.code+'>' + obj.codeName +'</option>')
 				})
 			})
 		});
