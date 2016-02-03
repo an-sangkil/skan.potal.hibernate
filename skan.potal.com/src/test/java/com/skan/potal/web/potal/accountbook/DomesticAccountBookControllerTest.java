@@ -46,15 +46,19 @@ public class DomesticAccountBookControllerTest {
 	
 	@Test
 	public void domesticAccountBookInsert() throws Exception {
-		mockMvc.perform(post("/domestic_account_book/insert")
-				//.param("dabMngNo", "String")
-				.param("typeCode", "00001")
-				.param("detailTypeCode", "00002")
-				.param("businessDay", "2016-01-30")
-				.param("amount", "20000000")
-				.param("breakdown", "특정 이익금")
-				.param("detailContents", "사이트 정량 비용")
-				);
+		
+		for(int i=0 ; i < 100; i++) {
+			mockMvc.perform(post("/domestic_account_book/insert")
+					//.param("dabMngNo", "String")
+					.param("typeCode", "00001")
+					.param("detailTypeCode", "00002")
+					.param("businessDay", "2016-01-30")
+					.param("amount", "20000000")
+					.param("breakdown", "특정 이익금"+i)
+					.param("detailContents", "사이트 정량 비용"+i)
+					);
+			
+		}
 	}
 	
 	@Test

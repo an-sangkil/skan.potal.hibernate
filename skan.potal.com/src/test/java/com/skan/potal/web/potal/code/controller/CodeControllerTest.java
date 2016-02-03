@@ -43,6 +43,10 @@ public class CodeControllerTest {
 	private String codeName = "온도";
 	private String codeComment = "온도를 나타냅니다.";
 	
+	
+	// 기본 코드 생성
+	// 온도 및 기타 내역 기본코드 생성에 필요함
+	
 	@Before
 	public void init() {
 		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
