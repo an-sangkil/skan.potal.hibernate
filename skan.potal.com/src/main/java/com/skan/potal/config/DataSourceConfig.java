@@ -32,7 +32,7 @@ public class DataSourceConfig {
 		basicDataSource.setDriverClassName("org.postgresql.Driver");
 		basicDataSource.setUrl("jdbc:postgresql://127.0.0.1:5432/potaldb");
 		basicDataSource.setUsername("skan");
-		basicDataSource.setPassword("1111");
+		basicDataSource.setPassword("tkdrlf83~");
 		basicDataSource.setDefaultAutoCommit(false);
 		
 		return basicDataSource; 
