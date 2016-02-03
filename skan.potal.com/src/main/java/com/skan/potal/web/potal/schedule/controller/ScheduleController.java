@@ -45,6 +45,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.skan.potal.web.potal.application.dao.CmtbCodeRepository;
 import com.skan.potal.web.potal.application.model.CmtbCode;
 import com.skan.potal.web.potal.common.util.CalendarUtils;
+import com.skan.potal.web.potal.common.util.CalendarUtils.CalendarPattermn;
 import com.skan.potal.web.potal.schedule.model.CmtbSchedule;
 import com.skan.potal.web.potal.schedule.model.CmtbSchedulePK;
 import com.skan.potal.web.potal.schedule.repository.CmtbScheduleRepository;
@@ -75,7 +76,7 @@ public class ScheduleController {
 			logger.trace("cmtbSchedule ToString = {}" , items.toString());
 		} );
 		
-		String toDay = CalendarUtils.getToDayString(CalendarUtils.CALENDER_TYPE_YYYY_MM_DD);
+		String toDay = CalendarUtils.getToDayString(CalendarPattermn.CALENDER_TYPE_YYYY_MM_DD);
 		
 		logger.trace("toDay .............. = {}" , toDay);
 		

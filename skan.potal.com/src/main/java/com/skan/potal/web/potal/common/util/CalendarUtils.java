@@ -56,9 +56,9 @@ public class CalendarUtils {
 	 * @param pattern
 	 * @return
 	 */
-	public static String getToDayString(String pattern) {
+	public static String getToDayString(CalendarPattermn pattern) {
 		Calendar calendar = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+		SimpleDateFormat sdf = new SimpleDateFormat(pattern.getPattern());
 		return sdf.format(calendar.getTime());
 	}
 	
