@@ -124,7 +124,7 @@ $(document).ready(function() {
 <!-- Page heading -->
 <div class="page-head">
 	<h2 class="pull-left">
-		<i class="icon-file-alt"></i> Schedule
+		<i class="icon-file-alt"></i> 일정관리
 	</h2>
 	<!-- Breadcrumb -->
 	<div class="bread-crumb pull-right">
