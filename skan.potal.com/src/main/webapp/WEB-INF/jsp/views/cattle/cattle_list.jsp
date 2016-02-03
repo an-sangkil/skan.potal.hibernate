@@ -72,7 +72,8 @@ var cattleAction = (function () {
 						</div>
 					</div>
 				</div>
-			</div><div class="col-md-12">
+			</div>
+			<div class="col-md-12">
 				<div class="form-group">
 					<label for="firstname" class="col-sm-2 control-label"> 
 						기간(분만예정일)
@@ -144,14 +145,23 @@ var cattleAction = (function () {
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="item" items="${hmCattlePage.content}" varStatus="status">
-				<tr>
-					<td>${item.entityDiscernNo}</td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>	
-			</c:forEach>
+			<c:choose>
+				<c:when test="${!empty hmCattlePage.content}">
+					<c:forEach var="item" items="${hmCattlePage.content}" varStatus="status">
+						<tr>
+							<td>${item.entityDiscernNo}</td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>	
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<tr>
+						<td colspan="4">데이터가 없습니다.</td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
 		</tbody>
 	</table>
 </div>
@@ -171,5 +181,6 @@ var cattleAction = (function () {
 
 				</ul>
 			</c:when>
+			
 		</c:choose>
 	</div>

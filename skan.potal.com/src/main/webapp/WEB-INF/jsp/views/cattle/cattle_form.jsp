@@ -19,10 +19,14 @@
 	}
 	
 	$(function() {
-		$('#message').fadeIn().delay(1200).fadeOut();
-		//$('#message').show('blind', {
-	    //   direction : 'up'
-	    //}, 500, callback); 
+		if('${message}' == 'SUCCESS'){
+			$('#message').fadeIn().delay(1200).fadeOut();
+			//$('#message').show('blind', {
+		    //   direction : 'up'
+		    //}, 500, callback); 
+		} else if('${message}' == 'FAIL') {
+			$('#message').show();
+		}
 	});
 	
 </script>
@@ -87,11 +91,27 @@
 	
 	
 	
+	분만기록
+		회차
+		정액번호
+		수정일자
+		분만예정일
+		실제분만일자
+		특이사항
+
 	
+	판매지정보
+		판매처
+		판매일
+		판매 연락처
+		판매 금액
+
 	
-
-
-
+	송아지 기록
+		회차
+		성별
+		판매여부
+		태어난날
 
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">

@@ -94,18 +94,31 @@ var addressAction = (function () {
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="item" items="${hmMngAddressPage.content}" varStatus="status">
-				<tr onclick="addressAction.detailView('${item.hmMgNum}')">
-					<th scope="row">${item.hmMgNum}</th>
-					<td>${item.name}</td>
-					<td><c:forEach var="hmAddressPhone" items="${item.hmAddressPhoneSet}" varStatus="status">
-							<c:if test="${status.first}">${hmAddressPhone.phoneNumber}</c:if>
-						</c:forEach></td>
-					<td><c:forEach var="hmEmailInfo" items="${item.hmEmailInfoSet}" varStatus="status">
-							<c:if test="${status.first}">${hmEmailInfo.hmEmail}</c:if>
-						</c:forEach></td>
-				</tr>
-			</c:forEach>
+		
+			<c:choose>
+				<c:when test="${!empty hmMngAddressPage.content}">
+					<c:forEach var="item" items="${hmMngAddressPage.content}" varStatus="status">
+						<tr onclick="addressAction.detailView('${item.hmMgNum}')">
+							<th scope="row">${item.hmMgNum}</th>
+							<td>${item.name}</td>
+							<td><c:forEach var="hmAddressPhone" items="${item.hmAddressPhoneSet}" varStatus="status">
+									<c:if test="${status.first}">${hmAddressPhone.phoneNumber}</c:if>
+								</c:forEach></td>
+							<td><c:forEach var="hmEmailInfo" items="${item.hmEmailInfoSet}" varStatus="status">
+									<c:if test="${status.first}">${hmEmailInfo.hmEmail}</c:if>
+								</c:forEach></td>
+						</tr>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<tr>
+						<td colspan="4">
+							데이터가 없습니다.						
+						</td>
+					</tr>
+				</c:otherwise>
+			
+			</c:choose>
 		</tbody>
 	</table>
 </div>
