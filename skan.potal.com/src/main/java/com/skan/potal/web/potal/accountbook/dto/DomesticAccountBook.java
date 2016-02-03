@@ -48,6 +48,19 @@ public class DomesticAccountBook implements Serializable {
 
 	/** 세부내용. */
 	private String detailContents;
+	
+	/** 생성날짜. */
+	private Date createDate;
+	
+	
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
 
 	/**
 	 * 생성자.
