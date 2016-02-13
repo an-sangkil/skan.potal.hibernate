@@ -17,6 +17,7 @@
  */
 package com.skan.potal.web.potal.common.util;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
@@ -114,6 +115,27 @@ public class CalendarUtils {
 			bResult = false;
 		}
 		return bResult;
+	}
+	
+	/**
+	 * 날짜 더하기
+	 * @param criteriaDate 기준 날짜
+	 * @param addMonths	추가할 달수
+	 */
+	public static Date addDate(Date criteriaDate ,int addDays ,int addMonths ) {
+		// DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		// criteriaDate = df.parse("2013-02-35");
+		// 날짜 더하기
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(criteriaDate);
+		if (addDays != 0) {
+			cal.add(Calendar.DATE, addDays);
+		}
+		if (addMonths != 0) {
+			cal.add(Calendar.MONTH, addMonths);
+		}
+		// df.format(cal.getTime());
+		return cal.getTime();
 	}
 	
 }
