@@ -73,7 +73,9 @@ public class CmtbCode implements Serializable {
 	)
     @JoinColumns(
     		{
-    				@JoinColumn(name="upperCode", insertable=false, updatable=false , columnDefinition="code",nullable=true)
+    				@JoinColumn(name="upperCode", insertable=false, updatable=false 
+    								//, columnDefinition="code"
+    								,nullable=true)
 //    				,@JoinColumn(name="codeMgtNo", insertable=false, updatable=false)
     			}
     		
