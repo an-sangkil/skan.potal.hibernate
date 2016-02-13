@@ -64,17 +64,17 @@ public class CodeControllerTest {
 	@Transactional
 	@Rollback(false)
 	public void codeSaveTest() throws Exception {
-		mockMvc.perform(post("/code/insert")
+		mockMvc.perform(post("/code/code_insert")
 //				.param("codeMgtNo", codeMgtNo)
 				.param("codeName", "다다다다온도다다다다")
 				.param("codeComment", codeComment));
 		
-		mockMvc.perform(post("/code/insert")
+		mockMvc.perform(post("/code/code_insert")
 				.param("upperCode", "00001")
 				.param("codeName", "영상")
 				.param("codeComment", codeComment));
 		
-		mockMvc.perform(post("/code/insert")
+		mockMvc.perform(post("/code/code_insert")
 				.param("upperCode", "00001")
 				.param("codeName", "개체관리코드")
 				.param("codeComment", codeComment));
