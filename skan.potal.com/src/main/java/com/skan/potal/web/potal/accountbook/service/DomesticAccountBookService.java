@@ -17,8 +17,9 @@ public class DomesticAccountBookService {
 	 * @return 
 	 */
 	public BigDecimal calculatorIncome() {
-		return null;
-		// TODO Auto-generated method stub
+		BigDecimal bigDecimal = new BigDecimal("1");
+		
+		return bigDecimal;
 		
 	}
 	
@@ -27,8 +28,9 @@ public class DomesticAccountBookService {
 	 * @return 
 	 */
 	public BigDecimal calculatorExpense() {
-		return null;
-		// TODO Auto-generated method stub
+		BigDecimal bigDecimal = new BigDecimal("1");
+		
+		return bigDecimal;
 	}
 	
 }

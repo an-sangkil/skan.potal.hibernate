@@ -40,7 +40,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.skan.potal.web.potal.accountbook.converter.DomesticAccountBookConvert;
 import com.skan.potal.web.potal.accountbook.dto.DomesticAccountBook;
+import com.skan.potal.web.potal.accountbook.model.DomesticAccountBookModel;
 import com.skan.potal.web.potal.accountbook.repository.DomesticAccountBookRepository;
 import com.skan.potal.web.potal.accountbook.service.DomesticAccountBookService;
 import com.skan.potal.web.potal.common.util.CalendarUtils;
@@ -59,6 +61,7 @@ public class DomesticAccountBookController {
 	
 	@Autowired private DomesticAccountBookRepository domesticAccountBookRepository;
 	@Autowired private DomesticAccountBookService domesticAccountBookService;
+	@Autowired private DomesticAccountBookConvert domesticAccountBookConvert;
 	
 	/**
 	 * 조회
@@ -76,49 +79,82 @@ public class DomesticAccountBookController {
 			@RequestParam(defaultValue="", required=false) String searchType,
 			ModelMap modelMap) throws Exception {
 		
-//		Sort sort = new Sort(
-//				new org.springframework.data.domain.Sort.Order(Direction.DESC, "businessDay") 
-//				//,new Order(Direction.DESC , "hmMgNum")
-//				);  
+		// 정렬 조건
+		// Sort sort = new Sort(
+		// new org.springframework.data.domain.Sort.Order(Direction.DESC,
+		// "businessDay")
+		// //,new Order(Direction.DESC , "hmMgNum")
+		// );
 		
 		// 기본 : 해당년 01.01 ~ 오늘까지					 > form ~ to 자동 계산
 		// 오늘을 기준으로 : 일주일 , 1개월 , 3개월, 6개월, 1년    > from ~ to 자동 계산
 		// 기간 지정 : from ~ to
-		Date from = null;
+		// BASIC
+		// 1WEEK
+		// 1MONTHS
+		// 3MONTHS
+		// 6MONTHS
+		// 1YEARS
+		// PERIOD
+		Date from = new Date();
 		Date to = null;
-		if(StringUtils.isEmpty(searchType)){
+		if(StringUtils.isEmpty(searchType) || StringUtils.equals(searchType,"BASIC")){
 			
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			
 			Calendar calendar = Calendar.getInstance();
-			if(StringUtils.isEmpty(fromDate)) {
+			//if(StringUtils.isEmpty(fromDate)) {
 				from = dateFormat.parse(calendar.get(Calendar.YEAR)+"-01-01");
-			}
-			if(StringUtils.isEmpty(toDate)){
+			//}
+			//if(StringUtils.isEmpty(toDate)){
 				to = dateFormat.parse(CalendarUtils.getToDayString(CalendarPattermn.CALENDER_TYPE_YYYY_MM_DD));
+			//}
+			
+		} else if(StringUtils.equals(searchType, "1WEEK"))   {
+			
+			from = CalendarUtils.addDate(new Date(), -7, 0);
+			to = new Date();
+			
+		} else if(StringUtils.equals(searchType, "1MONTHS")) {
+			from = CalendarUtils.addDate(new Date(), 0, -1);
+			to = new Date();
+		} else if(StringUtils.equals(searchType, "3MONTHS")) {
+			from = CalendarUtils.addDate(new Date(), 0, -3);
+			to = new Date();
+		} else if(StringUtils.equals(searchType, "6MONTHS")) {
+			from = CalendarUtils.addDate(new Date(), 0, -6);
+			to = new Date();
+		} else if(StringUtils.equals(searchType, "1YEARS"))  {
+			from = CalendarUtils.addDate(new Date(), 0, -12);
+			to = new Date();
+		} else if(StringUtils.equals(searchType, "PERIOD"))  {
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			if(StringUtils.isNotEmpty(fromDate)) {
+				from = dateFormat.parse(fromDate);
 			}
-			
-			
+			if(StringUtils.isNotEmpty(toDate)){
+				to = dateFormat.parse(toDate);
+			}
 		}
 		
 		
-		
-		List<DomesticAccountBook> domesticAccountBooks = domesticAccountBookRepository.findByBusinessDayBetween(from, to);
+		List<DomesticAccountBook> domesticAccountBooks = domesticAccountBookRepository.findByBusinessDayBetweenOrderByBusinessDayDesc(from, to);
 		//List<DomesticAccountBook> domesticAccountBooks = domesticAccountBookRepository.findAll(sort);
 		
 		// TODO 총금액 계산 DB에서 할가? 서버에서 할까...
 		// 유형별 두가지 : 수입 / 지출 
-//		BigDecimal income  = domesticAccountBookService.calculatorIncome();
-//		BigDecimal expense = domesticAccountBookService.calculatorExpense();
-//		BigDecimal totalSum = income.subtract(expense) ;
+		BigDecimal income  = domesticAccountBookService.calculatorIncome();
+		BigDecimal expense = domesticAccountBookService.calculatorExpense();
+		BigDecimal totalSum = income.subtract(expense) ;
 		
 		logger.debug("domesticAccountBooks Info = " , domesticAccountBooks );
 		modelMap.put("domesticAccountBooks", domesticAccountBooks );
 		modelMap.put("from", from);
 		modelMap.put("to", to);
-//		modelMap.put("income", income);
-//		modelMap.put("expense", expense);
-//		modelMap.put("totalSum", totalSum);
+		modelMap.put("income", income);
+		modelMap.put("expense", expense);
+		modelMap.put("totalSum", totalSum);
+		modelMap.put("searchType", searchType);
+		
 		
 		return "/accountbook/domesticAccountBook_list.tiles";
 	}
@@ -145,25 +181,26 @@ public class DomesticAccountBookController {
 	
 	/**
 	 * 저장 및 수정
-	 * @param domesticAccontBook
+	 * @param domesticAccontModel
 	 * @param bindingResult
 	 * @param modelMap
 	 * @return
 	 */
 	@RequestMapping("/domestic_account_book/insert")
-	public String  domesticAccountBookInsert(@Valid DomesticAccountBook domesticAccontBook,BindingResult bindingResult , ModelMap modelMap) {
+	public String  domesticAccountBookInsert(@Valid DomesticAccountBookModel domesticAccontModel,BindingResult bindingResult , ModelMap modelMap) {
 			
 		if(bindingResult.hasErrors()){
 			return "/accountbook/domesticAccountBook_form.tiles";
 		}
 		
 		
-		if(StringUtils.isEmpty( domesticAccontBook.getDabMngNo())) {
+		if(StringUtils.isEmpty( domesticAccontModel.getDabMngNo())) {
 			//신규 저장
-			domesticAccontBook.setDabMngNo(UUIDUtils.createUUID());
+			domesticAccontModel.setDabMngNo(UUIDUtils.createUUID());
 		}
 		
-		domesticAccountBookRepository.save(domesticAccontBook);
+		DomesticAccountBook dto = domesticAccountBookConvert.ConvertToDTO(domesticAccontModel, new DomesticAccountBook());
+		domesticAccountBookRepository.save(dto);
 		
 		return "redirect:/domestic_account_book/list";
 	}

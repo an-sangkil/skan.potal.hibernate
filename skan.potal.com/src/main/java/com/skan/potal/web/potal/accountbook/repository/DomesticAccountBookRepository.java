@@ -12,5 +12,5 @@ import com.skan.potal.web.potal.accountbook.dto.DomesticAccountBook;
 
 public interface DomesticAccountBookRepository extends JpaRepository<DomesticAccountBook, String>,QueryDslPredicateExecutor<DomesticAccountBook> {
 	
-	public List<DomesticAccountBook> findByBusinessDayBetween(@Temporal(value=TemporalType.DATE)java.util.Date from,@Temporal(value=TemporalType.DATE) java.util.Date to);
+	public List<DomesticAccountBook> findByBusinessDayBetweenOrderByBusinessDayDesc(@Temporal(value=TemporalType.DATE)java.util.Date from,@Temporal(value=TemporalType.DATE) java.util.Date to);
 }
