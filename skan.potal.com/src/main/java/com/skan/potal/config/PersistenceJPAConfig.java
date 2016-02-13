@@ -8,6 +8,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -38,7 +39,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-//@PropertySource({ "classpath:persistence-mysql.properties", "classpath:persistence-postgresql.properties",})
+@PropertySource({ "classpath:jdbc.xml"})
 @EnableJpaRepositories(basePackages={"com.skan.potal"})
 public class PersistenceJPAConfig {
 	
@@ -77,11 +78,11 @@ public class PersistenceJPAConfig {
 	public DataSource dataSource (){
 		
 		DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-		driverManagerDataSource.setDriverClassName("org.postgresql.Driver");
+		driverManagerDataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
 //		driverManagerDataSource.setDriverClassName("com.p6spy.engine.spy.P6SpyDriver");
-		driverManagerDataSource.setUrl("jdbc:postgresql://127.0.0.1:5432/potaldb");
-		driverManagerDataSource.setUsername("skan");
-		driverManagerDataSource.setPassword("1111");
+		driverManagerDataSource.setUrl(env.getProperty("jdbc.url"));
+		driverManagerDataSource.setUsername(env.getProperty("jdbc.username"));
+		driverManagerDataSource.setPassword(env.getProperty("jdbc.password"));
 		
 		return driverManagerDataSource; 
 	}
@@ -100,6 +101,7 @@ public class PersistenceJPAConfig {
 
     final Properties additionalProperties() {
         final Properties hibernateProperties = new Properties();
+//        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create");//drop-and-create-tables
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");//drop-and-create-tables
         hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgresPlusDialect");
         hibernateProperties.setProperty("hibernate.enable_lazy_load_no_trans", "true");
