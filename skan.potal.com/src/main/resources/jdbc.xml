@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-    <entry key="jdbc.driverClassName">com.mysql.jdbc.Driver</entry>
-    <entry key="jdbc.url"><![CDATA[]]></entry>
-    <entry key="jdbc.username"></entry>
-    <entry key="jdbc.password"></entry>
+    <entry key="jdbc.driverClassName">org.postgresql.Driver</entry><!-- com.mysql.jdbc.Driver -->
+<!--     <entry key="jdbc.url"><![CDATA[jdbc:postgresql://54.191.201.30:5432/potaldb]]></entry> -->
+    <entry key="jdbc.url"><![CDATA[jdbc:postgresql://127.0.0.1:5432/potaldb]]></entry>
+    <entry key="jdbc.username">skan</entry>
+    <entry key="jdbc.password">tkdrlf83~</entry>
 </properties>
