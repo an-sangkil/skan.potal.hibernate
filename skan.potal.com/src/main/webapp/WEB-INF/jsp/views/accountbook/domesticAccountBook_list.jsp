@@ -3,36 +3,6 @@
 <%@ include file="/WEB-INF/jsp/common/TagLib.jspf"%>
 
 <style>
-</style>
-<script>
-
-var DomesticAccountBookAction = (function () {
-	
-	//  기본 옶션 정보가 필요한 경우 셋팅
-	var defaultSearchOption = {
-			
-	};
-	
-	return {
-		moveForm : function () {
-			document.domesticAccountBook_form.action = "${pageContext.request.contextPath}/domestic_account_book/form";
-			document.domesticAccountBook_form.submit();
-		},
-		detailView : function (code) {
-			document.domesticAccountBook_form.action = "${pageContext.request.contextPath}/domestic_account_book/form";
-			document.domesticAccountBook_form.code.value= code;
-			document.domesticAccountBook_form.submit();
-		},
-		search : function () {
-			document.domesticAccountBook_form.action = "${pageContext.request.contextPath}/domestic_account_book/list";
-			document.domesticAccountBook_form.submit();
-		}
-	}
-})();
-
-</script>
-
-<style>
 <!--
 .header-fixed {
     width: 100% 
@@ -57,7 +27,7 @@ var DomesticAccountBookAction = (function () {
 
 .header-fixed > tbody {
     overflow-y: auto;
-    height: 500px;
+    height: 380px;
 }
 
 .header-fixed > tbody > tr > td,
@@ -77,14 +47,14 @@ var DomesticAccountBookAction = (function () {
 					<label for="firstname" class="col-sm-2 control-label"> 
 						기간
 					</label>
-					<div class="col-sm-5">
-						<input type="radio" name="aaaaaa">기본 &nbsp;&nbsp;
-						<input type="radio" name="aaaaaa">1주일 &nbsp;&nbsp;
-						<input type="radio" name="aaaaaa">1달 &nbsp;&nbsp;
-						<input type="radio" name="aaaaaa">3달 &nbsp;&nbsp;
-						<input type="radio" name="aaaaaa">6달 &nbsp;&nbsp;
-						<input type="radio" name="aaaaaa">1년 &nbsp;&nbsp;
-						<input type="radio" name="aaaaaa">기간지정 &nbsp;&nbsp;
+					<div class="col-sm-5"> 
+						<input type="radio" name="searchType" value="BASIC"   <c:if test="${searchType eq 'BASIC' }">checked</c:if> <c:if test="${empty searchType}">checked</c:if>    onclick="DomesticAccountBookAction.search()">기본 &nbsp;&nbsp;
+						<input type="radio" name="searchType" value="1WEEK"   <c:if test="${searchType eq '1WEEK' }">checked</c:if>    onclick="DomesticAccountBookAction.search()">1주일 &nbsp;&nbsp;
+						<input type="radio" name="searchType" value="1MONTHS" <c:if test="${searchType eq '1MONTHS' }">checked</c:if>  onclick="DomesticAccountBookAction.search()">1달 &nbsp;&nbsp;
+						<input type="radio" name="searchType" value="3MONTHS" <c:if test="${searchType eq '3MONTHS' }">checked</c:if>  onclick="DomesticAccountBookAction.search()">3달 &nbsp;&nbsp;
+						<input type="radio" name="searchType" value="6MONTHS" <c:if test="${searchType eq '6MONTHS' }">checked</c:if>  onclick="DomesticAccountBookAction.search()">6달 &nbsp;&nbsp;
+						<input type="radio" name="searchType" value="1YEARS"  <c:if test="${searchType eq '1YEARS' }">checked</c:if>   onclick="DomesticAccountBookAction.search()">1년 &nbsp;&nbsp;
+						<input type="radio" name="searchType" value="PERIOD"  <c:if test="${searchType eq 'PERIOD' }">checked</c:if>   onclick="DomesticAccountBookAction.period()">기간지정 &nbsp;&nbsp;
 						<div class="has-error">
 							기본 : 올해 1월 1일 부터 오늘까지
 							<label class="control-label" for="inputSuccess1"></label>
@@ -122,7 +92,7 @@ var DomesticAccountBookAction = (function () {
 					<div class="col-sm-4">
 					
 					
-						<input type="text" class="form-control" id="from" name="from" placeholder="시작일" value="<fmt:formatDate value="${from}" type="date" pattern="yyyy-MM-dd"/>" readonly="readonly">
+						<input type="text" class="form-control" id="from" name="fromDate" placeholder="시작일" value="<fmt:formatDate value="${from}" type="date" pattern="yyyy-MM-dd"/>" readonly="readonly">
 						<div class="has-error">
 							<label class="control-label" for="inputSuccess1"></label>
 						</div>
@@ -131,7 +101,7 @@ var DomesticAccountBookAction = (function () {
 						~
 					</label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control" id="to" name="to" placeholder="종료일" value="<fmt:formatDate value="${to}" type="date" pattern="yyyy-MM-dd"/>" readonly="readonly">
+						<input type="text" class="form-control" id="to" name="toDate" placeholder="종료일" value="<fmt:formatDate value="${to}" type="date" pattern="yyyy-MM-dd"/>" readonly="readonly">
 						<div class="has-error">
 							<label class="control-label" for="inputSuccess1"></label>
 						</div>
@@ -177,8 +147,8 @@ var DomesticAccountBookAction = (function () {
 				<c:when test="${!empty domesticAccountBooks}">
 					<c:forEach var="item" items="${domesticAccountBooks}" varStatus="status">
 						<tr>
-							<td>${item.typeCode}</td>
-							<td>${item.detailTypeCode}</td>
+							<td>${item.typePersonalCode.codeName}</td>
+							<td></td>
 							<td>${item.businessDay}</td>
 							<td>${item.amount}</td>
 							<td>${item.breakdown}</td>
@@ -186,12 +156,89 @@ var DomesticAccountBookAction = (function () {
 					</c:forEach>
 				</c:when>
 				<c:otherwise>
-					<td colspan="6">데이터가 없습니다.</td>
+					<td colspan="5">데이터가 없습니다.</td>
 				</c:otherwise>
 			</c:choose>
 		</tbody>
 	</table>
+
+	<div class="row">
+		<div class="col-md-4 col-md-offset-8">
+			<table class="table table-striped">
+				<tbody>
+					<tr>
+						<td >수입 : ${income}</td>
+						<td >지출 : ${expense}</td>
+						<td align="center"> 합계 : ${totalSum} </td>
+					</tr>
+				</tbody>
+			</table>
+		
+		</div>
+	</div>
+
+	
 </div>
 	<div align="center">
 		
 	</div>
+	
+	
+	
+<script>
+
+var DomesticAccountBookAction = (function () {
+	var dateObject = {
+			changeMonth: true, 
+			changeYear: true,
+			nextText: '다음 달',
+			prevText: '이전 달',
+			showButtonPanel: true, 
+			currentText: '오늘 날짜', 
+			closeText: '닫기', 
+			dateFormat: "yy-mm-dd",
+			dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+			dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+			monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+			monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+		}
+	
+	//  기본 옶션 정보가 필요한 경우 셋팅
+	var defaultSearchOption = {
+	};
+	
+	console.log('aa');
+	
+	if('${searchType}' == 'PERIOD') {
+		$("#from").datepicker(dateObject);
+		$("#to").datepicker(dateObject);
+		document.domesticAccountBook_form.from.removeAttribute('readonly');
+		document.domesticAccountBook_form.to.removeAttribute('readonly');
+	}
+	
+	
+	return {
+		moveForm : function () {
+			document.domesticAccountBook_form.action = "${pageContext.request.contextPath}/domestic_account_book/form";
+			document.domesticAccountBook_form.submit();
+		},
+		detailView : function (code) {
+			document.domesticAccountBook_form.action = "${pageContext.request.contextPath}/domestic_account_book/form";
+			document.domesticAccountBook_form.code.value= code;
+			document.domesticAccountBook_form.submit();
+		},
+		search : function () {
+			document.domesticAccountBook_form.action = "${pageContext.request.contextPath}/domestic_account_book/list";
+			document.domesticAccountBook_form.submit();
+		},
+		period : function () {
+			
+			$("#from").datepicker(dateObject);
+			$("#to").datepicker(dateObject);
+			
+			document.domesticAccountBook_form.from.removeAttribute('readonly');
+			document.domesticAccountBook_form.to.removeAttribute('readonly');
+		}
+	}
+})();
+</script>

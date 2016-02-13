@@ -35,6 +35,26 @@
 		
 	});
 	
+	$(function() {
+		var dateObject = {
+			changeMonth: true, 
+			changeYear: true,
+			nextText: '다음 달',
+			prevText: '이전 달',
+			showButtonPanel: true, 
+			currentText: '오늘 날짜', 
+			closeText: '닫기', 
+			dateFormat: "yy-mm-dd",
+			dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+			dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+			monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+			monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+		}
+		
+		$("#businessDay").datepicker(dateObject);
+		
+	});
+	
 	
 </script>
 
@@ -53,25 +73,41 @@
 	<div class="form-group">
 		<label for="firstname" class="col-sm-2 control-label">수입/지출 유형</label>
 		<div class="col-sm-8">
-			<input type="text" class="form-control" id="typeCode" name="typeCode" placeholder="상위코드" value="${domesticAccountBook.typeCode}" readonly="readonly">
+			
+			<label class="radio-inline">
+				<input type="radio" id="typeCode" name="typeCode" placeholder="상위코드" value="00001" checked="checked" >수입
+			</label>
+			<label class="radio-inline">
+				<input type="radio" id="typeCode" name="typeCode" placeholder="상위코드" value="00002" >지출
+			</label>
+						
 			<div class="has-error">
 				<label class="control-label" for="inputSuccess1"><form:errors path="domesticAccountBook.upperCode" /></label>
 			</div>
 		</div>
-		<div class="col-sm-2">
-			<button type="button" class="btn btn-info btn-lg" id="myBtn">선택하세요</button> 
-		</div>
 	</div>
 	<div class="form-group">
 		<label for="firstname" class="col-sm-2 control-label">세부 유형</label>
-		<div class="col-sm-8">
-			<input type="text" class="form-control" id="detailTypeCode" name="detailTypeCode" placeholder="코드명" value="${domesticAccountBook.detailTypeCode}" >
+		<div class="col-sm-10">
+			
+			<div class="col-sm-5">
+				<select class="form-control" id="detailTypeCode_First" name="detailTypeCode_First" size="7">
+				
+				
+				</select>
+			</div>
+			<div class="col-sm-5">
+				<select class="form-control" id="detailTypeCode" name="detailTypeCode" size="7">
+				
+				
+				
+				</select>
+			
+			</div>
+			
 			<div class="has-error">
 				<label class="control-label" for="inputSuccess1"><form:errors path="domesticAccountBook.detailTypeCode" /></label>
 			</div>
-		</div>
-		<div class="col-sm-2">
-			<button type="button" class="btn btn-info btn-lg" id="myBtn">선택하세요</button> 
 		</div>
 	</div>
 
@@ -111,8 +147,7 @@
 	<div class="form-group">
 		<label for="lastname" class="col-sm-2 control-label">세부내용</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" id="detailContents" name="detailContents" placeholder="세부내용" value="${domesticAccountBook.detailContents}" >
-			
+			<textarea rows="5" class="form-control" id="detailContents" name="detailContents" >${domesticAccountBook.detailContents}</textarea>
 			<div class="has-error">
 				<label class="control-label" for="inputSuccess1"><form:errors path="domesticAccountBook.detailContents" /></label>
 			</div>
