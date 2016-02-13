@@ -13,6 +13,7 @@ import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
+@Deprecated
 //@Configuration
 public class DataSourceConfig {
 	
@@ -32,7 +33,7 @@ public class DataSourceConfig {
 		basicDataSource.setDriverClassName("org.postgresql.Driver");
 		basicDataSource.setUrl("jdbc:postgresql://127.0.0.1:5432/potaldb");
 		basicDataSource.setUsername("skan");
-		basicDataSource.setPassword("tkdrlf83~");
+		basicDataSource.setPassword("1111");
 		basicDataSource.setDefaultAutoCommit(false);
 		
 		return basicDataSource; 
