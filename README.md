@@ -8,7 +8,4 @@ bootstrap.js 를 이용한 화면 구성
 tiles3 사용 
 jstl Tag lib 사용
 
-##AWS URL
-* http://54.191.201.30/potal/address/address_list
-
 
