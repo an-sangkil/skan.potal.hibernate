@@ -3,12 +3,28 @@
         "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-    <definition name="home/*.tiles" extends="user.base.layout">
-        <put-attribute name="body" value="/WEB-INF/jsp/views/{1}.jsp" />
-    </definition>
-    
-     <definition name="/schdule/*.tiles" extends="user.base.layout">
-        <put-attribute name="body" value="/WEB-INF/jsp/views/schdule/{1}.jsp" />
-    </definition>
+	<definition name="home/*.tiles" extends="user.base.layout2">
+		<put-attribute name="body" value="/WEB-INF/jsp/views/{1}.jsp" />
+	</definition>
+
+	<definition name="/schdule/*.tiles" extends="user.base.layout2">
+		<put-attribute name="body" value="/WEB-INF/jsp/views/schdule/{1}.jsp" />
+	</definition>
+	<definition name="/address/*.tiles" extends="user.base.layout2">
+		<put-attribute name="body" value="/WEB-INF/jsp/views/address/{1}.jsp" />
+	</definition>
+	<definition name="/cattle/*.tiles" extends="user.base.layout2">
+		<put-attribute name="header" expression="/layout/header_page?menuCode=${MENU_CODE}"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/views/cattle/{1}.jsp" />
+	</definition>
+	<definition name="/code/*.tiles" extends="user.base.layout2">
+		<put-attribute name="header" expression="/layout/header_page?menuCode=${MENU_CODE}"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/views/code/{1}.jsp" />
+	</definition>
+	
+	<definition name="/accountbook/*.tiles" extends="user.base.layout2">
+		<put-attribute name="header" expression="/layout/header_page?menuCode=${MENU_CODE}"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/views/accountbook/{1}.jsp" />
+	</definition>
 
 </tiles-definitions>

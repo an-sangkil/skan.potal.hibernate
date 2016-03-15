@@ -5,8 +5,9 @@
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resources"/>
         <property name="java-output-path" value="/com.skan.potal/target/classes"/>
-        <property name="context-root" value="com.dongbu.potal"/>
         <property name="component.exclusion.patterns"/>
+        <property name="context-root" value="com.skan.potal"/>
     </wb-module>
 </project-modules>

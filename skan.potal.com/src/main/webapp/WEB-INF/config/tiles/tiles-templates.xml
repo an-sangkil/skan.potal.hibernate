@@ -10,6 +10,13 @@
         <put-attribute name="body" value="" />
         <put-attribute name="footer" value="/WEB-INF/jsp/layout/user/footer.jsp" />
     </definition>
+    
+    <definition name="user.base.layout2" template="/WEB-INF/jsp/layout/user/layout.jsp">
+        <put-attribute name="title" value="관리시스템" />
+        <put-attribute name="header" value="/WEB-INF/jsp/layout/user/header.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/WEB-INF/jsp/layout/user/footer.jsp" />
+    </definition>
   
     <definition name="user.en.layout" template="/WEB-INF/jsp/layout/user/en/Layout.jsp">
         <put-attribute name="title" value="SpringMVC" />
