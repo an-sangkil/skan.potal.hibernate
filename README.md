@@ -1,10 +1,9 @@
 # skan.potal.hibernate
 
-<<<<<<< HEAD
+
 BootStrap 으로 Layout 변경한다.
 기존 Master에서 분리하여 진행
 
-레이아웃이 좋으면 기존 Master로 Merge
 
 
 
@@ -20,5 +19,3 @@ bootstrap.js 를 이용한 화면 구성
 tiles3 사용 
 jstl Tag lib 사용
 
-
->>>>>>> master
