@@ -34,6 +34,6 @@ public interface CmtbCodeRepository extends JpaRepository<CmtbCode, CmtbCodeId>,
 	 */
 	public Page<CmtbCode> findByUpperCode(String upperCode , Pageable pageable) throws Exception;
 	
-	@Query( value="select c.* from Cmtbcode c where c.code = :upperCode", nativeQuery=true)
+	@Query( value="select c.* from CmtbCode c where c.code = :upperCode", nativeQuery=true)
 	public CmtbCode findByCodeInfo(@Param("upperCode") String upperCode);
 }

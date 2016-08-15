@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -34,7 +36,8 @@ public class DomesticAccountBook implements Serializable {
 	
 	/** 개인코드. */
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="type_code", updatable=true,nullable=true)
+	@NotFound(action=NotFoundAction.IGNORE)
+	@JoinColumn(name="type_code", updatable=true, nullable=true)
 	private PersonalCode typePersonalCode;
 
 	/** 거래일. */

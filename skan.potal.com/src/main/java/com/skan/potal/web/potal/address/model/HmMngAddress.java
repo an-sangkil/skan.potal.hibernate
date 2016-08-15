@@ -35,7 +35,8 @@ public class HmMngAddress implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address_seq_gen")
+	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address_seq_gen") //postgres
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "address_seq_gen")		 //mysql
 	@SequenceGenerator(name="address_seq_gen", allocationSize=1)
 	/** 관리 번호. */
 	private Long hmMgNum;
