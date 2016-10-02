@@ -23,7 +23,7 @@
 			<li <c:if test="${MENU_CODE eq 'CONFIGRATION'}">class="active"</c:if>class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">시스템관리 <span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li><a href="${pageContext.request.contextPath}/code/code_list">통합코드관리</a></li>
-					<li><a href="${pageContext.request.contextPath}/code/personal_list">개인코드관리</a></li>
+					<li><a href="${pageContext.request.contextPath}/personal_code/personal_code_list">개인코드관리</a></li>
 					<li><a href="#">권한관리 </a></li>
 					<li><a href="#">Something else here</a></li>
 					<li role="separator" class="divider"></li>
