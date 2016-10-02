@@ -36,6 +36,25 @@ public class PersonalCode implements Serializable {
 	@Column(nullable=true)
 	private String upperCode;
 
+	/** code_seq. */
+	private Integer codeSeq;
+
+	/** code_name. */
+	private String codeName;
+
+	/** code_comments. */
+	private String codeComments;
+	
+	
+	/////////////////////////////////////////////////////
+	// Association 관계
+	////////////////////////////////////////////////////
+
+	/** 개인코드. */
+	@OneToOne(fetch=FetchType.LAZY)
+    @JoinColumns({@JoinColumn(name="upperCode", insertable=false, updatable=false , columnDefinition="",nullable=true)})
+	private PersonalCode upperPersonalCode;
+	
 	/** cmtb_user. */
 	@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumns(
@@ -45,20 +64,6 @@ public class PersonalCode implements Serializable {
     		
     		)
 	private CmtbUser cmtbUser;
-
-	/** code_seq. */
-	private Integer codeSeq;
-
-	/** code_name. */
-	private String codeName;
-
-	/** code_comments. */
-	private String codeComments;
-
-	/** 개인코드. */
-	@OneToOne(fetch=FetchType.LAZY)
-    @JoinColumns({@JoinColumn(name="upperCode", insertable=false, updatable=false , columnDefinition="",nullable=true)})
-	private PersonalCode upperPersonalCode;
 
 
 	/**
@@ -179,6 +184,15 @@ public class PersonalCode implements Serializable {
 	 */
 	public PersonalCode getUpperPersonalCode() {
 		return this.upperPersonalCode;
+	}
+	
+
+	public String getUpperCode() {
+		return upperCode;
+	}
+
+	public void setUpperCode(String upperCode) {
+		this.upperCode = upperCode;
 	}
 
 	/**
