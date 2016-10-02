@@ -42,6 +42,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skan.potal.web.potal.accountbook.converter.DomesticAccountBookConvert;
 import com.skan.potal.web.potal.accountbook.dto.DomesticAccountBook;
+import com.skan.potal.web.potal.accountbook.dto.QDomesticAccountBook;
 import com.skan.potal.web.potal.accountbook.model.DomesticAccountBookModel;
 import com.skan.potal.web.potal.accountbook.repository.DomesticAccountBookRepository;
 import com.skan.potal.web.potal.accountbook.service.DomesticAccountBookService;
@@ -138,6 +139,15 @@ public class DomesticAccountBookController {
 		
 		
 		List<DomesticAccountBook> domesticAccountBooks = domesticAccountBookRepository.findByBusinessDayBetweenOrderByBusinessDayDesc(from, to);
+		
+		
+		QDomesticAccountBook qDomesticAccountBook = QDomesticAccountBook.domesticAccountBook;
+		
+		
+		
+		
+		
+		
 		//List<DomesticAccountBook> domesticAccountBooks = domesticAccountBookRepository.findAll(sort);
 		
 		// TODO 총금액 계산 DB에서 할가? 서버에서 할까...

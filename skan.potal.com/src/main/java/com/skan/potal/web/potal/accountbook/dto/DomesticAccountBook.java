@@ -35,7 +35,7 @@ public class DomesticAccountBook implements Serializable {
 	private String dabMngNo;
 	
 	/** 개인코드. */
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@NotFound(action=NotFoundAction.IGNORE)
 	@JoinColumn(name="type_code", updatable=true, nullable=true)
 	private PersonalCode typePersonalCode;
