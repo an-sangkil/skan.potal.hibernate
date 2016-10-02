@@ -60,7 +60,7 @@ public class PersonalCodeController {
 			ModelMap modelMap) throws Exception {
 		
 		Sort sort = new Sort(
-				new Order(Direction.DESC , "PersonalCodeId.code")
+				new Order(Direction.DESC , "code")  //객체명.PersonalCodeId. 으로 설정 가능
 				,new Order(Direction.DESC , "codeSeq")
 				,new org.springframework.data.domain.Sort.Order(Direction.ASC, "codeName") 
 				);  
@@ -91,7 +91,7 @@ public class PersonalCodeController {
 		return "/personal_code/personal_code_list.tiles";
 	}
 	
-	@RequestMapping(value="personal_code/code_list" , produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@RequestMapping(value="personal_code/personal_code_list" , produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public @ResponseBody List<PersonalCode> codeList(){
 		
 		List<PersonalCode>  PersonalCodes = PersonalCodeRepository.findAll();

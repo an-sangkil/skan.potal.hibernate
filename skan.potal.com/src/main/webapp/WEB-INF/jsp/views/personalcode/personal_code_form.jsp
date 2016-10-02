@@ -59,7 +59,7 @@
 			</div>
 		</div>
 		<div class="col-sm-2">
-		<button type="button" class="btn btn-info btn-lg" id="myBtn">선택하세요</button> 
+		<button type="button" class="btn btn-info" id="myBtn">선택하세요</button> 
 		</div>
 	</div>
 	<div class="form-group">
@@ -142,7 +142,7 @@
 			}).done(function(data) {
 				$('#upperCodeData').find('option').remove();
 				$(data).each(function (index, obj){
-					$('#upperCodeData').append('<option value='+obj.personalCodeId.code+'>' + obj.codeName +'</option>')
+					$('#upperCodeData').append('<option value='+obj.code+'>' + obj.codeName +'</option>')
 				})
 			})
 		});

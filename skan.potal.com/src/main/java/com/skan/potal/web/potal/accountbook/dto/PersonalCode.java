@@ -43,7 +43,7 @@ public class PersonalCode implements Serializable {
 	private String codeName;
 
 	/** code_comments. */
-	private String codeComments;
+	private String codeComment;
 	
 	
 	/////////////////////////////////////////////////////
@@ -154,8 +154,8 @@ public class PersonalCode implements Serializable {
 	 * @param codeComments
 	 *            code_comments
 	 */
-	public void setCodeComments(String codeComments) {
-		this.codeComments = codeComments;
+	public void setCodeComment(String codeComment) {
+		this.codeComment = codeComment;
 	}
 
 	/**
@@ -163,8 +163,8 @@ public class PersonalCode implements Serializable {
 	 * 
 	 * @return code_comments
 	 */
-	public String getCodeComments() {
-		return this.codeComments;
+	public String getCodeComment() {
+		return this.codeComment;
 	}
 
 	/**

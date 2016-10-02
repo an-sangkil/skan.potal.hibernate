@@ -59,7 +59,7 @@
 			</div>
 		</div>
 		<div class="col-sm-2">
-		<button type="button" class="btn btn-info btn-lg" id="myBtn">선택하세요</button> 
+		<button type="button" class="btn btn-info" id="myBtn">선택하세요</button> 
 		</div>
 	</div>
 	<div class="form-group">

@@ -13,7 +13,7 @@ import com.skan.potal.web.potal.accountbook.dto.PersonalCode;
 
 
 public interface PersonalCodeRepository extends JpaRepository<PersonalCode, String> , QueryDslPredicateExecutor<PersonalCode> {
-	public PersonalCode findByPersonalCodeId(String code) throws Exception;
+	public PersonalCode findByCode(String code) throws Exception;
 	public List<PersonalCode> findByUpperCode(String upperCode) throws Exception;
 	
 	/**
