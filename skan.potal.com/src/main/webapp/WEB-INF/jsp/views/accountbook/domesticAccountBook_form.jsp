@@ -92,8 +92,15 @@
 			
 			<div class="col-sm-5">
 				<select class="form-control" id="detailTypeCode_First" name="detailTypeCode_First" size="7">
-				
-				
+					<c:choose>
+						<c:when test="">
+							<c:forEach var="code" items="${cmtbCodes}" varStatus="status">
+								<option value="${code.CmtbCodeId.code}">${code.codeName}</option>							
+							
+							</c:forEach>
+						</c:when>
+						<c:otherwise></c:otherwise>
+					</c:choose>
 				</select>
 			</div>
 			<div class="col-sm-5">
