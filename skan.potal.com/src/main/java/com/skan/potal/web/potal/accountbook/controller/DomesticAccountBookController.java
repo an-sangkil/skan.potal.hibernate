@@ -40,11 +40,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.skan.potal.hibernate.application.model.test.CommonCode;
 import com.skan.potal.web.potal.accountbook.converter.DomesticAccountBookConvert;
 import com.skan.potal.web.potal.accountbook.dto.DomesticAccountBook;
+import com.skan.potal.web.potal.accountbook.dto.QDomesticAccountBook;
 import com.skan.potal.web.potal.accountbook.model.DomesticAccountBookModel;
 import com.skan.potal.web.potal.accountbook.repository.DomesticAccountBookRepository;
 import com.skan.potal.web.potal.accountbook.service.DomesticAccountBookService;
+import com.skan.potal.web.potal.application.dao.CmtbCodeRepository;
+import com.skan.potal.web.potal.application.model.CmtbCode;
+import com.skan.potal.web.potal.application.model.QCmtbCode;
 import com.skan.potal.web.potal.common.util.CalendarUtils;
 import com.skan.potal.web.potal.common.util.CalendarUtils.CalendarPattermn;
 import com.skan.potal.web.potal.common.util.UUIDUtils;
@@ -59,6 +64,7 @@ public class DomesticAccountBookController {
 	
 	private final Logger logger = LoggerFactory.getLogger(DomesticAccountBookController.class);
 	
+	@Autowired private CmtbCodeRepository cmtbCodeRepository;
 	@Autowired private DomesticAccountBookRepository domesticAccountBookRepository;
 	@Autowired private DomesticAccountBookService domesticAccountBookService;
 	@Autowired private DomesticAccountBookConvert domesticAccountBookConvert;
@@ -138,6 +144,15 @@ public class DomesticAccountBookController {
 		
 		
 		List<DomesticAccountBook> domesticAccountBooks = domesticAccountBookRepository.findByBusinessDayBetweenOrderByBusinessDayDesc(from, to);
+		
+		
+		QDomesticAccountBook qDomesticAccountBook = QDomesticAccountBook.domesticAccountBook;
+		
+		
+		
+		
+		
+		
 		//List<DomesticAccountBook> domesticAccountBooks = domesticAccountBookRepository.findAll(sort);
 		
 		// TODO 총금액 계산 DB에서 할가? 서버에서 할까...
@@ -174,6 +189,12 @@ public class DomesticAccountBookController {
 			DomesticAccountBook domesticAccountBook = domesticAccountBookRepository.findOne(dabMngNo);
 			modelMap.put("domesticAccountBook", domesticAccountBook);
 		}
+		
+		
+		// 코드 정보 불러 오기 
+		// TODO 가계부 코드 불러오기
+		List<CmtbCode>  cmtbCodes = (List<CmtbCode>) cmtbCodeRepository.findAll(QCmtbCode.cmtbCode.upperCode.eq(""));
+		modelMap.put("cmtbCodes", cmtbCodes);
 		
 		return "/accountbook/domesticAccountBook_form.tiles";
 	}

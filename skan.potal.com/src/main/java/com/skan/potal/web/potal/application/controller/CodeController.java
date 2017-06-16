@@ -47,7 +47,6 @@ import com.skan.potal.web.potal.application.model.CmtbCode;
 import com.skan.potal.web.potal.application.model.CmtbCodeId;
 import com.skan.potal.web.potal.application.service.CmtbCodeService;
 import com.skan.potal.web.potal.common.util.PageUtils;
-import com.skan.potal.web.potal.common.util.UUIDUtils;
 
 /**
  * @author ahn
