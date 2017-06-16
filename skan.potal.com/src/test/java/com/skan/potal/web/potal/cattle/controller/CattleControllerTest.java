@@ -28,28 +28,32 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.mysema.query.jpa.impl.JPAQuery;
-import com.skan.potal.config.AppConfig;
-import com.skan.potal.config.PersistenceJPAConfig;
-import com.skan.potal.config.WebMvcConfig;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.skan.potal.web.potal.cattle.dto.QHmCattleCalfRecode;
+import com.skan.tms.mobile.config.ApplicationTMSMobile;
+import com.skan.tms.mobile.config.DataSourceJpaConfig;
+import com.skan.tms.mobile.config.DataSourceMybatisConfig;
 
 /**
  * @author ahn
  *
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
+@Rollback
+@SpringBootTest(classes = { ApplicationTMSMobile.class, DataSourceJpaConfig.class,
+		DataSourceMybatisConfig.class })
 @WebAppConfiguration
-@ContextConfiguration(classes = { WebMvcConfig.class, AppConfig.class, PersistenceJPAConfig.class })
+@AutoConfigureMockMvc
 public class CattleControllerTest {
 	
 	
@@ -66,12 +70,12 @@ public class CattleControllerTest {
 	@Test
 	@Ignore
 	public void queryDslMaxTest() {
-		QHmCattleCalfRecode qhmCattleCalfRecode = QHmCattleCalfRecode.hmCattleCalfRecode;
-		JPAQuery query = new JPAQuery(entityManager);
-		Long thno = query.from(qhmCattleCalfRecode)
-				.where(QHmCattleCalfRecode.hmCattleCalfRecode.hmCattleCalfRecodeId.thNo.eq(1L))
-				.singleResult(QHmCattleCalfRecode.hmCattleCalfRecode.hmCattleCalfRecodeId.thNo.max());
-		System.out.println(thno);
+//		QHmCattleCalfRecode qhmCattleCalfRecode = QHmCattleCalfRecode.hmCattleCalfRecode;
+//		JPAQuery query = new JPAQuery(entityManager);
+//		Long thno = query.from(qhmCattleCalfRecode)
+//				.where(QHmCattleCalfRecode.hmCattleCalfRecode.hmCattleCalfRecodeId.thNo.eq(1L))
+//				.singleResult(QHmCattleCalfRecode.hmCattleCalfRecode.hmCattleCalfRecodeId.thNo.max());
+//		System.out.println(thno);
 		
 	}
 	

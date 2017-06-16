@@ -27,33 +27,37 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.mysema.query.jpa.impl.JPAQuery;
-import com.skan.potal.config.AppConfig;
-import com.skan.potal.config.PersistenceJPAConfig;
-import com.skan.potal.config.WebMvcConfig;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.skan.potal.web.potal.cattle.dto.HmCattleBuyInfo;
 import com.skan.potal.web.potal.cattle.dto.HmCattleChildbirthRecode;
 import com.skan.potal.web.potal.cattle.dto.HmCattleChildbirthRecodeId;
 import com.skan.potal.web.potal.cattle.dto.HmCattleRegister;
 import com.skan.potal.web.potal.cattle.dto.QHmCattleBuyInfo;
 import com.skan.potal.web.potal.cattle.dto.QHmCattleRegister;
+import com.skan.tms.mobile.config.ApplicationTMSMobile;
+import com.skan.tms.mobile.config.DataSourceJpaConfig;
+import com.skan.tms.mobile.config.DataSourceMybatisConfig;
 
 /**
  * @author ahn
  *
  */
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
+@Rollback
+@SpringBootTest(classes = { ApplicationTMSMobile.class, DataSourceJpaConfig.class,
+		DataSourceMybatisConfig.class })
 @WebAppConfiguration
-@ContextConfiguration(classes = { WebMvcConfig.class, AppConfig.class, PersistenceJPAConfig.class })
+@AutoConfigureMockMvc
 public class CattleRepositoryTest {
 	
 	@Autowired CattleRegisterRepository cattleRepository;

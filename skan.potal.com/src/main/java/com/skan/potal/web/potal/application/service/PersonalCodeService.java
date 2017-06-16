@@ -7,7 +7,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.stereotype.Service;
 
-import com.mysema.query.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.skan.potal.web.potal.accountbook.dto.QPersonalCode;
 
 @Service
@@ -24,9 +24,9 @@ public class PersonalCodeService {
 
 		JPAQuery query = new JPAQuery(entityManager);
 		QPersonalCode qcmtbCode = QPersonalCode.personalCode;
-		String maxCodeValue = query.from(qcmtbCode)
+		String maxCodeValue = (String) query.select(qcmtbCode.code.max()).from(qcmtbCode).fetchOne();
 				//.where(qcmtbCode.cmtbCodeId.code.eq(code))
-				.singleResult(qcmtbCode.code.max());
+				
 		
 		Long lpadMaxValue= NumberUtils.createLong(maxCodeValue == null ? "0" : maxCodeValue)+1;
 		maxCodeValue = StringUtils.leftPad(lpadMaxValue.toString(), 5 , '0');
@@ -51,7 +51,7 @@ public class PersonalCodeService {
 			
 		}
 		
-		Integer maxSeq = query.singleResult(qcmtbCode.codeSeq.max());
+		Integer maxSeq = (Integer) query.select(qcmtbCode.codeSeq.max()).from(qcmtbCode).fetchOne();
 
 		if(maxSeq == null ) {
 			maxSeq = 1;

@@ -7,7 +7,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.stereotype.Service;
 
-import com.mysema.query.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.skan.potal.web.potal.application.model.QCmtbCode;
 
 @Service
@@ -24,9 +24,9 @@ public class CmtbCodeService {
 
 		JPAQuery query = new JPAQuery(entityManager);
 		QCmtbCode qcmtbCode = QCmtbCode.cmtbCode;
-		String maxCodeValue = query.from(qcmtbCode)
+		String maxCodeValue = (String) query.select(qcmtbCode.cmtbCodeId.code.max()).from(qcmtbCode).fetchOne();
 				//.where(qcmtbCode.cmtbCodeId.code.eq(code))
-				.singleResult(qcmtbCode.cmtbCodeId.code.max());
+				
 		
 		Long lpadMaxValue= NumberUtils.createLong(maxCodeValue == null ? "0" : maxCodeValue)+1;
 		maxCodeValue = StringUtils.leftPad(lpadMaxValue.toString(), 5 , '0');
@@ -51,7 +51,7 @@ public class CmtbCodeService {
 			
 		}
 		
-		Long maxSeq = query.singleResult(qcmtbCode.codeSeq.max());
+		Long maxSeq = (Long) query.select(qcmtbCode.codeSeq.max()).from(qcmtbCode).fetchOne();
 
 		if(maxSeq == null ) {
 			maxSeq = 1L;

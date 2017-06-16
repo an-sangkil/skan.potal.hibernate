@@ -2,32 +2,32 @@ package com.dongbu.potal.hibernate;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.mysema.query.types.Expression;
-import com.mysema.query.types.template.SimpleTemplate;
-import com.skan.potal.config.AppConfig;
-import com.skan.potal.config.PersistenceJPAConfig;
+import com.querydsl.core.types.Expression;
+import com.querydsl.core.types.dsl.SimpleTemplate;
 import com.skan.potal.hibernate.application.model.QUser;
 import com.skan.potal.hibernate.application.model.Team;
 import com.skan.potal.hibernate.application.model.User;
 import com.skan.potal.hibernate.user.dao.TeamDAO;
 import com.skan.potal.hibernate.user.dao.UserDAO;
 import com.skan.potal.hibernate.user.service.UserService;
+import com.skan.tms.mobile.config.ApplicationTMSMobile;
+import com.skan.tms.mobile.config.DataSourceJpaConfig;
+import com.skan.tms.mobile.config.DataSourceMybatisConfig;
 
 /**
  * <pre>
@@ -49,10 +49,12 @@ import com.skan.potal.hibernate.user.service.UserService;
  *
  * Copyright (C) 2014 by SKAN.COMPANY All right reserved.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {AppConfig.class, PersistenceJPAConfig.class }
-						, loader = AnnotationConfigContextLoader.class
-					)
+@RunWith(SpringRunner.class)
+@Rollback
+@SpringBootTest(classes = { ApplicationTMSMobile.class, DataSourceJpaConfig.class,
+		DataSourceMybatisConfig.class })
+@WebAppConfiguration
+@AutoConfigureMockMvc
 public class JpaDaoTest {
 	Logger logger = LoggerFactory.getLogger(getClass());
 	
@@ -104,7 +106,8 @@ public class JpaDaoTest {
 		
 		// page
 		// Expressions.booleanTemplate("function('myfunction', {0}, {1})", arg1, arg2)")
-		Expression<String> expressions = SimpleTemplate.create(String.class, "DECIDE({0},{1},{2})", "bb", "11","22");
+		//Expression<String> expressions = SimpleTemplate.create(String.class, "DECIDE({0},{1},{2})", "bb", "11","22");
+		
 		Page<User> paging = userDao.findAll(QUser.user.name.eq("aa"), new PageRequest(1, 10, Direction.DESC,"id", "name"));
 		System.out.println(" ======================================");
 		logger.debug("*pagingUser  ");

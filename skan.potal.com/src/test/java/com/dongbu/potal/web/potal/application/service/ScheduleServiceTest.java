@@ -2,18 +2,22 @@ package com.dongbu.potal.web.potal.application.service;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.skan.potal.config.AppConfig;
-import com.skan.potal.config.PersistenceJPAConfig;
-import com.skan.potal.config.WebMvcConfig;
+import com.skan.tms.mobile.config.ApplicationTMSMobile;
+import com.skan.tms.mobile.config.DataSourceJpaConfig;
+import com.skan.tms.mobile.config.DataSourceMybatisConfig;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
+@Rollback
+@SpringBootTest(classes = { ApplicationTMSMobile.class, DataSourceJpaConfig.class,
+		DataSourceMybatisConfig.class })
 @WebAppConfiguration
-@ContextConfiguration(classes = {WebMvcConfig.class,AppConfig.class, PersistenceJPAConfig.class }
-					)
+@AutoConfigureMockMvc
 public class ScheduleServiceTest {
 	
 	@Test

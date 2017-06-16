@@ -1,5 +1,8 @@
 package com.skan.potal.web.potal.accountbook;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -8,26 +11,28 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.skan.potal.config.AppConfig;
-import com.skan.potal.config.PersistenceJPAConfig;
-import com.skan.potal.config.WebMvcConfig;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import com.skan.tms.mobile.config.ApplicationTMSMobile;
+import com.skan.tms.mobile.config.DataSourceJpaConfig;
+import com.skan.tms.mobile.config.DataSourceMybatisConfig;
 /**
  * @author ahn
  *
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
+@Rollback
+@SpringBootTest(classes = { ApplicationTMSMobile.class, DataSourceJpaConfig.class,
+		DataSourceMybatisConfig.class })
 @WebAppConfiguration
-@ContextConfiguration(classes = { WebMvcConfig.class, AppConfig.class, PersistenceJPAConfig.class })
+@AutoConfigureMockMvc
 public class DomesticAccountBookControllerTest {
 	
 	@Autowired private WebApplicationContext wac;

@@ -1,0 +1,10 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.knkcorp.tms.web.mybatis.repository.UserMapper">
+
+	<select id="userList" resultType="com.knkcorp.tms.web.jpa.dto.UserDto">
+		SELECT
+		 userId AS id,
+		 userName AS userName
+		FROM t_user
+	</select>
+</mapper>

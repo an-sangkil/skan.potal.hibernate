@@ -37,7 +37,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.mysema.query.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.skan.potal.web.potal.cattle.dto.HmCattleBuyInfo;
 import com.skan.potal.web.potal.cattle.dto.HmCattleCalfRecode;
 import com.skan.potal.web.potal.cattle.dto.HmCattleCalfRecodeId;
@@ -99,7 +99,7 @@ public class CattleController {
 				);
 		
 		QHmCattleRegister hmCattleRegister = QHmCattleRegister.hmCattleRegister;
-		JPAQuery query = new JPAQuery(entityManager);
+		JPAQuery<?> query = new JPAQuery(entityManager);
 		query.from(hmCattleRegister);
 		query.leftJoin(QHmCattleRegister.hmCattleRegister.hmCattleChildbirthRecodeSet, QHmCattleChildbirthRecode.hmCattleChildbirthRecode);
 		//.leftJoin(QHmCattleRegister.hmCattleRegister.hmCattleBuyInfoSet, QHmCattleBuyInfo.hmCattleBuyInfo);
@@ -200,10 +200,12 @@ public class CattleController {
 		// 3 ~ 5 번 데이터 삭제후 등록 
 		//3. 송아지 기록
 		QHmCattleCalfRecode qhmCattleCalfRecode = QHmCattleCalfRecode.hmCattleCalfRecode;
-		JPAQuery query = new JPAQuery(entityManager);
-		Long thno = query.from(qhmCattleCalfRecode)
-				.where(QHmCattleCalfRecode.hmCattleCalfRecode.hmCattleCalfRecodeId.hmCattleRegister.entityDiscernNo.eq(hmCattleRegister.getEntityDiscernNo()) )
-				.singleResult(QHmCattleCalfRecode.hmCattleCalfRecode.hmCattleCalfRecodeId.thNo.max());
+		JPAQuery<?> query = new JPAQuery<>(entityManager);
+		Long thno = query
+					.select(qhmCattleCalfRecode.hmCattleCalfRecodeId.thNo.max())
+					.from(qhmCattleCalfRecode)
+					.where(QHmCattleCalfRecode.hmCattleCalfRecode.hmCattleCalfRecodeId.hmCattleRegister.entityDiscernNo.eq(hmCattleRegister.getEntityDiscernNo())).fetchOne();
+				
 		
 		HmCattleCalfRecodeId hmCattleCalfRecodeId = new HmCattleCalfRecodeId();
 		// TODO : BUG 수정 or 추가 ? 멀티 저장 없이 한번만 저장함. 이후 수정 필요
@@ -213,10 +215,10 @@ public class CattleController {
 		cattleCalfRecodeRepository.save(hmCattleCalfRecode);
 		
 		//4. 분만기록
-		query = new JPAQuery(entityManager);
-		Long thno2 = query.from(QHmCattleChildbirthRecode.hmCattleChildbirthRecode)
-		.where(QHmCattleChildbirthRecode.hmCattleChildbirthRecode.hmCattleChildbirthRecodeId.hmCattleRegister.entityDiscernNo.eq(hmCattleRegister.getEntityDiscernNo()))
-		.singleResult(QHmCattleChildbirthRecode.hmCattleChildbirthRecode.hmCattleChildbirthRecodeId.thNo.max());
+		query = new JPAQuery<>(entityManager);
+		Long thno2 = query.select(QHmCattleChildbirthRecode.hmCattleChildbirthRecode.hmCattleChildbirthRecodeId.thNo.max())
+						  .from(QHmCattleChildbirthRecode.hmCattleChildbirthRecode)
+		                  .where(QHmCattleChildbirthRecode.hmCattleChildbirthRecode.hmCattleChildbirthRecodeId.hmCattleRegister.entityDiscernNo.eq(hmCattleRegister.getEntityDiscernNo())).fetchOne();
 		
 		HmCattleChildbirthRecodeId hmCattleChildbirthRecodeId = new HmCattleChildbirthRecodeId();
 		hmCattleChildbirthRecodeId.setHmCattleRegister(hmCattleRegister);
@@ -227,10 +229,9 @@ public class CattleController {
 		
 		//5. 질병치료 기록 
 		if(StringUtils.isNotEmpty(hmCattleCureInfo.getDiseaseName())){
-			query = new JPAQuery(entityManager);
-			Long thno3 = query.from(QHmCattleCureInfo.hmCattleCureInfo)
-			.where( QHmCattleCureInfo.hmCattleCureInfo.hmCattleCureInfoId.hmCattleRegister.entityDiscernNo.eq(hmCattleRegister.getEntityDiscernNo()))
-			.uniqueResult(QHmCattleCureInfo.hmCattleCureInfo.hmCattleCureInfoId.thNo.max());
+			query = new JPAQuery<>(entityManager);
+			Long thno3 = query.select(QHmCattleCureInfo.hmCattleCureInfo.hmCattleCureInfoId.thNo.max()).from(QHmCattleCureInfo.hmCattleCureInfo)
+			.where( QHmCattleCureInfo.hmCattleCureInfo.hmCattleCureInfoId.hmCattleRegister.entityDiscernNo.eq(hmCattleRegister.getEntityDiscernNo())).fetchOne();
 			
 			HmCattleCureInfoId hmCattleCureInfoId = new HmCattleCureInfoId();
 			hmCattleCureInfoId.setHmCattleRegister(hmCattleRegister);

@@ -27,7 +27,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 import org.springframework.stereotype.Repository;
 
-import com.mysema.query.jpa.JPQLQuery;
+import com.querydsl.jpa.JPQLQuery;
 import com.skan.potal.web.potal.cattle.dto.HmCattleRegister;
 import com.skan.potal.web.potal.cattle.dto.QHmCattleRegister;
 
@@ -46,14 +46,14 @@ public interface CattleRegisterRepository
 	 * @param pageable
 	 * @return
 	 */
-	default Page<HmCattleRegister> buildPage(JPQLQuery countQuery, JPQLQuery query, Pageable pageable) {
+	default Page<HmCattleRegister> buildPage(JPQLQuery<?> countQuery, JPQLQuery<?> query, Pageable pageable) {
 		
-		Long total = countQuery.count();
+		Long total = countQuery.fetchCount();
 		
 		query.offset(pageable.getOffset());
 		query.limit(pageable.getPageSize());
 		
-		List<HmCattleRegister> content = total > pageable.getOffset() ? query.list(QHmCattleRegister.hmCattleRegister) : Collections.<HmCattleRegister> emptyList();
+		List<HmCattleRegister> content = total > pageable.getOffset() ? (List<HmCattleRegister>) query.from(QHmCattleRegister.hmCattleRegister).fetchAll()  : Collections.<HmCattleRegister> emptyList();
 		
 		return  new PageImpl<HmCattleRegister>(content, pageable, total);
 	}
