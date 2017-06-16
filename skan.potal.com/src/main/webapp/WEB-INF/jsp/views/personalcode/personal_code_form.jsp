@@ -2,11 +2,11 @@
 <%@ include file="/WEB-INF/jsp/common/TagLib.jspf"%>
 
 <script>
-	var addressAuction = (function (){
+	var personalCodeAuction = (function (){
 		
 		return {
 			submit : function () {
-				document.code_form.action = "${pageContext.request.contextPath}/code/code_insert";
+				document.code_form.action = "${pageContext.request.contextPath}/personal_code/personal_code_insert";
 				document.code_form.submit();
 			},
 			upperCode : function () {
@@ -46,16 +46,16 @@
 
 </div>
 
-<form name="code_form" id="code_form" class="form-horizontal" role="form" action="${pageContext.request.contextPath}/code/code_insert" method="post">
-<%-- <input type="hidden" id="codeMgtNo" name="codeMgtNo" value="${cmtbCode.cmtbCodeId.codeMgtNo}"> --%>
-<input type="hidden" id="code" 		name="code" 	 value="${cmtbCode.cmtbCodeId.code}">
-<input type="hidden" id="codeSeq" 	name="codeSeq" 	 value="${cmtbCode.codeSeq}">
+<form name="code_form" id="code_form" class="form-horizontal" role="form" action="${pageContext.request.contextPath}/personal_code/personal_code_insert" method="post">
+<%-- <input type="hidden" id="codeMgtNo" name="codeMgtNo" value="${personalCode.personalCodeId.codeMgtNo}"> --%>
+<input type="hidden" id="code" 		name="code" 	 value="${personalCode.code}">
+<input type="hidden" id="codeSeq" 	name="codeSeq" 	 value="${personalCode.codeSeq}">
 	<div class="form-group">
 		<label for="firstname" class="col-sm-2 control-label">상위코드</label>
 		<div class="col-sm-8">
-			<input type="text" class="form-control" id="upperCode" name="upperCode" placeholder="상위코드" value="${cmtbCode.upperCode}" readonly="readonly">
+			<input type="text" class="form-control" id="upperCode" name="upperCode" placeholder="상위코드" value="${personalCode.upperCode}" readonly="readonly">
 			<div class="has-error">
-				<label class="control-label" for="inputSuccess1"><form:errors path="cmtbCode.upperCode" /></label>
+				<label class="control-label" for="inputSuccess1"><form:errors path="personalCode.upperCode" /></label>
 			</div>
 		</div>
 		<div class="col-sm-2">
@@ -65,9 +65,9 @@
 	<div class="form-group">
 		<label for="firstname" class="col-sm-2 control-label">코드명</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" id="codeName" name="codeName" placeholder="코드명" value="${cmtbCode.codeName}" >
+			<input type="text" class="form-control" id="codeName" name="codeName" placeholder="코드명" value="${personalCode.codeName}" >
 			<div class="has-error">
-				<label class="control-label" for="inputSuccess1"><form:errors path="cmtbCode.codeName" /></label>
+				<label class="control-label" for="inputSuccess1"><form:errors path="personalCode.codeName" /></label>
 			</div>
 		</div>
 	</div>
@@ -75,10 +75,10 @@
 	<div class="form-group">
 		<label for="lastname" class="col-sm-2 control-label">코드설명</label>
 		<div class="col-sm-10">
-			<textarea class="form-control" rows="" cols="" id="codeComment" name="codeComment">${cmtbCode.codeComment}</textarea>
+			<textarea class="form-control" rows="" cols="" id="codeComment" name="codeComment">${personalCode.codeComment}</textarea>
 			
 			<div class="has-error">
-				<label class="control-label" for="inputSuccess1"><form:errors path="cmtbCode.codeComment" /></label>
+				<label class="control-label" for="inputSuccess1"><form:errors path="personalCode.codeComment" /></label>
 			</div>
 		</div>
 	</div>
@@ -118,7 +118,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-				<button type="button" class="btn btn-primary" onclick="addressAuction.upperCode()">확인</button>
+				<button type="button" class="btn btn-primary" onclick="personalCodeAuction.upperCode()">확인</button>
 			</div>
 		</div>
 		<!-- /.modal-content -->
@@ -133,7 +133,7 @@
 		$("#myBtn").click(function() {
 			$("#myModal").modal();
 			$.ajax({
-				url : '${pageContext.request.contextPath}/code/code_list',
+				url : '${pageContext.request.contextPath}/personal_code/personal_code_list',
 				dataType : 'json',
 				accepts : {
 					xml : 'text/xml',
@@ -142,7 +142,7 @@
 			}).done(function(data) {
 				$('#upperCodeData').find('option').remove();
 				$(data).each(function (index, obj){
-					$('#upperCodeData').append('<option value='+obj.cmtbCodeId.code+'>' + obj.codeName +'</option>')
+					$('#upperCodeData').append('<option value='+obj.code+'>' + obj.codeName +'</option>')
 				})
 			})
 		});

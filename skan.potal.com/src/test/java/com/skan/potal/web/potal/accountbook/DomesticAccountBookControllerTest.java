@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,11 +41,13 @@ public class DomesticAccountBookControllerTest {
 	}
 	
 	@Test
+	@Ignore
 	public void domesticAccountBookList() throws Exception {
 		mockMvc.perform(post("/domestic_account_book/list"));
 	}
 	
 	@Test
+	@Ignore
 	public void domesticAccountBookInsert() throws Exception {
 		
 		for(int i=0 ; i < 100; i++) {
@@ -62,6 +65,17 @@ public class DomesticAccountBookControllerTest {
 	}
 	
 	@Test
+	public void domesticAccouentBookForm(){
+		try {
+			mockMvc.perform(get("/domestic_account_book/form"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	@Test
+	@Ignore
 	public void domesticAccountBookDelete() throws Exception {
 		mockMvc.perform(post("/domestic_account_book/delete")
 				.param("dabMngNo", "cd55bf33-2402-452c-81b1-52e92cf29507")
