@@ -1,3 +1,6 @@
 /target
-/applicationLOG.log
+/.settings/
+/.classpath
+/.project
 /bin/
+/*.log
