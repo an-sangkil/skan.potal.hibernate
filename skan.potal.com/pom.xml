@@ -4,7 +4,7 @@
 	<groupId>com.skan.potal</groupId>
 	<artifactId>com.skan.potal</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>com.dongbu.potal Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
