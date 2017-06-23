@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.web.payment.normal;
+package com.skan.potal.web.payment.normal;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,8 +12,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.skan.tms.mobile.web.controller.AbstractCommonController;
-import com.skan.tms.mobile.web.model.ResponsePaymentTransaction;
+import com.skan.potal.web.controller.AbstractCommonController;
+import com.skan.potal.web.model.ResponsePaymentTransaction;
 
 /**
  * 

@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.web.service;
+package com.skan.potal.web.service;
 
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
@@ -17,7 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.skan.tms.mobile.common.mail.BaseMailSender;
+import com.skan.potal.common.mail.BaseMailSender;
 
 /**
  * Description : 이메일을 병렬로 처리 하기 위한 ThreadExceution 서비스  

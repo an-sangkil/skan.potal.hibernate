@@ -7,7 +7,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.skan.tms.mobile.common.code.AuthorizationCode;
+import com.skan.potal.common.code.AuthorizationCode;
 
 
 /**

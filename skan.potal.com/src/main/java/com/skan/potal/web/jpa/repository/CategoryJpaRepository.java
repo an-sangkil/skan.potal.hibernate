@@ -1,4 +1,4 @@
-package com.skan.tms.web.jpa.repository;
+package com.skan.potal.web.jpa.repository;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 
-import com.skan.tms.web.jpa.dto.CategoryDto;
+import com.skan.potal.web.jpa.dto.CategoryDto;
 
 /**
  * 

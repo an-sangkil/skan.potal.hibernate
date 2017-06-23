@@ -1,4 +1,4 @@
-package com.skan.tms.common.code;
+package com.skan.potal.common.code;
 
 public enum MenuCode {
 

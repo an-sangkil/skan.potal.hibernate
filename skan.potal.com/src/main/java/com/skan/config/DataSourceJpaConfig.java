@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.config;
+package com.skan.config;
 
 import java.util.Properties;
 
@@ -38,8 +38,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 
 @Configuration
-@EnableJpaRepositories(basePackages={
-										 "com.knkcorp.tms.web.jpa.repository" 
+@EnableJpaRepositories(basePackages={ 
+										 "com.skan.potal.web.jpa.repository" 
+										,"com.skan.potal.web.potal"
 										,"org.springframework.social.connect.springdata.jpa"
 									}, transactionManagerRef="transactionManager")
 @EnableTransactionManagement
@@ -90,7 +91,8 @@ public class DataSourceJpaConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 		em.setDataSource(dataSource());
-		em.setPackagesToScan(new String[] { "com.knkcorp.tms.web.jpa.dto"
+		em.setPackagesToScan(new String[] { "com.skan.potal.web.jpa.dto"
+											,"com.skan.potal.web.potal"
 											,"org.springframework.social.connect.springdata.jpa" });
 
 		final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
@@ -147,29 +149,4 @@ public class DataSourceJpaConfig {
     public HibernateJpaSessionFactoryBean sessionFactory() {
         return new HibernateJpaSessionFactoryBean();
     }
-	
-	/////////////////////////////////////////////////
-	// Hibernate 설정
-	/////////////////////////////////////////////////
-//	@Bean
-//	public LocalSessionFactoryBean sessionFactory() {
-//		LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
-//		sessionFactoryBean.setDataSource(dataSource());
-//		sessionFactoryBean.setPackagesToScan("com.knkcorp.tms.mobile.web.jpa.repository");
-//		Properties hibernateProperties = new Properties();
-//		hibernateProperties.put("hibernate.dialect", HIBERNATE_DIALECT);
-//		hibernateProperties.put("hibernate.show_sql", HIBERNATE_SHOW_SQL);
-//		hibernateProperties.put("hibernate.hbm2ddl.auto", HIBERNATE_HBM2DDL_AUTO);
-//		sessionFactoryBean.setHibernateProperties(hibernateProperties);
-//
-//		return sessionFactoryBean;
-//	}
-//
-//	@Bean(name = "hibernateTransactionManager")
-//	public HibernateTransactionManager transactionManager() {
-//		HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-//		transactionManager.setSessionFactory(this.sessionFactory().getObject());
-//		return transactionManager;
-//	}
-
 }

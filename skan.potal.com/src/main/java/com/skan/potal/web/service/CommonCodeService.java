@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.web.service;
+package com.skan.potal.web.service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -8,7 +8,7 @@ import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.stereotype.Service;
 
 import com.querydsl.jpa.impl.JPAQuery;
-import com.skan.tms.web.jpa.dto.QCommonCodeDto;
+import com.skan.potal.web.jpa.dto.QCommonCodeDto;
 
 /**
  * Description : 코드 관리에서 사용하기위한 유틸성 서비스 레이어   

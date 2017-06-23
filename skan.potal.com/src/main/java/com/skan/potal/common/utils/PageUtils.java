@@ -15,7 +15,7 @@
  *
  * Copyright (C) 2016 by SKAN.COMPANY All right reserved.
  */
-package com.skan.tms.mobile.common.utils;
+package com.skan.potal.common.utils;
 
 /**
  * @author ahn

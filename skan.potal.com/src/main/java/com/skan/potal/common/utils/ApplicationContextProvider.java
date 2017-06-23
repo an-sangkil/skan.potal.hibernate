@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.common.utils;
+package com.skan.potal.common.utils;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

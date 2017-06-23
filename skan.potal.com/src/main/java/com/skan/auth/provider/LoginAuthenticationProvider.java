@@ -23,18 +23,18 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Ops;
 import com.querydsl.core.types.dsl.Expressions;
 import com.skan.auth.bean.SKANSession;
+import com.skan.potal.common.code.AuthorizationCode;
+import com.skan.potal.web.jpa.dto.Membership;
+import com.skan.potal.web.jpa.dto.QMembership;
+import com.skan.potal.web.jpa.dto.QRoleDto;
+import com.skan.potal.web.jpa.dto.QUserDto;
+import com.skan.potal.web.jpa.dto.QUserRoleDto;
+import com.skan.potal.web.jpa.dto.UserDto;
+import com.skan.potal.web.jpa.repository.MembershipJpaRepository;
+import com.skan.potal.web.jpa.repository.RoleJpaRepository;
+import com.skan.potal.web.jpa.repository.UserJpaRepository;
+import com.skan.potal.web.jpa.repository.UserRoleJpaRepository;
 import com.skan.security.hash.salt.DigestUtils;
-import com.skan.tms.mobile.common.code.AuthorizationCode;
-import com.skan.tms.web.jpa.dto.Membership;
-import com.skan.tms.web.jpa.dto.QMembership;
-import com.skan.tms.web.jpa.dto.QRoleDto;
-import com.skan.tms.web.jpa.dto.QUserDto;
-import com.skan.tms.web.jpa.dto.QUserRoleDto;
-import com.skan.tms.web.jpa.dto.UserDto;
-import com.skan.tms.web.jpa.repository.MembershipJpaRepository;
-import com.skan.tms.web.jpa.repository.RoleJpaRepository;
-import com.skan.tms.web.jpa.repository.UserJpaRepository;
-import com.skan.tms.web.jpa.repository.UserRoleJpaRepository;
 
 /**
  * Class Name  : 인증 처리 

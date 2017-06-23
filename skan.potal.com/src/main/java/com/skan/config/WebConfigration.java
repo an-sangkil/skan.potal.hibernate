@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.config;
+package com.skan.config;
 
 import java.util.Properties;
 
@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import com.skan.tms.mobile.common.exception.CustomHandlerExceptionResolver;
+import com.skan.potal.common.exception.CustomHandlerExceptionResolver;
 
 @Configuration
 public class WebConfigration extends WebMvcConfigurerAdapter {

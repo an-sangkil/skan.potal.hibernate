@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.web.payment.normal;
+package com.skan.potal.web.payment.normal;
 
 import java.math.BigDecimal;
 
@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.skan.tms.mobile.web.model.ResponsePaymentTransaction;
+import com.skan.potal.web.model.ResponsePaymentTransaction;
 
 /**
  * 

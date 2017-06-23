@@ -10,9 +10,9 @@ import org.springframework.security.access.PermissionEvaluator;
 import org.springframework.security.core.Authentication;
 
 import com.querydsl.core.BooleanBuilder;
-import com.skan.tms.web.jpa.dto.QRoleDto;
-import com.skan.tms.web.jpa.dto.RoleDto;
-import com.skan.tms.web.jpa.repository.RoleJpaRepository;
+import com.skan.potal.web.jpa.dto.QRoleDto;
+import com.skan.potal.web.jpa.dto.RoleDto;
+import com.skan.potal.web.jpa.repository.RoleJpaRepository;
 
 /**
  * Description : 

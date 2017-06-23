@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.config;
+package com.skan.config;
 
 import javax.servlet.ServletContext;
 

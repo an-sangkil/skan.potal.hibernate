@@ -1,6 +1,6 @@
-package com.skan.tms.mobile.web.model;
+package com.skan.potal.web.model;
 
-import com.skan.tms.mobile.common.code.CommonCode;
+import com.skan.potal.common.code.CommonCode;
 
 /**
  * Description : 공통 모델에서 사용할 오브젝트

@@ -37,15 +37,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.querydsl.jpa.impl.JPAQuery;
+import com.skan.config.Application;
+import com.skan.config.DataSourceJpaConfig;
+import com.skan.config.DataSourceMybatisConfig;
 import com.skan.potal.web.potal.cattle.dto.HmCattleBuyInfo;
 import com.skan.potal.web.potal.cattle.dto.HmCattleChildbirthRecode;
 import com.skan.potal.web.potal.cattle.dto.HmCattleChildbirthRecodeId;
 import com.skan.potal.web.potal.cattle.dto.HmCattleRegister;
 import com.skan.potal.web.potal.cattle.dto.QHmCattleBuyInfo;
 import com.skan.potal.web.potal.cattle.dto.QHmCattleRegister;
-import com.skan.tms.mobile.config.ApplicationTMSMobile;
-import com.skan.tms.mobile.config.DataSourceJpaConfig;
-import com.skan.tms.mobile.config.DataSourceMybatisConfig;
 
 /**
  * @author ahn
@@ -54,7 +54,7 @@ import com.skan.tms.mobile.config.DataSourceMybatisConfig;
 
 @RunWith(SpringRunner.class)
 @Rollback
-@SpringBootTest(classes = { ApplicationTMSMobile.class, DataSourceJpaConfig.class,
+@SpringBootTest(classes = { Application.class, DataSourceJpaConfig.class,
 		DataSourceMybatisConfig.class })
 @WebAppConfiguration
 @AutoConfigureMockMvc

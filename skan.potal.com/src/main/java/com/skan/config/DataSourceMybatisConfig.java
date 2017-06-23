@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.config;
+package com.skan.config;
 
 import javax.sql.DataSource;
 
@@ -42,7 +42,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @Lazy
 @EnableTransactionManagement
-@MapperScan(basePackages={"com.knkcorp.tms.web.mybatis.repository"}
+@MapperScan(basePackages={"com.skan.potal.web.mybatis.repository"}
 			, sqlSessionFactoryRef="mybatisSqlSessionFactory")
 public class DataSourceMybatisConfig implements EnvironmentAware {
 	
@@ -83,7 +83,7 @@ public class DataSourceMybatisConfig implements EnvironmentAware {
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 		sqlSessionFactoryBean.setDataSource(this.dataSource());
 		
-		sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:com/knkcorp/tms/web/mybatis/repository/*.xml"));//("classpath:mapper/*.xml"));
+		sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:com/skan/potal/web/mybatis/repository/*.xml"));//("classpath:mapper/*.xml"));
 		sqlSessionFactoryBean.setConfigLocation(new DefaultResourceLoader().getResource("classpath:mybatis.xml"));
 		
 		return (SqlSessionFactory) sqlSessionFactoryBean.getObject();

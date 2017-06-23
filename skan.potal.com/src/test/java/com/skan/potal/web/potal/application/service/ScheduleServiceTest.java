@@ -1,4 +1,4 @@
-package com.dongbu.potal.web.potal.application.service;
+package com.skan.potal.web.potal.application.service;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,13 +8,13 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.skan.tms.mobile.config.ApplicationTMSMobile;
-import com.skan.tms.mobile.config.DataSourceJpaConfig;
-import com.skan.tms.mobile.config.DataSourceMybatisConfig;
+import com.skan.config.Application;
+import com.skan.config.DataSourceJpaConfig;
+import com.skan.config.DataSourceMybatisConfig;
 
 @RunWith(SpringRunner.class)
 @Rollback
-@SpringBootTest(classes = { ApplicationTMSMobile.class, DataSourceJpaConfig.class,
+@SpringBootTest(classes = { Application.class, DataSourceJpaConfig.class,
 		DataSourceMybatisConfig.class })
 @WebAppConfiguration
 @AutoConfigureMockMvc

@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.file;
+package com.skan.potal.file;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -20,8 +20,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.skan.tms.web.jpa.dto.FileDto;
-import com.skan.tms.web.jpa.repository.FileJpaRepository;
+import com.skan.potal.web.jpa.dto.FileDto;
+import com.skan.potal.web.jpa.repository.FileJpaRepository;
 
 
 @Controller

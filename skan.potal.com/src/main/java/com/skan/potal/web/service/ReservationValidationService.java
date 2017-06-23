@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.web.service;
+package com.skan.potal.web.service;
 
 /**
  * 

@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.common.utils;
+package com.skan.potal.common.utils;
 
 import javax.xml.namespace.QName;
 import javax.xml.soap.MessageFactory;

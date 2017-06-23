@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.skan.tms.mobile.config;
+package com.skan.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import com.skan.tms.mobile.common.utils.ApplicationContextProvider;
-import com.skan.tms.mobile.interceptor.SessionInterceptor;
+import com.skan.potal.common.utils.ApplicationContextProvider;
+import com.skan.potal.interceptor.SessionInterceptor;
 
 /**
  * <pre>
@@ -38,13 +38,9 @@ import com.skan.tms.mobile.interceptor.SessionInterceptor;
  */
 @Configuration
 @ComponentScan(basePackages={
-								 "com.knkcorp.tms.mobile.web.controller"
-								,"com.knkcorp.tms.mobile.web.service"
-								,"com.knkcorp.tms.mobile.web.payment"
-								,"com.knkcorp.tms.mobile.scheduler"
-								,"com.knkcorp.tms.mobile.common"
-								,"com.knkcorp.tms.mobile.file"
-								,"com.knkcorp.auth"
+								 "com.skan.auth"
+								,"com.skan.potal"
+								,"com.skan.tms"
 							}
 				, includeFilters={
 									 @ComponentScan.Filter(Controller.class)

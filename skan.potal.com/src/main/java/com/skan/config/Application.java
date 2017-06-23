@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.config;
+package com.skan.config;
 
 import java.util.Collections;
 
@@ -27,7 +27,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableScheduling
 @EnableCaching
-public class ApplicationTMSMobile 
+public class Application 
 	extends SpringBootServletInitializer 
 {
 	
@@ -37,14 +37,14 @@ public class ApplicationTMSMobile
 	 */
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(ApplicationTMSMobile.class);
+		return application.sources(Application.class);
 	}
 	
 	public static void main(String[] args) {
 		
 		// hot deploy 후 자동 리스타트 하지  않도록 한다, pom.xml에 true로 설정하였지만, Run Application 프로퍼티에서 false로 설정.
 		System.setProperty("spring.devtools.restart.enabled", "false");
-		SpringApplication.run(ApplicationTMSMobile.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 	
 	/**

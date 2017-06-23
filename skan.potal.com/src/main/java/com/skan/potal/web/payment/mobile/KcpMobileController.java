@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.web.payment.mobile;
+package com.skan.potal.web.payment.mobile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.skan.tms.mobile.web.payment.normal.PaymentConfig;
+import com.skan.potal.web.payment.normal.PaymentConfig;
 
 //import kr.co.kcp.net.connection.ConnectionKCP;
 //import kr.co.kcp.net.connection.dto.ParamData;

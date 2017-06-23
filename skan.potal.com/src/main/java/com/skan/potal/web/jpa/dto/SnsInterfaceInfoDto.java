@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.skan.tms.web.jpa.dto;
+package com.skan.potal.web.jpa.dto;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;

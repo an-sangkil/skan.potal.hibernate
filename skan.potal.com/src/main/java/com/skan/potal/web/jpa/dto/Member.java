@@ -1,4 +1,4 @@
-package com.skan.potal.hibernate.application.model;
+package com.skan.potal.web.jpa.dto;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.common.mail;
+package com.skan.potal.common.mail;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.mail.javamail.JavaMailSender;
 
-import com.skan.tms.web.jpa.repository.UserRoleJpaRepository;
+import com.skan.potal.web.jpa.repository.UserRoleJpaRepository;
 
 
 public abstract class AbstractMailConfig {

@@ -1,4 +1,4 @@
-package com.skan.tms.web.jpa.dto;
+package com.skan.potal.web.jpa.dto;
 
 import java.util.Date;
 import java.util.List;

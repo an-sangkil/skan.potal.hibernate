@@ -1,4 +1,4 @@
-package com.skan.tms.web.jpa.repository;
+package com.skan.potal.web.jpa.repository;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 
-import com.skan.tms.web.jpa.dto.BoardDto;
-import com.skan.tms.web.jpa.dto.BoardDto.BoardDtoPK;
+import com.skan.potal.web.jpa.dto.BoardDto;
+import com.skan.potal.web.jpa.dto.BoardDto.BoardDtoPK;
 
 public interface BoardJpaRepository extends JpaRepository<BoardDto, BoardDtoPK> ,QueryDslPredicateExecutor<BoardDto> {
 

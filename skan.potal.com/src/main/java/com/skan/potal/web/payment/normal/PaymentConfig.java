@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.web.payment.normal;
+package com.skan.potal.web.payment.normal;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -32,7 +32,7 @@ public class PaymentConfig {
     /* = * g_conf_log_dir 변수 설정                                                 = */
     /* =   log 디렉토리 설정                                                        = */
     /* ============================================================================== */
-	@Value("${payment.g_conf_log_dir}")
+	@Value("${payment.g_conf_log_dir:example}")
     public  String g_conf_log_dir;             // LOG 디렉토리 절대경로 입력
     
     /* ============================================================================== */
@@ -42,7 +42,7 @@ public class PaymentConfig {
     /* = 테스트 시 : testpaygw.kcp.co.kr로 설정해 주십시오.                         = */
     /* = 실결제 시 : paygw.kcp.co.kr로 설정해 주십시오.                             = */
     /* ============================================================================== */
-	@Value("${payment.g_conf_gw_url}")
+	@Value("${payment.g_conf_gw_url:example}")
     public  String g_conf_gw_url;
 
     /* ============================================================================== */
@@ -59,7 +59,7 @@ public class PaymentConfig {
     /* = 실결제 시(UTF-8) : src="http://pay.kcp.co.kr/plugin/payplus_un.js"         = */
     /* =                 src="https://pay.kcp.co.kr/plugin/payplus_un.js"        = */
     /* ============================================================================== */
-	@Value("${payment.g_conf_js_url}")
+	@Value("${payment.g_conf_js_url:defaultValue}")
     public  String g_conf_js_url;
 
     /* ============================================================================== */
@@ -81,9 +81,9 @@ public class PaymentConfig {
     /* = 실결제 시 : 반드시 KCP에서 발급한 사이트코드(site_cd)와 사이트키(site_key) = */
     /* =            로 설정해 주십시오.                                             = */
     /* ============================================================================== */
-	@Value("${payment.g_conf_site_cd}")
+	@Value("${payment.g_conf_site_cd:defaultValue}")
     public  String g_conf_site_cd;
-	@Value("${payment.g_conf_site_key}")
+	@Value("${payment.g_conf_site_key:defaultValue}")
     public  String g_conf_site_key;
 
     /* ============================================================================== */
@@ -91,7 +91,7 @@ public class PaymentConfig {
     /* =----------------------------------------------------------------------------= */
     /* = 사이트명 설정(한글 불가) : 반드시 영문자로 설정하여 주시기 바랍니다.       = */
     /* ============================================================================== */
-	@Value("${payment.g_conf_site_name}")
+	@Value("${payment.g_conf_site_name:defaultValue}")
     public  String g_conf_site_name;
 
     /* ============================================================================== */

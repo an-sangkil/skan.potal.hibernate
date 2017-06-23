@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.web.controller;
+package com.skan.potal.web.controller;
 
 import java.util.Map;
 
@@ -15,7 +15,7 @@ import com.querydsl.core.types.EntityPath;
 import com.querydsl.jpa.impl.JPADeleteClause;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAUpdateClause;
-import com.skan.tms.common.code.MenuCode;
+import com.skan.potal.common.code.MenuCode;
 
 public abstract class AbstractCommonController {
 	

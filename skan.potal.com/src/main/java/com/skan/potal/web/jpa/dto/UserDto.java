@@ -1,4 +1,4 @@
-package com.skan.tms.web.jpa.dto;
+package com.skan.potal.web.jpa.dto;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -207,9 +207,6 @@ public class UserDto implements Serializable {
 	
 	@OneToMany(mappedBy="userDto" ,fetch = FetchType.LAZY )
 	private List<SnsInterfaceInfoDto> snsInterfaceInfos;
-	
-	@OneToMany(mappedBy="userDto" ,fetch = FetchType.LAZY )
-	private List<PaymentInfomationDto> paymentInfomations;
 	
 	@OneToMany(mappedBy="userDto" ,fetch = FetchType.LAZY )
 	private List<Membership> membership;
@@ -433,14 +430,6 @@ public class UserDto implements Serializable {
 
 	public void setTryConnectfailCount(int tryConnectfailCount) {
 		this.tryConnectfailCount = tryConnectfailCount;
-	}
-
-	public List<PaymentInfomationDto> getPaymentInfomations() {
-		return paymentInfomations;
-	}
-
-	public void setPaymentInfomations(List<PaymentInfomationDto> paymentInfomations) {
-		this.paymentInfomations = paymentInfomations;
 	}
 
 	public String getZipcode() {

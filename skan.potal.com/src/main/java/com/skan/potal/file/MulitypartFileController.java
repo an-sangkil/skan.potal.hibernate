@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.file;
+package com.skan.potal.file;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,9 +36,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.skan.auth.utils.SessionUtils;
 import com.skan.com.util.utils.DateUtils;
 import com.skan.com.util.utils.DateUtils.CalendarPattermn;
-import com.skan.tms.web.jpa.dto.FileDto;
-import com.skan.tms.web.jpa.dto.QFileDto;
-import com.skan.tms.web.jpa.repository.FileJpaRepository;
+import com.skan.potal.web.jpa.dto.FileDto;
+import com.skan.potal.web.jpa.dto.QFileDto;
+import com.skan.potal.web.jpa.repository.FileJpaRepository;
 
 /**
  * Description : 파일 업로드 컨트롤러, 스프링에서 사용하는 파일 업로드 기능을 사용한다.

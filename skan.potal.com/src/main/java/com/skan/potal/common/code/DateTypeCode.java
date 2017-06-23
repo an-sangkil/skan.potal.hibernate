@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.common.code;
+package com.skan.potal.common.code;
 
 public enum DateTypeCode {
 	

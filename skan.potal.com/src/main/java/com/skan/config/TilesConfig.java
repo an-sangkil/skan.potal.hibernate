@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.config;
+package com.skan.config;
 
 import java.util.Properties;
 
@@ -34,9 +34,9 @@ public class TilesConfig {
 	@Bean
 	public TilesConfigurer tilesConfigurer() {
 		final TilesConfigurer configurer = new TilesConfigurer();
-		configurer.setDefinitions(new String[] {"WEB-INF/tiles/tiles.xml"
-												,"WEB-INF/tiles/tilesPC.xml"
-												,"WEB-INF/tiles/tilesMobile.xml"});
+		configurer.setDefinitions(new String[] {"WEB-INF/config/tiles/tiles.xml"
+												,"WEB-INF/config/tiles/tilesPC.xml"
+												,"WEB-INF/config/tiles/tilesMobile.xml"});
 		
 		configurer.setCheckRefresh(true);
 		return  configurer;
@@ -57,7 +57,7 @@ public class TilesConfig {
 	@Bean
 	public LiteDeviceDelegatingViewResolver liteDeviceDelegatingViewResolver() {
 		LiteDeviceDelegatingViewResolver resolver = new LiteDeviceDelegatingViewResolver(this.tilesViewResolver());
-		resolver.setNormalSuffix(".mobile");
+		resolver.setNormalSuffix(".pc");
 		resolver.setMobileSuffix(".mobile");
 		resolver.setTabletSuffix(".mobile");
 		resolver.setEnableFallback(true);

@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.web.payment.normal;
+package com.skan.potal.web.payment.normal;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -35,9 +35,9 @@ public class PaymentAdminConfig {
     /* =    log 생성 절대경로 입력                                                  = */
     /* = -------------------------------------------------------------------------- = */
 
-	@Value("${admin.payment.g_conf_gw_url}")
+	@Value("${admin.payment.g_conf_gw_url:exampledata}")
     public String g_conf_gw_url;
-	@Value("${admin.payment.g_conf_log_dir}")
+	@Value("${admin.payment.g_conf_log_dir:exampledata}")
 	public String g_conf_log_dir;
 
     /* = -------------------------------------------------------------------------- = */
@@ -78,11 +78,11 @@ public class PaymentAdminConfig {
     /* =                                                                            = */
     /* = -------------------------------------------------------------------------- = */
     
-    @Value("${admin.payment.g_conf_site_cd}")
+    @Value("${admin.payment.g_conf_site_cd:example}")
     public String g_conf_site_cd;
-    @Value("${admin.payment.g_conf_site_key}")
+    @Value("${admin.payment.g_conf_site_key:example}")
     public String g_conf_site_key;
-    @Value("${admin.payment.g_conf_site_name}")
+    @Value("${admin.payment.g_conf_site_name:example}")
     public String g_conf_site_name;
 
     /* ============================================================================== */

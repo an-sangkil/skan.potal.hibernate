@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.common.exception.handler;
+package com.skan.potal.common.exception.handler;
 
 import javax.servlet.http.HttpServletRequest;
 

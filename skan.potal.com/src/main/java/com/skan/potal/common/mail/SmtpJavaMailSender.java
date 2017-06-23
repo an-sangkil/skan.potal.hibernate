@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.common.mail;
+package com.skan.potal.common.mail;
 
 import java.util.List;
 import java.util.Properties;
@@ -19,7 +19,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
-import com.skan.tms.web.jpa.repository.SystemConfigJpaRepository;
+import com.skan.potal.web.jpa.repository.SystemConfigJpaRepository;
 
 
 /**

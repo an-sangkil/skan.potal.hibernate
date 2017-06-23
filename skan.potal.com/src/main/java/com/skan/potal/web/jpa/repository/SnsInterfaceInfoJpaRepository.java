@@ -1,10 +1,9 @@
-package com.skan.tms.web.jpa.repository;
+package com.skan.potal.web.jpa.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.skan.tms.web.jpa.dto.SnsInterfaceInfoDto;
-import com.skan.tms.web.jpa.dto.SnsInterfaceInfoPK;
-import com.skan.tms.web.jpa.dto.UserPolicyDto;
+import com.skan.potal.web.jpa.dto.SnsInterfaceInfoDto;
+import com.skan.potal.web.jpa.dto.SnsInterfaceInfoPK;
 
 /**
  * 

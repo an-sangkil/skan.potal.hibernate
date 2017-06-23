@@ -1,8 +1,8 @@
-package com.skan.tms.mobile.common.code;
+package com.skan.potal.common.code;
 
 import java.util.Set;
 
-import com.skan.tms.web.jpa.dto.PermissionDto;
+import com.skan.potal.web.jpa.dto.PermissionDto;
 
 
 /**

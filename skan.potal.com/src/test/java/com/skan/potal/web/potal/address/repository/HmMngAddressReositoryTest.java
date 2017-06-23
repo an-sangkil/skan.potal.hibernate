@@ -15,7 +15,7 @@
  *
  * Copyright (C) 2016 by SKAN.COMPANY All right reserved.
  */
-package com.dongbu.potal.web.potal.address.repository;
+package com.skan.potal.web.potal.address.repository;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -27,14 +27,14 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import com.skan.config.Application;
+import com.skan.config.DataSourceJpaConfig;
+import com.skan.config.DataSourceMybatisConfig;
 import com.skan.potal.web.potal.address.model.HmEmailInfo;
 import com.skan.potal.web.potal.address.model.HmEmailInfoId;
 import com.skan.potal.web.potal.address.model.HmMngAddress;
 import com.skan.potal.web.potal.address.repository.HmEmailInfoRepository;
 import com.skan.potal.web.potal.address.repository.HmMngAddressRepository;
-import com.skan.tms.mobile.config.ApplicationTMSMobile;
-import com.skan.tms.mobile.config.DataSourceJpaConfig;
-import com.skan.tms.mobile.config.DataSourceMybatisConfig;
 
 /**
  * @author ahn
@@ -42,7 +42,7 @@ import com.skan.tms.mobile.config.DataSourceMybatisConfig;
  */
 @RunWith(SpringRunner.class)
 @Rollback
-@SpringBootTest(classes = { ApplicationTMSMobile.class, DataSourceJpaConfig.class,
+@SpringBootTest(classes = { Application.class, DataSourceJpaConfig.class,
 		DataSourceMybatisConfig.class })
 @WebAppConfiguration
 @AutoConfigureMockMvc

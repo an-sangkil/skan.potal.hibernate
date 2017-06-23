@@ -24,15 +24,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.skan.auth.social.signin.SignInUtils;
 import com.skan.auth.utils.SessionUtils;
+import com.skan.potal.common.code.CommonCode;
+import com.skan.potal.web.controller.AbstractCommonController;
+import com.skan.potal.web.jpa.dto.QUserDto;
+import com.skan.potal.web.jpa.dto.UserDto;
+import com.skan.potal.web.jpa.repository.ApiKeyManagementJpaRepository;
+import com.skan.potal.web.jpa.repository.UserJpaRepository;
+import com.skan.potal.web.model.CommonObject;
+import com.skan.potal.web.model.ResponseMessage;
 import com.skan.security.hash.salt.DigestUtils;
-import com.skan.tms.mobile.common.code.CommonCode;
-import com.skan.tms.mobile.web.controller.AbstractCommonController;
-import com.skan.tms.mobile.web.model.CommonObject;
-import com.skan.tms.mobile.web.model.ResponseMessage;
-import com.skan.tms.web.jpa.dto.QUserDto;
-import com.skan.tms.web.jpa.dto.UserDto;
-import com.skan.tms.web.jpa.repository.ApiKeyManagementJpaRepository;
-import com.skan.tms.web.jpa.repository.UserJpaRepository;
 
 /**
  * 인증

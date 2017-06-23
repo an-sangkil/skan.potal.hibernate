@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.interceptor;
+package com.skan.potal.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

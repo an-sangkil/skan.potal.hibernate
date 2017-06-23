@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.web.model;
+package com.skan.potal.web.model;
 
 /**
  * Description : 예매 티켓을 발권하기 위한 데이터 수집 모델 

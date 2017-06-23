@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.web.model;
+package com.skan.potal.web.model;
 
 /**
  * 

@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.common.jsonp;
+package com.skan.potal.common.jsonp;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.AbstractJsonpResponseBodyAdvice;

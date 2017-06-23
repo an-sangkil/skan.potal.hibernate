@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.common.mail;
+package com.skan.potal.common.mail;
 
 import java.io.File;
 import java.util.List;

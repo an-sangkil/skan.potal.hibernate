@@ -1,4 +1,4 @@
-package com.skan.tms.mobile.filter;
+package com.skan.potal.filter;
 
 /**
  * 

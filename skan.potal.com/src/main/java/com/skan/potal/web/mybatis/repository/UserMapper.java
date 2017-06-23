@@ -1,13 +1,13 @@
 /**
  * 
  */
-package com.skan.tms.web.mybatis.repository;
+package com.skan.potal.web.mybatis.repository;
 
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import com.skan.tms.web.jpa.dto.UserDto;
+import com.skan.potal.web.jpa.dto.UserDto;
 
 /**
  * <pre>

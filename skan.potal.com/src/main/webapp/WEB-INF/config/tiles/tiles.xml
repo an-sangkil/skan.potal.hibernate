@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<!-- bagic Templates -->
+	<definition name="layout.basic" template="/WEB-INF/tiles/admin/layout/basic.jsp">
+		<put-attribute name="title" value="KNK RMS" />
+		<put-attribute name="header" value="/WEB-INF/tiles/admin/view/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/admin/view/footer.jsp" />
+	</definition>
+	
+	<!-- administration  -->
+	<definition name="layout.pc" template="/WEB-INF/tiles/admin/layout/basic.jsp">
+		<put-attribute name="title" value="KNK RMS System" />
+		<put-attribute name="header" value="/WEB-INF/tiles/admin/view/header.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/tiles/admin/view/sidebar.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/admin/view/footer.jsp" />
+	</definition>
+	
+	
+	<!-- mobile page  -->
+	<definition name="layout.mobile" template="/WEB-INF/tiles/mobile/layout/mobileBasic.jsp">
+		<put-attribute name="title" value="KNK RMS System" />
+		<put-attribute name="header" value="/WEB-INF/tiles/mobile/view/mobileHeader.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/tiles/mobile/view/mobileSidebar.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/mobile/view/mobileFooter.jsp" />
+	</definition>
+	
+	<!-- pc welcome page -->
+	<definition name="rms.main.pc" extends="layout.pc">
+		<put-attribute name="body" value="/WEB-INF/jsp/pc/rms/main.jsp" />
+	</definition>
+	
+	<!-- mobile welcome page -->
+	<definition name="tms.main.mobile" extends="layout.mobile">
+		<put-attribute name="body" value="/WEB-INF/jsp/mobile/main.jsp" />
+	</definition>
+	
+</tiles-definitions>

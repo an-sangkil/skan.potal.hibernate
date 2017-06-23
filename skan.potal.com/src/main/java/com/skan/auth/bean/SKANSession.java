@@ -2,7 +2,7 @@ package com.skan.auth.bean;
 
 import java.util.List;
 
-import com.skan.tms.web.jpa.dto.UserDto;
+import com.skan.potal.web.jpa.dto.UserDto;
 
 /**
  * 

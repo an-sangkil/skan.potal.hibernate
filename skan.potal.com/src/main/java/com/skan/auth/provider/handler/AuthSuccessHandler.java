@@ -16,8 +16,8 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 import org.springframework.stereotype.Component;
 
 import com.skan.auth.bean.SKANSession;
-import com.skan.tms.web.jpa.dto.UserDto;
-import com.skan.tms.web.jpa.repository.UserJpaRepository;
+import com.skan.potal.web.jpa.dto.UserDto;
+import com.skan.potal.web.jpa.repository.UserJpaRepository;
 
 @Component
 public class AuthSuccessHandler

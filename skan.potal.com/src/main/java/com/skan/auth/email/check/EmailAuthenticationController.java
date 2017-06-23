@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.skan.potal.web.controller.AbstractCommonController;
+import com.skan.potal.web.jpa.dto.QUserDto;
+import com.skan.potal.web.jpa.repository.UserJpaRepository;
 import com.skan.security.semmetric.CryptoStringUtils;
-import com.skan.tms.mobile.web.controller.AbstractCommonController;
-import com.skan.tms.web.jpa.dto.QUserDto;
-import com.skan.tms.web.jpa.repository.UserJpaRepository;
 
 /**
  * 

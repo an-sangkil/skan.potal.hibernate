@@ -1,4 +1,4 @@
-package com.dongbu.potal.web.potal.application.dao;
+package com.skan.potal.web.potal.application.dao;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -19,18 +19,18 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import com.skan.config.Application;
+import com.skan.config.DataSourceJpaConfig;
+import com.skan.config.DataSourceMybatisConfig;
 import com.skan.potal.web.potal.application.dao.CmtbGroupRepository;
 import com.skan.potal.web.potal.application.dao.CmtbUserRepository;
 import com.skan.potal.web.potal.schedule.model.CmtbSchedule;
 import com.skan.potal.web.potal.schedule.model.CmtbSchedulePK;
 import com.skan.potal.web.potal.schedule.repository.CmtbScheduleRepository;
-import com.skan.tms.mobile.config.ApplicationTMSMobile;
-import com.skan.tms.mobile.config.DataSourceJpaConfig;
-import com.skan.tms.mobile.config.DataSourceMybatisConfig;
 
 @RunWith(SpringRunner.class)
 @Rollback
-@SpringBootTest(classes = { ApplicationTMSMobile.class, DataSourceJpaConfig.class,
+@SpringBootTest(classes = { Application.class, DataSourceJpaConfig.class,
 		DataSourceMybatisConfig.class })
 @WebAppConfiguration
 @AutoConfigureMockMvc
