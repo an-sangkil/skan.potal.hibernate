@@ -1,4 +1,4 @@
-package com.skan.potal.common.utils;
+package com.skan.tms.mobile.common.utils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
