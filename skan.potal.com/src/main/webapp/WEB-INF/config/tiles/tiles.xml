@@ -13,12 +13,12 @@
 	</definition>
 	
 	<!-- administration  -->
-	<definition name="layout.pc" template="/WEB-INF/tiles/admin/layout/basic.jsp">
+	<definition name="layout.pc" template="/WEB-INF/tiles/pc/layout/basic.jsp">
 		<put-attribute name="title" value="KNK RMS System" />
-		<put-attribute name="header" value="/WEB-INF/tiles/admin/view/header.jsp" />
-		<put-attribute name="sidebar" value="/WEB-INF/tiles/admin/view/sidebar.jsp" />
+		<put-attribute name="header" value="/WEB-INF/tiles/pc/view/header.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/tiles/pc/view/sidebar.jsp" />
 		<put-attribute name="body" value="" />
-		<put-attribute name="footer" value="/WEB-INF/tiles/admin/view/footer.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/pc/view/footer.jsp" />
 	</definition>
 	
 	

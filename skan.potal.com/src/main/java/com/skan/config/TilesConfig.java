@@ -34,9 +34,12 @@ public class TilesConfig {
 	@Bean
 	public TilesConfigurer tilesConfigurer() {
 		final TilesConfigurer configurer = new TilesConfigurer();
-		configurer.setDefinitions(new String[] {"WEB-INF/config/tiles/tiles.xml"
-												,"WEB-INF/config/tiles/tilesPC.xml"
-												,"WEB-INF/config/tiles/tilesMobile.xml"});
+		configurer.setDefinitions(new String[] {
+													"WEB-INF/config/tiles/tiles.xml"
+													,"WEB-INF/config/tiles/tilesPC.xml"
+													,"WEB-INF/config/tiles/tilesMobile.xml"
+													,"WEB-INF/config/tiles/*.xml"
+												});
 		
 		configurer.setCheckRefresh(true);
 		return  configurer;
