@@ -5,7 +5,8 @@
 	<packaging>war</packaging>
 	<name>com.knkcorp.tms.mobile.service Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-
+	
+		
 	<properties>
 		<maven.test.skip>true</maven.test.skip>
 		<knk.lib.version>1.0.1-SNAPSHOT</knk.lib.version>
@@ -61,28 +62,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 		    <groupId>org.springframework.boot</groupId> -->
-<!-- 		    <artifactId>spring-boot-starter-cache</artifactId> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!--             <groupId>org.springframework.boot</groupId> -->
-<!--             <artifactId>spring-boot-starter-security</artifactId> -->
-<!--         </dependency> -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-cache</artifactId>
+		</dependency>
         <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-social-facebook</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.social</groupId>
-			<artifactId>spring-social-spring-data-jpa</artifactId>
-			<version>1.1.0-SNAPSHOT</version>
-			<!-- exclusions>
-				<exclusion>
-					<artifactId>jpa</artifactId>
-					<groupId>org.springframework.social</groupId>
-				</exclusion>
-			</exclusions-->
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -258,4 +244,14 @@
 		</pluginManagement>
 	</build>
 	
+	<repositories>
+		<repository>
+			<id>java.net repository</id>
+			<url>http://download.java.net/maven/2</url>
+		</repository>
+		<repository>
+			<id>opensourceagility-snapshots</id>
+			<url>http://repo.opensourceagility.com/snapshots</url>
+		</repository>
+	</repositories>
 </project>
