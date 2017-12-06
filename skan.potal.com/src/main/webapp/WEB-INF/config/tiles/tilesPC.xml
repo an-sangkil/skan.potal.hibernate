@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<!-- 처음것 부터 우선순위가 적용됨  -->
+<tiles-definitions>
+
+	<!-- PC page -->
+	<definition name="*.*.pc" extends="layout.pc">
+		<put-attribute name="body" value="/WEB-INF/jsp/pc/{1}/{2}.jsp" />
+	</definition>
+	
+	
+</tiles-definitions>

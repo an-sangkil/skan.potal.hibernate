@@ -20,16 +20,16 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.skan.tms.mobile.config.ApplicationTMSMobile;
-import com.skan.tms.mobile.config.DataSourceJpaConfig;
-import com.skan.tms.mobile.config.DataSourceMybatisConfig;
+import com.skan.config.Application;
+import com.skan.config.DataSourceJpaConfig;
+import com.skan.config.DataSourceMybatisConfig;
 /**
  * @author ahn
  *
  */
 @RunWith(SpringRunner.class)
 @Rollback
-@SpringBootTest(classes = { ApplicationTMSMobile.class, DataSourceJpaConfig.class,
+@SpringBootTest(classes = { Application.class, DataSourceJpaConfig.class,
 		DataSourceMybatisConfig.class })
 @WebAppConfiguration
 @AutoConfigureMockMvc

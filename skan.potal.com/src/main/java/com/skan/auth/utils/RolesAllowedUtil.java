@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.skan.auth.annotation.Secured;
-import com.skan.tms.mobile.common.code.AuthorizationCode;
+import com.skan.potal.common.code.AuthorizationCode;
 
 
 

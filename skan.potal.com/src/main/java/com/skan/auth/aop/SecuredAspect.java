@@ -17,8 +17,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import com.skan.auth.utils.RolesAllowedUtil;
-import com.skan.tms.mobile.common.code.AuthorizationCode;
-import com.skan.tms.web.jpa.repository.RoleJpaRepository;
+import com.skan.potal.common.code.AuthorizationCode;
+import com.skan.potal.web.jpa.repository.RoleJpaRepository;
 
 /**
  * 
@@ -43,7 +43,7 @@ public class SecuredAspect {
 	
 	private static final String ROLE_PRIFIX = "ROLE_";
 
-	@Pointcut("@annotation(com.knkcorp.auth.annotation.SKANSecured)")
+	@Pointcut("@annotation(com.skan.auth.annotation.CustomizingSecured)")
 	public void pointcut() {
 		logger.info("pointcut INFO");
 	}

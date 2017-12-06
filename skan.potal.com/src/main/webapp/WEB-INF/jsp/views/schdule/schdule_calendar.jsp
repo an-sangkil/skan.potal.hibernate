@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/jsp/common/TagLib.jspf"%>
+<%@ include file="/WEB-INF/common/taglib.jspf"%>
 
 <script src="${pageContext.request.contextPath}/assets/metro/js/calendar/lib/jquery-ui.custom.min.js"></script> <!-- jQuery UI -->
 <script	src="${pageContext.request.contextPath}/assets/metro/js/calendar/lib/moment.min.js"></script>

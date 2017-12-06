@@ -39,10 +39,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.querydsl.jpa.impl.JPAQuery;
+import com.skan.config.Application;
+import com.skan.config.DataSourceJpaConfig;
+import com.skan.config.DataSourceMybatisConfig;
 import com.skan.potal.web.potal.cattle.dto.QHmCattleCalfRecode;
-import com.skan.tms.mobile.config.ApplicationTMSMobile;
-import com.skan.tms.mobile.config.DataSourceJpaConfig;
-import com.skan.tms.mobile.config.DataSourceMybatisConfig;
 
 /**
  * @author ahn
@@ -50,7 +50,7 @@ import com.skan.tms.mobile.config.DataSourceMybatisConfig;
  */
 @RunWith(SpringRunner.class)
 @Rollback
-@SpringBootTest(classes = { ApplicationTMSMobile.class, DataSourceJpaConfig.class,
+@SpringBootTest(classes = { Application.class, DataSourceJpaConfig.class,
 		DataSourceMybatisConfig.class })
 @WebAppConfiguration
 @AutoConfigureMockMvc

@@ -8,8 +8,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import com.skan.tms.mobile.common.code.AuthorizationCode;
-import com.skan.tms.web.jpa.dto.UserDto;
+import com.skan.potal.common.code.AuthorizationCode;
+import com.skan.potal.web.jpa.dto.UserDto;
 
 /**
  * Description : 접속 허용 (인가 체크)  
